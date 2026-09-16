@@ -851,6 +851,10 @@
   }
 
   function exportPDF() {
+    if (typeof html2pdf === 'undefined') {
+      alert('PDF export requires the html2pdf library, which loads from a CDN (cdnjs.cloudflare.com). It could not be reached — check network/firewall access, or use "Export CSV Data" instead, which works fully offline.');
+      return;
+    }
     const element = document.getElementById('report-container');
     const opt = {
       margin:       0.3,
