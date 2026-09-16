@@ -2,13 +2,30 @@
 
 Utilities for working against DoD acquisition rules, regulations, and clauses.
 
-## Web app (`index.html`)
+## Web app (`public/index.html`)
 
 A single-file, client-side "Defense Contract & Operations Management Suite" covering
 pre-award/strategy, admin & mods, hardware/ops, compliance & SCRM, data rights, and
 closeout/audit calculators. Everything runs in the browser (no backend) and inputs are
-persisted to `localStorage`, so it's suitable for static hosting (e.g. Cloudflare Pages
-free tier) or fully air-gapped use. Open `index.html` directly in a browser to use it.
+persisted to `localStorage`, so it's suitable for static hosting or fully air-gapped use.
+Open `public/index.html` directly in a browser to use it standalone.
+
+### Deploying to Cloudflare Workers (free tier)
+
+The repo is set up to deploy as a Worker serving static assets (`wrangler.toml` +
+`src/worker.js`, which adds a few defensive response headers on top of the asset
+response).
+
+```bash
+npm install       # pulls in wrangler as a dev dependency
+npx wrangler dev   # serve locally at http://localhost:8787
+npx wrangler deploy  # deploy to your Cloudflare account (requires `wrangler login` or
+                      # CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID env vars)
+```
+
+Or connect this GitHub repo in the Cloudflare dashboard under **Workers & Pages → Create
+→ Workers → Import a repository** (Workers Builds) for auto-deploy on every push to `main`
+— it detects `wrangler.toml` and runs `wrangler deploy` for you.
 
 ## Python CLI (`defutil`)
 

@@ -1,0 +1,13 @@
+{
+  "name": "defenseutility-tool",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Defense Contract & Operations Management Suite, served as a Cloudflare Worker (static assets).",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
