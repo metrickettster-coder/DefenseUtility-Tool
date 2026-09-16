@@ -1,0 +1,107 @@
+[
+  {
+    "id": "FAR 52.204-21",
+    "title": "Basic Safeguarding of Covered Contractor Information Systems",
+    "category": "cybersecurity",
+    "keywords": ["safeguarding", "covered contractor information", "federal contract information", "fci"],
+    "summary": "Requires 15 basic security controls for protecting Federal Contract Information (FCI) on contractor information systems."
+  },
+  {
+    "id": "DFARS 252.204-7012",
+    "title": "Safeguarding Covered Defense Information and Cyber Incident Reporting",
+    "category": "cybersecurity",
+    "keywords": ["covered defense information", "cdi", "cyber incident", "nist 800-171", "800-171", "incident reporting", "72 hours"],
+    "summary": "Requires implementation of NIST SP 800-171 security requirements and reporting of cyber incidents affecting covered defense information within 72 hours."
+  },
+  {
+    "id": "DFARS 252.204-7019",
+    "title": "Notice of NIST SP 800-171 DoD Assessment Requirements",
+    "category": "cybersecurity",
+    "keywords": ["800-171 assessment", "basic assessment", "sprs", "supplier performance risk system"],
+    "summary": "Requires an offeror to have a current NIST SP 800-171 DoD Assessment posted in SPRS prior to award."
+  },
+  {
+    "id": "DFARS 252.204-7020",
+    "title": "NIST SP 800-171 DoD Assessment Requirements",
+    "category": "cybersecurity",
+    "keywords": ["800-171 assessment", "sprs", "government access", "assessment methodology"],
+    "summary": "Requires contractors to provide the Government access to conduct or verify NIST SP 800-171 assessments and flow down the requirement to subcontractors."
+  },
+  {
+    "id": "DFARS 252.204-7021",
+    "title": "Cybersecurity Maturity Model Certification Requirements",
+    "category": "cybersecurity",
+    "keywords": ["cmmc", "certification level", "maturity model", "third-party assessment"],
+    "summary": "Requires the contractor to have a current CMMC certificate at the level specified in the contract before award."
+  },
+  {
+    "id": "DFARS 252.239-7010",
+    "title": "Cloud Computing Services",
+    "category": "cybersecurity",
+    "keywords": ["cloud computing", "fedramp", "cloud service provider", "csp"],
+    "summary": "Establishes requirements for cloud service providers, including FedRAMP moderate baseline authorization and incident reporting."
+  },
+  {
+    "id": "DFARS 252.204-7008",
+    "title": "Compliance with Safeguarding Covered Defense Information Controls",
+    "category": "cybersecurity",
+    "keywords": ["representation", "system security plan", "ssp", "compliance representation"],
+    "summary": "Requires offerors to represent compliance with NIST SP 800-171 or identify any not yet implemented requirements via a system security plan and plans of action."
+  },
+  {
+    "id": "FAR 52.204-25",
+    "title": "Prohibition on Contracting for Certain Telecommunications and Video Surveillance Services or Equipment",
+    "category": "supply chain",
+    "keywords": ["telecommunications", "video surveillance", "covered equipment", "section 889"],
+    "summary": "Prohibits contractors from providing or using covered telecommunications equipment or services as a substantial or essential component of any system."
+  },
+  {
+    "id": "DFARS 252.244-7001",
+    "title": "Contractor Purchasing System Administration",
+    "category": "supply chain",
+    "keywords": ["purchasing system", "subcontract management", "cpsr"],
+    "summary": "Establishes requirements for an approved contractor purchasing system for managing subcontracts and purchases."
+  },
+  {
+    "id": "DFARS 252.225-7048",
+    "title": "Export-Controlled Items",
+    "category": "export control",
+    "keywords": ["export control", "itar", "ear", "controlled items"],
+    "summary": "Requires the contractor to comply with all applicable export control laws and regulations."
+  },
+  {
+    "id": "DFARS 252.246-7008",
+    "title": "Sources of Electronic Parts",
+    "category": "supply chain",
+    "keywords": ["electronic parts", "counterfeit", "authorized supplier"],
+    "summary": "Requires contractors to obtain electronic parts from trusted sources to prevent counterfeit parts from entering the supply chain."
+  },
+  {
+    "id": "FAR 52.203-13",
+    "title": "Contractor Code of Business Ethics and Conduct",
+    "category": "ethics",
+    "keywords": ["code of ethics", "business conduct", "hotline", "compliance program"],
+    "summary": "Requires contractors to have a written code of business ethics and an internal control system, and to display fraud hotline posters."
+  },
+  {
+    "id": "DFARS 252.211-7003",
+    "title": "Item Unique Identification and Valuation",
+    "category": "logistics",
+    "keywords": ["uid", "unique identification", "item marking", "iuid"],
+    "summary": "Requires unique item identification (UID) marking on qualifying deliverable items."
+  },
+  {
+    "id": "FAR 52.219-14",
+    "title": "Limitations on Subcontracting",
+    "category": "small business",
+    "keywords": ["subcontracting limit", "small business", "self-performance"],
+    "summary": "Limits the percentage of contract cost a small business concern may subcontract to non-similarly-situated entities."
+  },
+  {
+    "id": "DFARS 252.223-7008",
+    "title": "Prohibition of Hexavalent Chromium",
+    "category": "environmental",
+    "keywords": ["hexavalent chromium", "hazardous materials", "coatings"],
+    "summary": "Restricts the use of hexavalent chromium in specified coatings and materials on deliverable items."
+  }
+]
