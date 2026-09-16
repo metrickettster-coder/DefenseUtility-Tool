@@ -3,11 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Defense Contract & Operations Management Suite (Enterprise 30-in-1)</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<title>Defense Compliance & Security Posture Suite</title>
 
 <style>
   :root{
@@ -26,36 +22,27 @@
   }
 
   *{ box-sizing:border-box; }
-  body{ margin:0; padding:0; background:var(--ink); color:var(--text-hi); font-family:'Inter',sans-serif; min-height:100vh; }
-  .shell{ max-width:1450px; margin:0 auto; padding:20px 20px 60px; }
+  body{ margin:0; padding:0; background:var(--ink); color:var(--text-hi); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif; min-height:100vh; }
+  code, .mono{ font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace; }
+  .shell{ max-width:1100px; margin:0 auto; padding:20px 20px 60px; }
 
   header.top{ display:flex; justify-content:space-between; align-items:center; padding-bottom:14px; margin-bottom:16px; border-bottom:1px solid var(--grid-line); flex-wrap:wrap; gap:10px; }
-  .brand .mark{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--amber); border:1px solid rgba(224,165,44,0.4); padding:2px 6px; border-radius:4px; margin-right:8px; }
+  .brand .mark{ font-family:ui-monospace,monospace; font-size:11px; color:var(--amber); border:1px solid rgba(224,165,44,0.4); padding:2px 6px; border-radius:4px; margin-right:8px; }
   .brand .name{ font-weight:800; font-size:17px; }
+  .brand .sub{ font-size:12px; color:var(--text-dim); margin-top:2px; }
 
-  .export-controls{ display:flex; gap:8px; }
-  .btn-export{ background:var(--panel-2); border:1px solid var(--grid-line); color:var(--text-hi); font-family:'IBM Plex Mono',monospace; font-size:11px; padding:6px 12px; border-radius:6px; cursor:pointer; transition:all 0.15s ease; }
-  .btn-export:hover{ border-color:var(--amber); color:var(--amber); }
+  nav.pillar-nav{ display:grid; grid-template-columns: repeat(3, 1fr); gap:8px; margin-bottom:20px; }
+  @media(max-width: 700px){ nav.pillar-nav{ grid-template-columns: 1fr; } }
 
-  /* Primary Pillar Nav */
-  nav.pillar-nav{ display:grid; grid-template-columns: repeat(6, 1fr); gap:8px; margin-bottom:16px; }
-  @media(max-width: 900px){ nav.pillar-nav{ grid-template-columns: repeat(3, 1fr); } }
-  @media(max-width: 600px){ nav.pillar-nav{ grid-template-columns: repeat(2, 1fr); } }
-
-  .pillar-btn{ background:var(--panel); border:1px solid var(--grid-line); color:var(--text-mid); padding:12px 8px; text-align:center; border-radius:var(--radius); cursor:pointer; transition:all 0.15s ease; }
+  .pillar-btn{ background:var(--panel); border:1px solid var(--grid-line); color:var(--text-mid); padding:14px 10px; text-align:center; border-radius:var(--radius); cursor:pointer; transition:all 0.15s ease; }
   .pillar-btn:hover{ border-color:var(--text-dim); }
   .pillar-btn.active{ background:var(--panel-2); border-color:var(--amber); color:var(--amber); font-weight:700; }
-  .pillar-btn .title{ font-size:12px; font-weight:700; display:block; }
+  .pillar-btn .title{ font-size:13px; font-weight:700; display:block; }
+  .pillar-btn .desc{ font-size:11px; color:var(--text-dim); display:block; margin-top:3px; font-weight:400; }
+  .pillar-btn.active .desc{ color:var(--text-mid); }
 
-  /* Sub-Tool Nav Bar */
-  .subnav-bar{ background:var(--panel); border:1px solid var(--grid-line); padding:8px; border-radius:var(--radius); margin-bottom:20px; display:flex; gap:6px; flex-wrap:wrap; }
-  .sub-btn{ background:transparent; border:1px solid transparent; color:var(--text-dim); padding:6px 12px; font-size:11.5px; border-radius:5px; cursor:pointer; font-weight:600; transition:all 0.15s ease; }
-  .sub-btn:hover{ color:var(--text-hi); background:rgba(255,255,255,0.03); }
-  .sub-btn.active{ background:var(--panel-2); border-color:var(--grid-line); color:var(--focus); }
-
-  /* Views */
-  .tab-pillar, .tool-view { display:none; }
-  .tab-pillar.active, .tool-view.active { display:block; }
+  .tab-pillar{ display:none; }
+  .tab-pillar.active{ display:block; }
 
   .board{ display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-bottom:20px; }
   @media (max-width: 720px){ .board{ grid-template-columns: 1fr; } }
@@ -64,809 +51,197 @@
   .light-card::before{ content:""; position:absolute; inset:0 0 auto 0; height:3px; background:var(--status-color, var(--text-dim)); }
   .light-row{ display:flex; align-items:center; gap:8px; margin-bottom:8px; }
   .light-dot{ width:9px; height:9px; border-radius:50%; background:var(--status-color, var(--text-dim)); }
-  .light-label{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-dim); }
-  .light-value{ font-family:'IBM Plex Mono', monospace; font-size:26px; font-weight:600; line-height:1; margin-bottom:4px; }
+  .light-label{ font-family:ui-monospace,monospace; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-dim); }
+  .light-value{ font-family:ui-monospace,monospace; font-size:24px; font-weight:600; line-height:1; margin-bottom:4px; }
   .light-status{ font-size:12px; color:var(--text-mid); }
 
-  .grid{ display:grid; grid-template-columns: 1fr 1fr; gap:18px; }
-  @media (max-width: 820px){ .grid{ grid-template-columns: 1fr; } }
-
-  .panel{ background: var(--panel); border:1px solid var(--grid-line); border-radius: var(--radius); padding:20px; }
-  .panel h2{ font-size:12px; font-family:'IBM Plex Mono', monospace; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-dim); margin:0 0 16px; }
+  .panel{ background: var(--panel); border:1px solid var(--grid-line); border-radius: var(--radius); padding:20px; margin-bottom:18px; }
+  .panel h2{ font-size:12px; font-family:ui-monospace,monospace; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-dim); margin:0 0 16px; }
 
   .field{ margin-bottom:14px; }
   .field label{ display:block; font-size:12.5px; font-weight:600; margin-bottom:4px; }
   .field .hint{ font-size:11px; color:var(--text-dim); margin-bottom:4px; }
-  .field input, .field select, textarea{ width:100%; background:var(--ink); border:1px solid var(--grid-line); color:var(--text-hi); font-family:'IBM Plex Mono', monospace; font-size:13px; padding:8px 10px; border-radius:6px; outline:none; }
+  .field input, .field select, textarea{ width:100%; background:var(--ink); border:1px solid var(--grid-line); color:var(--text-hi); font-family:ui-monospace,monospace; font-size:13px; padding:8px 10px; border-radius:6px; outline:none; }
   .field input:focus, textarea:focus, select:focus{ border-color: var(--focus); }
-  .prefix-wrap{ position:relative; }
-  .prefix-wrap span{ position:absolute; left:10px; top:50%; transform:translateY(-50%); color:var(--text-dim); font-family:'IBM Plex Mono', monospace; }
-  .prefix-wrap input{ padding-left:22px; }
+
+  textarea{ height:160px; resize:vertical; }
+  .btn-action{ background:var(--amber); color:var(--ink); font-weight:700; font-family:ui-monospace,monospace; font-size:13px; padding:10px 16px; border:none; border-radius:6px; cursor:pointer; }
+
+  .result-card{ background:var(--panel-2); border:1px solid var(--grid-line); border-radius:8px; padding:12px; margin-bottom:10px; }
+  .result-id{ font-family:ui-monospace,monospace; font-weight:700; color:var(--amber); }
+  .result-source{ font-size:9.5px; font-weight:700; padding:2px 6px; border-radius:4px; text-transform:uppercase; letter-spacing:0.05em; }
+  .result-source.clause{ background:rgba(217,88,79,0.18); border:1px solid var(--red); color:var(--red); }
+  .result-source.control{ background:rgba(63,178,127,0.18); border:1px solid var(--green); color:var(--green); }
+  .result-title{ font-size:12.5px; font-weight:600; margin-top:4px; }
+  .result-summary{ font-size:11.5px; color:var(--text-mid); margin-top:4px; }
+
+  .checklist-row{ display:flex; justify-content:space-between; align-items:flex-start; gap:14px; padding:12px 0; border-bottom:1px solid var(--grid-line); }
+  .checklist-row:last-child{ border-bottom:none; }
+  .checklist-row .q{ font-size:13px; }
+  .checklist-row .q .id{ font-family:ui-monospace,monospace; font-size:10.5px; color:var(--text-dim); display:block; margin-bottom:2px; }
+  .checklist-row select{ width:auto; min-width:110px; }
+
+  .cli-box{ background:var(--ink); border:1px solid var(--grid-line); border-radius:6px; padding:12px 14px; font-family:ui-monospace,monospace; font-size:12.5px; color:var(--focus); overflow-x:auto; }
 
   .readout{ display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--grid-line); gap:12px; }
   .readout:last-child{ border-bottom:none; }
   .readout .rlabel{ font-size:13px; color:var(--text-mid); }
-  .readout .rlabel .formula{ display:block; font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--text-dim); margin-top:2px; }
-  .readout .rvalue{ font-family:'IBM Plex Mono', monospace; font-size:16px; font-weight:600; }
+  .readout .rvalue{ font-family:ui-monospace,monospace; font-size:16px; font-weight:600; }
 
-  textarea{ height:160px; resize:vertical; }
-  .btn-action{ width:100%; margin-top:10px; background:var(--amber); color:var(--ink); font-weight:700; font-family:'IBM Plex Mono', monospace; font-size:13px; padding:10px; border:none; border-radius:6px; cursor:pointer; }
-  
-  .clause-card{ background:var(--panel-2); border:1px solid var(--grid-line); border-radius:8px; padding:12px; margin-bottom:10px; }
-  .clause-num{ font-family:'IBM Plex Mono', monospace; font-weight:700; color:var(--amber); }
-  .badge-mandatory{ background:rgba(217,88,79,0.2); border:1px solid var(--red); color:var(--red); font-size:9.5px; font-weight:700; padding:2px 5px; border-radius:4px; }
-  .clause-flowdown{ font-size:11px; font-family:'IBM Plex Mono', monospace; color:var(--green); margin-top:4px; }
+  .disclaimer{ font-size:11.5px; color:var(--text-dim); border-top:1px solid var(--grid-line); margin-top:24px; padding-top:14px; }
 </style>
 </head>
 <body>
 
-<div class="shell" id="report-container">
+<div class="shell">
   <header class="top">
     <div class="brand">
-      <span class="mark">DEFENSE//ENTERPRISE</span>
-      <span class="name">Contract Administration &amp; Operations Platform</span>
-    </div>
-    <div class="export-controls">
-      <button class="btn-export" onclick="exportCSV()">📥 Export CSV Data</button>
-      <button class="btn-export" onclick="exportPDF()">📄 Export PDF Report</button>
+      <span class="mark">DEFENSE//COMPLIANCE</span>
+      <span class="name">Regulation Reference, Gap Check &amp; Security Posture</span>
+      <div class="sub">Runs entirely client-side. Nothing you type here leaves the browser.</div>
     </div>
   </header>
 
   <nav class="pillar-nav">
-    <div class="pillar-btn active" onclick="switchPillar('preaward', this)">
-      <span class="title">🛡️ 1. Pre-Award &amp; Strategy</span>
+    <div class="pillar-btn active" onclick="switchPillar('search', this)">
+      <span class="title">🔎 Clause &amp; Control Search</span>
+      <span class="desc">FAR/DFARS clauses + NIST SP 800-171 controls</span>
     </div>
-    <div class="pillar-btn" onclick="switchPillar('admin', this)">
-      <span class="title">📋 2. Admin &amp; Mods</span>
+    <div class="pillar-btn" onclick="switchPillar('docs', this)">
+      <span class="title">📄 Document Compliance Check</span>
+      <span class="desc">Flag baseline items missing from contract text</span>
     </div>
-    <div class="pillar-btn" onclick="switchPillar('hardware', this)">
-      <span class="title">⚙️ 3. Hardware &amp; Ops</span>
-    </div>
-    <div class="pillar-btn" onclick="switchPillar('security', this)">
-      <span class="title">🔒 4. Compliance &amp; SCRM</span>
-    </div>
-    <div class="pillar-btn" onclick="switchPillar('datarights', this)">
-      <span class="title">📜 5. Data &amp; IP (227)</span>
-    </div>
-    <div class="pillar-btn" onclick="switchPillar('closeout', this)">
-      <span class="title">🪦 6. Closeout &amp; Audit</span>
+    <div class="pillar-btn" onclick="switchPillar('posture', this)">
+      <span class="title">🛡️ Security Posture</span>
+      <span class="desc">STIG-style self-assessment (informational)</span>
     </div>
   </nav>
 
-  <div id="pillar-preaward" class="tab-pillar active">
-    <div class="subnav-bar">
-      <button class="sub-btn active" onclick="switchTool('preaward', 'wgl', this)">Weighted Guidelines (DFARS 215)</button>
-      <button class="sub-btn" onclick="switchTool('preaward', 'tina', this)">TINA Threshold Evaluator</button>
-      <button class="sub-btn" onclick="switchTool('preaward', 'shouldcost', this)">Should-Cost Model</button>
-      <button class="sub-btn" onclick="switchTool('preaward', 'sourceselect', this)">Weighted Source Selection</button>
-      <button class="sub-btn" onclick="switchTool('preaward', 'makebuy', this)">Make-or-Buy Trade Matrix</button>
-    </div>
-
-    <div id="tool-wgl" class="tool-view active">
-      <h1>DoD Weighted Guidelines Profit Calculator (DFARS 215.404-71)</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Calculate pre-negotiation profit objectives based on Performance Risk, Contract Type Risk, and Facilities Capital Employed.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Cost &amp; Risk Objective Inputs</h2>
-          <div class="field"><label>Total Estimated Base Cost</label><div class="prefix-wrap"><span>$</span><input type="number" id="wgl-cost" value="2500000"></div></div>
-          <div class="field"><label>Performance Risk Weighted Score (3.0% - 6.0%)</label><input type="number" id="wgl-perf" value="5.0" step="0.5"></div>
-          <div class="field"><label>Contract Type Risk Score (FFP: 4.0%-6.0%, CPFF: 0.0%-2.0%)</label><input type="number" id="wgl-type" value="4.5" step="0.5"></div>
-          <div class="field"><label>Working Capital Adjustment Factor (%)</label><input type="number" id="wgl-cap" value="1.0" step="0.25"></div>
-        </div>
-        <div class="panel">
-          <h2>DoD Profit Target Breakdown</h2>
-          <div class="readout"><div class="rlabel">Performance Risk Profit Objective</div><div class="rvalue" id="wgl-out-perf">—</div></div>
-          <div class="readout"><div class="rlabel">Contract Type Risk Profit Objective</div><div class="rvalue" id="wgl-out-type">—</div></div>
-          <div class="readout"><div class="rlabel">Working Capital Profit Addition</div><div class="rvalue" id="wgl-out-cap">—</div></div>
-          <div class="readout"><div class="rlabel">Combined Target Profit Rate (%)</div><div class="rvalue" id="wgl-out-rate" style="color:var(--amber);">—</div></div>
-          <div class="readout"><div class="rlabel">Total Negotiated Profit Objective ($)</div><div class="rvalue" id="wgl-out-total" style="color:var(--amber);">—</div></div>
-        </div>
+  <div id="pillar-search" class="tab-pillar active">
+    <div class="panel">
+      <h2>Search Clauses &amp; Controls</h2>
+      <div class="field">
+        <label>Search by ID or keyword</label>
+        <div class="hint">Try "7012", "multifactor", "cmmc", "audit logs"...</div>
+        <input type="text" id="search-query" placeholder="Type to search..." oninput="runSearch()">
       </div>
     </div>
+    <div id="search-results"></div>
+  </div>
 
-    <div id="tool-tina" class="tool-view">
-      <h1>TINA / Certified Cost Data Threshold Evaluator (10 U.S.C. 3702)</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Determine if Certified Cost or Pricing Data is mandatory or exempt under TINA thresholds ($2.5M+).</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Procurement Variables</h2>
-          <div class="field"><label>Total Proposed Action Value</label><div class="prefix-wrap"><span>$</span><input type="number" id="tina-val" value="3200000"></div></div>
-          <div class="field"><label>Commercial Item Exception Applies? (FAR 15.403-1)</label><select id="tina-comm"><option value="0">No</option><option value="1">Yes (Commercial Item)</option></select></div>
-          <div class="field"><label>Adequate Price Competition Expected?</label><select id="tina-comp"><option value="0">No (Sole Source)</option><option value="1">Yes (Competitive)</option></select></div>
-        </div>
-        <div class="panel">
-          <h2>TINA Compliance Requirement</h2>
-          <div class="readout"><div class="rlabel">TINA Threshold Trigger ($2.5M)</div><div class="rvalue" id="tina-out-trigger">—</div></div>
-          <div class="readout"><div class="rlabel">Certified Cost &amp; Pricing Data Mandate</div><div class="rvalue" id="tina-out-status" style="color:var(--amber);">—</div></div>
-          <div class="readout"><div class="rlabel">FAR 15.408 Table 15-2 Submission Required</div><div class="rvalue" id="tina-out-table">—</div></div>
-        </div>
-      </div>
+  <div id="pillar-docs" class="tab-pillar">
+    <div class="panel">
+      <h2>Input Contract / SOW / SSP Text</h2>
+      <textarea id="doc-text" placeholder="Paste contract text...">The contractor shall comply with DFARS 252.204-7012 and shall employ multifactor authentication for all privileged accounts.</textarea>
+      <button class="btn-action" style="margin-top:10px;" onclick="checkDocument()">Analyze Against Baseline</button>
     </div>
-
-    <div id="tool-shouldcost" class="tool-view">
-      <h1>Should-Cost / Price Analysis Model</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Build a bottom-up price target for subcontractor proposals.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Cost Elements</h2>
-          <div class="field"><label>Direct Labor Hours</label><input type="number" id="sc-hours" value="120"></div>
-          <div class="field"><label>Direct Labor Rate ($/hr)</label><div class="prefix-wrap"><span>$</span><input type="number" id="sc-rate" value="65"></div></div>
-          <div class="field"><label>Direct Bill of Materials (BOM) Cost</label><div class="prefix-wrap"><span>$</span><input type="number" id="sc-bom" value="12500"></div></div>
-          <div class="field"><label>Material Burden Overhead (%)</label><input type="number" id="sc-mat-oh" value="8"></div>
-          <div class="field"><label>G&amp;A Expense Rate (%)</label><input type="number" id="sc-ga" value="14"></div>
-          <div class="field"><label>Target Profit Margin (%)</label><input type="number" id="sc-profit" value="10"></div>
-        </div>
-        <div class="panel">
-          <h2>Should-Cost Breakdown</h2>
-          <div class="readout"><div class="rlabel">Direct Labor Cost</div><div class="rvalue" id="sc-out-labor">—</div></div>
-          <div class="readout"><div class="rlabel">Material + Burden</div><div class="rvalue" id="sc-out-mat">—</div></div>
-          <div class="readout"><div class="rlabel">Subtotal Cost</div><div class="rvalue" id="sc-out-subtotal">—</div></div>
-          <div class="readout"><div class="rlabel">Target Fair Price (W/ Profit)</div><div class="rvalue" id="sc-out-total" style="color:var(--amber);">—</div></div>
-        </div>
-      </div>
+    <div class="board" id="doc-board" style="display:none;">
+      <div class="light-card"><div class="light-row"><span class="light-dot"></span><span class="light-label">Referenced</span></div><div class="light-value" id="doc-referenced">—</div><div class="light-status">baseline items found</div></div>
+      <div class="light-card"><div class="light-row"><span class="light-dot"></span><span class="light-label">Missing</span></div><div class="light-value" id="doc-missing">—</div><div class="light-status">baseline items not found</div></div>
+      <div class="light-card"><div class="light-row"><span class="light-dot"></span><span class="light-label">Coverage</span></div><div class="light-value" id="doc-coverage">—</div><div class="light-status">of baseline referenced</div></div>
     </div>
-
-    <div id="tool-sourceselect" class="tool-view">
-      <h1>Weighted Source Selection Evaluator</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Score supplier quotes against Technical, Price, and Past Performance weights.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Supplier Scores (1 to 10 Scale)</h2>
-          <div class="field"><label>Technical Capability Score (40% Weight)</label><input type="number" id="ss-tech" value="8" max="10" min="1"></div>
-          <div class="field"><label>Price Competitiveness Score (40% Weight)</label><input type="number" id="ss-price" value="7" max="10" min="1"></div>
-          <div class="field"><label>Past Performance / Schedule Score (20% Weight)</label><input type="number" id="ss-past" value="9" max="10" min="1"></div>
-        </div>
-        <div class="panel">
-          <h2>Trade Study Result</h2>
-          <div class="readout"><div class="rlabel">Composite Trade Score</div><div class="rvalue" id="ss-out-score" style="color:var(--amber);">—</div></div>
-          <div class="readout"><div class="rlabel">Award Recommendation</div><div class="rvalue" id="ss-out-rec">—</div></div>
-        </div>
-      </div>
+    <div class="panel" id="doc-results" style="display:none;">
+      <h2>Baseline Coverage Detail</h2>
+      <div id="doc-results-list"></div>
     </div>
-
-    <div id="tool-makebuy" class="tool-view">
-      <h1>Make-or-Buy Decision Evaluator (FAR 15.407-2)</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Quantify capacity, core competency, cost, and schedule trade-offs for major assemblies.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Decision Factors (1 to 5 Score)</h2>
-          <div class="field"><label>Internal Technical Core Competency (5 = High)</label><input type="number" id="mb-comp" value="4" max="5" min="1"></div>
-          <div class="field"><label>Internal Factory Capacity Available (5 = High)</label><input type="number" id="mb-cap" value="2" max="5" min="1"></div>
-          <div class="field"><label>Internal Cost Advantage vs Supplier (5 = Lower Cost In-House)</label><input type="number" id="mb-cost" value="3" max="5" min="1"></div>
-        </div>
-        <div class="panel">
-          <h2>Program Decision Recommendation</h2>
-          <div class="readout"><div class="rlabel">Internal Sourcing Index</div><div class="rvalue" id="mb-out-score">—</div></div>
-          <div class="readout"><div class="rlabel">Strategic Decision Mandate</div><div class="rvalue" id="mb-out-rec" style="color:var(--green);">—</div></div>
-        </div>
-      </div>
+    <div class="panel">
+      <h2>Baseline in Use</h2>
+      <div class="hint" style="margin-bottom:10px;">CUI / DFARS Safeguarding baseline — the same default baseline as <code>defutil check-doc</code> in the companion CLI.</div>
+      <div id="baseline-list" style="font-size:11.5px; color:var(--text-mid);"></div>
     </div>
   </div>
 
-  <div id="pillar-admin" class="tab-pillar">
-    <div class="subnav-bar">
-      <button class="sub-btn active" onclick="switchTool('admin', 'modlog', this)">Contract Mod &amp; Baseline Log</button>
-      <button class="sub-btn" onclick="switchTool('admin', 'lof', this)">75% Limitation of Funds (FAR 52.232-22)</button>
-      <button class="sub-btn" onclick="switchTool('admin', 'clin', this)">CLIN Invoicing &amp; Burn-Down</button>
-      <button class="sub-btn" onclick="switchTool('admin', 'pbp', this)">Progress Payments vs. PBP</button>
-      <button class="sub-btn" onclick="switchTool('admin', 'contracttype', this)">Contract Type Risk Matrix</button>
+  <div id="pillar-posture" class="tab-pillar">
+    <div class="board">
+      <div class="light-card"><div class="light-row"><span class="light-dot"></span><span class="light-label">Passed</span></div><div class="light-value" id="posture-pass">0 / 8</div><div class="light-status">self-reported checks</div></div>
+      <div class="light-card"><div class="light-row"><span class="light-dot"></span><span class="light-label">Status</span></div><div class="light-value" id="posture-status" style="font-size:16px;">—</div><div class="light-status">overall readiness</div></div>
     </div>
-
-    <div id="tool-modlog" class="tool-view active">
-      <h1>Contract Modification &amp; Baseline Change Log</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Track bilateral/unilateral modifications, Change Orders, and cumulative TCV shifts.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Modification Entry</h2>
-          <div class="field"><label>Base Contract Award Value</label><div class="prefix-wrap"><span>$</span><input type="number" id="mod-base" value="1000000"></div></div>
-          <div class="field"><label>Cumulative Value of Executed Modifications</label><div class="prefix-wrap"><span>$</span><input type="number" id="mod-mods" value="150000"></div></div>
-          <div class="field"><label>Pending Change Order Value in Negotiation</label><div class="prefix-wrap"><span>$</span><input type="number" id="mod-pending" value="50000"></div></div>
-        </div>
-        <div class="panel">
-          <h2>Total Contract Baseline (TCV)</h2>
-          <div class="readout"><div class="rlabel">Definitized Contract Value</div><div class="rvalue" id="mod-out-def">—</div></div>
-          <div class="readout"><div class="rlabel">Potential Total Contract Value (TCV)</div><div class="rvalue" id="mod-out-tcv" style="color:var(--amber);">—</div></div>
-          <div class="readout"><div class="rlabel">Cumulative Scope Growth %</div><div class="rvalue" id="mod-out-growth">—</div></div>
-        </div>
-      </div>
+    <div class="panel">
+      <h2>STIG-Style Self-Assessment</h2>
+      <div class="hint" style="margin-bottom:6px;">Answer based on your own knowledge of the host — this is self-reported, not an automated scan. See below for the real thing.</div>
+      <div id="posture-checklist"></div>
     </div>
-
-    <div id="tool-lof" class="tool-view">
-      <h1>Limitation of Funds / Cost Monitor (FAR 52.232-20/22)</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Enforce automated 75% and 85% expenditure alerts to trigger formal CO funding notifications.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Funding &amp; Expenditure Status</h2>
-          <div class="field"><label>Total Obligated Funding Allocation</label><div class="prefix-wrap"><span>$</span><input type="number" id="lof-alloc" value="500000"></div></div>
-          <div class="field"><label>Total Incurred Costs + Outstanding Commitments</label><div class="prefix-wrap"><span>$</span><input type="number" id="lof-spent" value="390000"></div></div>
-        </div>
-        <div class="panel">
-          <h2>75% Threshold Alert Status</h2>
-          <div class="readout"><div class="rlabel">Funding Spent %</div><div class="rvalue" id="lof-out-pct">—</div></div>
-          <div class="readout"><div class="rlabel">FAR Clause 60-Day Notice Status</div><div class="rvalue" id="lof-out-status" style="color:var(--red);">—</div></div>
-          <div class="readout"><div class="rlabel">Remaining Spend Before Cease-Work Target</div><div class="rvalue" id="lof-out-rem">—</div></div>
-        </div>
-      </div>
+    <div class="panel" id="posture-gaps" style="display:none;">
+      <h2>Open Items &amp; Remediation</h2>
+      <div id="posture-gaps-list"></div>
     </div>
-
-    <div id="tool-clin" class="tool-view">
-      <h1>CLIN Invoicing &amp; Funding Burn-Down Tracker</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Track CLIN obligated funding vs. actual invoices to prevent de-obligation or overrun.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Obligated Funding Balances</h2>
-          <div class="field"><label>CLIN Total Obligated Funds</label><div class="prefix-wrap"><span>$</span><input type="number" id="clin-fund" value="250000"></div></div>
-          <div class="field"><label>Total Invoiced / Billed to Date</label><div class="prefix-wrap"><span>$</span><input type="number" id="clin-billed" value="185000"></div></div>
-          <div class="field"><label>Monthly Estimated Burn Rate</label><div class="prefix-wrap"><span>$</span><input type="number" id="clin-burn" value="20000"></div></div>
-        </div>
-        <div class="panel">
-          <h2>Funding Runway Output</h2>
-          <div class="readout"><div class="rlabel">Remaining Obligated Funding</div><div class="rvalue" id="clin-out-rem">—</div></div>
-          <div class="readout"><div class="rlabel">Estimated Funding Runway</div><div class="rvalue" id="clin-out-runway" style="color:var(--green);">—</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="tool-pbp" class="tool-view">
-      <h1>Progress Payments vs. PBP Cash Flow Model</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Compare customary progress payments (FAR 32.5) against Performance-Based Payments (FAR 32.10).</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Financing Inputs</h2>
-          <div class="field"><label>Contract Total Value</label><div class="prefix-wrap"><span>$</span><input type="number" id="pbp-val" value="1000000"></div></div>
-          <div class="field"><label>Incurred Costs to Date</label><div class="prefix-wrap"><span>$</span><input type="number" id="pbp-cost" value="400000"></div></div>
-          <div class="field"><label>Standard Progress Payment Rate</label><select id="pbp-rate"><option value="0.80">80% (Large Business Customary)</option><option value="0.90">90% (Small Business Customary)</option></select></div>
-        </div>
-        <div class="panel">
-          <h2>Liquidation &amp; Cash Outflow Analysis</h2>
-          <div class="readout"><div class="rlabel">Available Progress Payment Financing</div><div class="rvalue" id="pbp-out-progress">—</div></div>
-          <div class="readout"><div class="rlabel">Liquidation Buffer Remaining</div><div class="rvalue" id="pbp-out-liquid">—</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="tool-contracttype" class="tool-view">
-      <h1>Contract Type Risk Matrix</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Evaluate cost and performance risk allocation by acquisition structure.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Structure Selection</h2>
-          <div class="field"><label>Select Proposed Contract Type</label>
-            <select id="ct-select" onchange="calcContractType()">
-              <option value="ffp">Firm-Fixed-Price (FFP)</option>
-              <option value="cpff">Cost-Plus-Fixed-Fee (CPFF)</option>
-              <option value="tm">Time &amp; Materials (T&amp;M)</option>
-            </select>
-          </div>
-        </div>
-        <div class="panel">
-          <h2>Risk Distribution Analysis</h2>
-          <div class="readout"><div class="rlabel">Buyer Cost Risk</div><div class="rvalue" id="ct-out-buyer">—</div></div>
-          <div class="readout"><div class="rlabel">Supplier Performance Risk</div><div class="rvalue" id="ct-out-seller">—</div></div>
-          <div class="readout"><div class="rlabel">Audit &amp; Oversight Level</div><div class="rvalue" id="ct-out-audit">—</div></div>
-        </div>
-      </div>
+    <div class="panel">
+      <h2>Run an Actual Local Scan</h2>
+      <p style="font-size:12.5px; color:var(--text-mid); margin-top:0;">
+        A browser can't inspect your OS. The companion Python CLI (<code>defutil scan-system</code>) runs the same
+        8 checks for real — reading <code>sshd_config</code>, querying <code>systemctl</code>, checking file
+        permissions and <code>/etc/shadow</code> — entirely read-only, entirely local, nothing sent anywhere.
+      </p>
+      <div class="cli-box">pip install -e .<br>defutil scan-system</div>
     </div>
   </div>
 
-  <div id="pillar-hardware" class="tab-pillar">
-    <div class="subnav-bar">
-      <button class="sub-btn active" onclick="switchTool('hardware', 'evm', this)">Earned Value (EVM)</button>
-      <button class="sub-btn" onclick="switchTool('hardware', 'learning', this)">Learning Curve</button>
-      <button class="sub-btn" onclick="switchTool('hardware', 'eoq', this)">EOQ &amp; Reorder Point</button>
-      <button class="sub-btn" onclick="switchTool('hardware', 'quality', this)">Quality &amp; Six Sigma</button>
-      <button class="sub-btn" onclick="switchTool('hardware', 'fai', this)">AS9102 FAI Planner</button>
-      <button class="sub-btn" onclick="switchTool('hardware', 'ecn', this)">ECN Cost Impact</button>
-      <button class="sub-btn" onclick="switchTool('hardware', 'leadtime', this)">Hardware Lead Time</button>
-    </div>
-
-    <div id="tool-evm" class="tool-view active">
-      <h1>Earned Value Management (EVM)</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Track cost and schedule variances against baseline targets.</p>
-      <div class="board">
-        <div class="light-card"><div class="light-row"><span class="light-dot"></span><span class="light-label">Cost Performance</span></div><div class="light-value" id="val-cpi">—</div><div class="light-status">CPI Metric</div></div>
-        <div class="light-card"><div class="light-row"><span class="light-dot"></span><span class="light-label">Schedule Performance</span></div><div class="light-value" id="val-spi">—</div><div class="light-status">SPI Metric</div></div>
-        <div class="light-card"><div class="light-row"><span class="light-dot"></span><span class="light-label">Overall Health</span></div><div class="light-value" id="val-overall">—</div><div class="light-status">Combined</div></div>
-      </div>
-      <div class="grid">
-        <div class="panel">
-          <h2>Program Inputs</h2>
-          <div class="field"><label>Budget at Completion (BAC)</label><div class="prefix-wrap"><span>$</span><input type="number" id="bac" value="500000"></div></div>
-          <div class="field"><label>Planned Value (PV)</label><div class="prefix-wrap"><span>$</span><input type="number" id="pv" value="200000"></div></div>
-          <div class="field"><label>Earned Value (EV)</label><div class="prefix-wrap"><span>$</span><input type="number" id="ev" value="180000"></div></div>
-          <div class="field"><label>Actual Cost (AC)</label><div class="prefix-wrap"><span>$</span><input type="number" id="ac" value="210000"></div></div>
-        </div>
-        <div class="panel">
-          <h2>Calculated Metrics</h2>
-          <div class="readout"><div class="rlabel">Cost Variance (CV)<span class="formula">EV − AC</span></div><div class="rvalue" id="out-cv">—</div></div>
-          <div class="readout"><div class="rlabel">Schedule Variance (SV)<span class="formula">EV − PV</span></div><div class="rvalue" id="out-sv">—</div></div>
-          <div class="readout"><div class="rlabel">Cost Performance Index (CPI)<span class="formula">EV ÷ AC</span></div><div class="rvalue" id="out-cpi">—</div></div>
-          <div class="readout"><div class="rlabel">Schedule Performance Index (SPI)<span class="formula">EV ÷ PV</span></div><div class="rvalue" id="out-spi">—</div></div>
-          <div class="readout"><div class="rlabel">Estimate at Completion (EAC)<span class="formula">AC + (BAC − EV) / CPI</span></div><div class="rvalue" id="out-eac">—</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="tool-learning" class="tool-view">
-      <h1>Unit Learning Curve Estimator</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Project recurring hardware assembly labor hours.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Production Variables</h2>
-          <div class="field"><label>T1 Hours (1st Unit Labor)</label><input type="number" id="lc-t1" value="100"></div>
-          <div class="field"><label>Target Unit Number (N)</label><input type="number" id="lc-n" value="50"></div>
-          <div class="field"><label>Learning Curve Rate (%)</label><select id="lc-rate"><option value="0.85">85% Learning Rate (Standard Defense)</option><option value="0.90">90% Learning Rate</option><option value="0.80">80% Learning Rate</option></select></div>
-        </div>
-        <div class="panel">
-          <h2>Labor Projections</h2>
-          <div class="readout"><div class="rlabel">Hours for Unit N</div><div class="rvalue" id="out-unit-n">—</div></div>
-          <div class="readout"><div class="rlabel">Labor Reduction %</div><div class="rvalue" id="out-reduction">—</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="tool-eoq" class="tool-view">
-      <h1>Economic Order Quantity (EOQ) &amp; Reorder Point</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Optimize batch size and safety buffer stock levels.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Inventory Inputs</h2>
-          <div class="field"><label>Annual Demand (D)</label><input type="number" id="eoq-d" value="12000"></div>
-          <div class="field"><label>Order Cost (S)</label><div class="prefix-wrap"><span>$</span><input type="number" id="eoq-s" value="250"></div></div>
-          <div class="field"><label>Annual Holding Cost per Unit (H)</label><div class="prefix-wrap"><span>$</span><input type="number" id="eoq-h" value="15"></div></div>
-          <div class="field"><label>Lead Time (L)</label><input type="number" id="eoq-l" value="14"><div class="hint">Days</div></div>
-          <div class="field"><label>Daily Demand Safety Buffer</label><input type="number" id="eoq-buffer" value="50"></div>
-        </div>
-        <div class="panel">
-          <h2>Optimal Order Strategy</h2>
-          <div class="readout"><div class="rlabel">Economic Order Quantity (EOQ)</div><div class="rvalue" id="out-eoq">—</div></div>
-          <div class="readout"><div class="rlabel">Reorder Point (ROP)</div><div class="rvalue" id="out-rop">—</div></div>
-          <div class="readout"><div class="rlabel">Total Annual Holding Cost</div><div class="rvalue" id="out-holding">—</div></div>
-          <div class="readout"><div class="rlabel">Total Annual Order Cost</div><div class="rvalue" id="out-ordering">—</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="tool-quality" class="tool-view">
-      <h1>Quality &amp; Defect Rate Estimator</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Calculate Yield, Parts Per Million (PPM), and Process Sigma.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Inspection Metrics</h2>
-          <div class="field"><label>Total Units Inspected</label><input type="number" id="q-total" value="10000"></div>
-          <div class="field"><label>Defective Units Found</label><input type="number" id="q-defects" value="15"></div>
-        </div>
-        <div class="panel">
-          <h2>Quality Output</h2>
-          <div class="readout"><div class="rlabel">First Pass Yield %</div><div class="rvalue" id="out-yield">—</div></div>
-          <div class="readout"><div class="rlabel">Defect Rate (DPPM)</div><div class="rvalue" id="out-dppm">—</div></div>
-          <div class="readout"><div class="rlabel">Estimated Process Sigma</div><div class="rvalue" id="out-sigma">—</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="tool-fai" class="tool-view">
-      <h1>AS9102 First Article Inspection (FAI) Planner</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Gate verification checklist for Full-Rate Production (FRP) clearance.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>AS9102 Form Gate Checks</h2>
-          <div class="field"><label>Form 1: Part Number Accountability &amp; BOM Complete?</label><select id="fai-1"><option value="1">Yes (Passed)</option><option value="0">No</option></select></div>
-          <div class="field"><label>Form 2: Product Accountability (Materials, Special Processes)?</label><select id="fai-2"><option value="1">Yes (Passed)</option><option value="0">No</option></select></div>
-          <div class="field"><label>Form 3: Characteristic Accountability (100% CMM Ballooned)?</label><select id="fai-3"><option value="1">Yes (Passed)</option><option value="0">No</option></select></div>
-        </div>
-        <div class="panel">
-          <h2>FRP Gate Readiness</h2>
-          <div class="readout"><div class="rlabel">AS9102 Gate Result</div><div class="rvalue" id="fai-out-status" style="color:var(--green);">—</div></div>
-          <div class="readout"><div class="rlabel">Production Release Authorization</div><div class="rvalue" id="fai-out-auth">—</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="tool-ecn" class="tool-view">
-      <h1>ECN / Engineering Change NRE Cost Impact</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Model total non-recurring engineering (NRE), drawing updates, and rework/retrofit costs.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Engineering &amp; Hardware Scrap Inputs</h2>
-          <div class="field"><label>Engineering &amp; Drafting Hours Required</label><input type="number" id="ecn-hrs" value="80"></div>
-          <div class="field"><label>Fully Burdened Engineering Rate ($/hr)</label><div class="prefix-wrap"><span>$</span><input type="number" id="ecn-rate" value="125"></div></div>
-          <div class="field"><label>Scrapped Work-in-Process (WIP) Value</label><div class="prefix-wrap"><span>$</span><input type="number" id="ecn-scrap" value="8500"></div></div>
-          <div class="field"><label>Retrofit / Field Work Hours per Unit</label><input type="number" id="ecn-rework-hrs" value="5"></div>
-          <div class="field"><label>Units Requiring Retrofit</label><input type="number" id="ecn-rework-units" value="10"></div>
-        </div>
-        <div class="panel">
-          <h2>Change Impact Financials</h2>
-          <div class="readout"><div class="rlabel">Non-Recurring Engineering (NRE) Cost</div><div class="rvalue" id="ecn-out-nre">—</div></div>
-          <div class="readout"><div class="rlabel">Total Rework &amp; Retrofit Labor</div><div class="rvalue" id="ecn-out-rework">—</div></div>
-          <div class="readout"><div class="rlabel">Total ECN Financial Cost Impact</div><div class="rvalue" id="ecn-out-total" style="color:var(--red);">—</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="tool-leadtime" class="tool-view">
-      <h1>Hardware Lead Time &amp; Buffer Model</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Calculate total procurement cycle lead time and delivery confidence.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Schedule Breakdown (Days)</h2>
-          <div class="field"><label>PO Admin &amp; Sourcing Lead Time</label><input type="number" id="lt-admin" value="7"></div>
-          <div class="field"><label>Raw Material Procurement Lead Time</label><input type="number" id="lt-mat" value="21"></div>
-          <div class="field"><label>Manufacturing / Assembly Time</label><input type="number" id="lt-mfg" value="30"></div>
-          <div class="field"><label>Transit &amp; Customs Duration</label><input type="number" id="lt-transit" value="5"></div>
-          <div class="field"><label>Risk Buffer Multiplier (%)</label><input type="number" id="lt-buffer" value="15"></div>
-        </div>
-        <div class="panel">
-          <h2>Total Schedule Output</h2>
-          <div class="readout"><div class="rlabel">Base Lead Time</div><div class="rvalue" id="lt-out-base">—</div></div>
-          <div class="readout"><div class="rlabel">Added Risk Buffer</div><div class="rvalue" id="lt-out-buf">—</div></div>
-          <div class="readout"><div class="rlabel">Committed Lead Time</div><div class="rvalue" id="lt-out-total" style="color:var(--green);">—</div></div>
-        </div>
-      </div>
-    </div>
+  <div class="disclaimer">
+    The bundled clause and NIST SP 800-171 control datasets are illustrative, curated subsets — not a complete or
+    authoritative restatement of FAR/DFARS or NIST SP 800-171. Verify against acquisition.gov, the DFARS PGI, and
+    NIST SP 800-171 before relying on this for actual compliance determinations. Matching is keyword/ID-based, not
+    semantic, and can both over- and under-match.
   </div>
-
-  <div id="pillar-security" class="tab-pillar">
-    <div class="subnav-bar">
-      <button class="sub-btn active" onclick="switchTool('security', 'dfars', this)">DFARS Flow-Down Analyzer</button>
-      <button class="sub-btn" onclick="switchTool('security', 'lookup', this)">FAR/DFARS Clause Database</button>
-      <button class="sub-btn" onclick="switchTool('security', 'cmmc', this)">CMMC / NIST 800-171</button>
-      <button class="sub-btn" onclick="switchTool('security', 'scrm', this)">NIST 800-161 SCRM</button>
-      <button class="sub-btn" onclick="switchTool('security', 'specialty', this)">Berry Specialty Metals</button>
-      <button class="sub-btn" onclick="switchTool('security', 'foci', this)">FOCI Risk Matrix</button>
-      <button class="sub-btn" onclick="switchTool('security', 'itar', this)">ITAR / EAR Export Triage</button>
-      <button class="sub-btn" onclick="switchTool('security', 'bomrisk', this)">BOM Sourcing Risk</button>
-    </div>
-
-    <div id="tool-dfars" class="tool-view active">
-      <h1>DFARS Clause &amp; Flow-Down Analyzer</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Parse solicitation text to extract mandatory compliance flow-downs.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Input RFP / SOW Text</h2>
-          <textarea id="contractText" placeholder="Paste contract text...">The contractor shall comply with DFARS 252.204-7012, DFARS 252.204-7020, and DFARS 252.225-7001 for all hardware deliverables.</textarea>
-          <button class="btn-action" onclick="analyzeDFARS()">Analyze Contract Text</button>
-        </div>
-        <div class="panel">
-          <h2>Detected Flow-Down Requirements</h2>
-          <div id="dfarsResults">Click 'Analyze Contract Text' to evaluate.</div>
-        </div>
-      </div>
-    </div>
-
-    <div id="tool-lookup" class="tool-view">
-      <h1>FAR &amp; DFARS Rapid Clause Database</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Air-gapped regulatory repository search.</p>
-      <div class="panel" style="margin-bottom:16px;">
-        <div class="field"><label>Search Clause Number or Keyword</label><input type="text" id="db-search" placeholder="Type '7012', 'Cyber', 'Buy American'..." oninput="renderClauseDB()"></div>
-      </div>
-      <div id="clause-db-list"></div>
-    </div>
-
-    <div id="tool-cmmc" class="tool-view">
-      <h1>CMMC / NIST 800-171 Readiness Scorecard</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Evaluate key cybersecurity controls required for handling CUI.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Key Controls Self-Check</h2>
-          <div class="field"><label>1. Access Control (MFA Enabled for all users?)</label><select id="cmmc-1"><option value="1">Yes (Compliant)</option><option value="0">No (Non-Compliant)</option></select></div>
-          <div class="field"><label>2. Incident Response Plan Documented &amp; Tested?</label><select id="cmmc-2"><option value="1">Yes (Compliant)</option><option value="0">No (Non-Compliant)</option></select></div>
-          <div class="field"><label>3. FIPS 140-2 Encrypted Storage &amp; Transit?</label><select id="cmmc-3"><option value="1">Yes (Compliant)</option><option value="0">No (Non-Compliant)</option></select></div>
-          <div class="field"><label>4. SPRS Score Uploaded to Supplier Risk System?</label><select id="cmmc-4"><option value="1">Yes (Compliant)</option><option value="0">No (Non-Compliant)</option></select></div>
-        </div>
-        <div class="panel">
-          <h2>Readiness Status</h2>
-          <div class="readout"><div class="rlabel">Completed Key Controls</div><div class="rvalue" id="cmmc-out-score">—</div></div>
-          <div class="readout"><div class="rlabel">CMMC Level 2 Audit Readiness</div><div class="rvalue" id="cmmc-out-status">—</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="tool-scrm" class="tool-view">
-      <h1>NIST SP 800-161 SCRM &amp; Counterfeit Scorer</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Evaluate microelectronics provenance &amp; DFARS 252.246-7007 counterfeit part controls.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>SCRM Baseline Controls</h2>
-          <div class="field"><label>Sourced Exclusively from Authorized Franchise Distributors?</label><select id="scrm-1"><option value="1">Yes</option><option value="0">No (High Risk)</option></select></div>
-          <div class="field"><label>AS6174 / DFARS 252.246-7007 Counterfeit Avoidance System Active?</label><select id="scrm-2"><option value="1">Yes</option><option value="0">No</option></select></div>
-          <div class="field"><label>Software / Firmware Software Bill of Materials (SBOM) Verified?</label><select id="scrm-3"><option value="1">Yes</option><option value="0">No</option></select></div>
-        </div>
-        <div class="panel">
-          <h2>Hardware Provenance Rating</h2>
-          <div class="readout"><div class="rlabel">Counterfeit Defensibility Score</div><div class="rvalue" id="scrm-out-score" style="color:var(--amber);">—</div></div>
-          <div class="readout"><div class="rlabel">Sub-Tier Supply Risk Assessment</div><div class="rvalue" id="scrm-out-risk">—</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="tool-specialty" class="tool-view">
-      <h1>Berry Amendment / Specialty Metals Auditor (DFARS 252.225-7009)</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Verify melting and processing origin for titanium, steel alloys, and zirconium.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Material Provenance</h2>
-          <div class="field"><label>Melted or Produced in the United States or Qualifying Country?</label><select id="spec-1"><option value="1">Yes (Qualifying Origin)</option><option value="0">No (Non-Qualifying)</option></select></div>
-          <div class="field"><label>Commercial Derivative Mill Product Exception Applies?</label><select id="spec-2"><option value="1">Yes</option><option value="0" selected>No</option></select></div>
-        </div>
-        <div class="panel">
-          <h2>Compliance Mandate</h2>
-          <div class="readout"><div class="rlabel">Berry Amendment Compliance</div><div class="rvalue" id="spec-out-status" style="color:var(--green);">—</div></div>
-          <div class="readout"><div class="rlabel">DFARS 252.225-7009 Audit Authorization</div><div class="rvalue" id="spec-out-auth">—</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="tool-foci" class="tool-view">
-      <h1>FOCI (Foreign Ownership, Control, Influence) Risk Matrix</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Screen sub-tier vendors for foreign ownership and influence exposure.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Subcontractor Ownership Structure</h2>
-          <div class="field"><label>&gt; 5% Foreign Equity / Ownership Share?</label><select id="foci-1"><option value="1">Yes</option><option value="0" selected>No</option></select></div>
-          <div class="field"><label>Foreign Nationals on Board of Directors / Executive Leadership?</label><select id="foci-2"><option value="1">Yes</option><option value="0" selected>No</option></select></div>
-          <div class="field"><label>Significant Debt Held by Foreign Entities?</label><select id="foci-3"><option value="1">Yes</option><option value="0" selected>No</option></select></div>
-        </div>
-        <div class="panel">
-          <h2>Mitigation &amp; Clearance Level</h2>
-          <div class="readout"><div class="rlabel">FOCI Risk Index</div><div class="rvalue" id="foci-out-risk">—</div></div>
-          <div class="readout"><div class="rlabel">Required Mitigation Instrument</div><div class="rvalue" id="foci-out-action" style="color:var(--amber);">—</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="tool-itar" class="tool-view">
-      <h1>Export Control Triage (ITAR / EAR)</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Initial jurisdiction triage for hardware components and technical data.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Export Criteria Triage</h2>
-          <div class="field"><label>1. Specially designed for military application?</label><select id="itar-1"><option value="itar">Yes (USML / ITAR Priority)</option><option value="ear">No</option></select></div>
-          <div class="field"><label>2. Dual-use commercial origin with military mod?</label><select id="itar-2"><option value="ear">Yes (EAR / CCL Priority)</option><option value="none">No</option></select></div>
-        </div>
-        <div class="panel">
-          <h2>Jurisdiction Triage Result</h2>
-          <div class="readout"><div class="rlabel">Primary Regulatory Jurisdiction</div><div class="rvalue" id="itar-out-reg" style="color:var(--amber);">—</div></div>
-          <div class="readout"><div class="rlabel">Access Restriction Mandate</div><div class="rvalue" id="itar-out-access">—</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="tool-bomrisk" class="tool-view">
-      <h1>BOM Multi-Sourcing Risk Analyzer</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Assess hardware single/sole-source dependencies across part lines.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Line Item Count</h2>
-          <div class="field"><label>Total BOM Part Numbers</label><input type="number" id="bom-total" value="150"></div>
-          <div class="field"><label>Single / Sole-Sourced Parts</label><input type="number" id="bom-single" value="22"></div>
-        </div>
-        <div class="panel">
-          <h2>Vulnerability Score</h2>
-          <div class="readout"><div class="rlabel">Single-Source Exposure %</div><div class="rvalue" id="bom-out-pct">—</div></div>
-          <div class="readout"><div class="rlabel">BOM Resiliency Assessment</div><div class="rvalue" id="bom-out-status">—</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="pillar-datarights" class="tab-pillar">
-    <div class="subnav-bar">
-      <button class="sub-btn active" onclick="switchTool('datarights', 'sdrl', this)">CDRL / SDRL Deliverable Matrix</button>
-      <button class="sub-btn" onclick="switchTool('datarights', 'patents', this)">Invention Vault (252.227-7039)</button>
-      <button class="sub-btn" onclick="switchTool('datarights', 'foreign227', this)">Foreign TAA Royalty Auditor (227.6)</button>
-      <button class="sub-btn" onclick="switchTool('datarights', 'withhold', this)">10% Data Withholding (252.227-7030)</button>
-    </div>
-
-    <div id="tool-sdrl" class="tool-view active">
-      <h1>CDRL &amp; SDRL Deliverable Compliance Matrix</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Track DD Form 1423 contract data deliverables, submission gates, and flow-down obligations.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Deliverable Status Inputs</h2>
-          <div class="field"><label>Total Required Contract CDRLs / SDRLs</label><input type="number" id="sdrl-total" value="12"></div>
-          <div class="field"><label>Deliverables Approved by Government / Prime</label><input type="number" id="sdrl-approved" value="8"></div>
-          <div class="field"><label>Deliverables Pending Review / Revision</label><input type="number" id="sdrl-pending" value="3"></div>
-          <div class="field"><label>Overdue / Critical Gate Deliverables</label><input type="number" id="sdrl-overdue" value="1"></div>
-        </div>
-        <div class="panel">
-          <h2>Deliverable Health &amp; Retention Risk</h2>
-          <div class="readout"><div class="rlabel">Data Submittal Completion %</div><div class="rvalue" id="sdrl-out-pct">—</div></div>
-          <div class="readout"><div class="rlabel">Data Deliverable Gate Health</div><div class="rvalue" id="sdrl-out-status" style="color:var(--amber);">—</div></div>
-          <div class="readout"><div class="rlabel">DFARS 252.227-7030 Withholding Exposure</div><div class="rvalue" id="sdrl-out-withhold">—</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="tool-patents" class="tool-view">
-      <h1>Patent &amp; Subject Invention Vault (DFARS 252.227-7039 / DD Form 882)</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Track mandatory 12-month interim invention disclosures and 3-month contract closeout reports.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Invention Disclosure Inputs</h2>
-          <div class="field"><label>Subject Inventions Disclosed to Contracting Officer</label><input type="number" id="pat-disclosed" value="2"></div>
-          <div class="field"><label>Patent Applications Filed with USPTO</label><input type="number" id="pat-filed" value="1"></div>
-          <div class="field"><label>Months Since Last Annual Interim DD Form 882 Report</label><input type="number" id="pat-months" value="10"></div>
-        </div>
-        <div class="panel">
-          <h2>Invention Reporting Compliance</h2>
-          <div class="readout"><div class="rlabel">12-Month Interim Disclosure Status</div><div class="rvalue" id="pat-out-interim" style="color:var(--green);">—</div></div>
-          <div class="readout"><div class="rlabel">3-Month Final Closeout DD 882 Readiness</div><div class="rvalue" id="pat-out-closeout">—</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="tool-foreign227" class="tool-view">
-      <h1>Foreign License &amp; TAA Royalty Auditor (DFARS Subpart 227.6 / 227.672)</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Audit foreign second-source contracts to prevent charging USG for pre-existing royalty-free IP licenses.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Foreign Subcontract Royalty Inputs</h2>
-          <div class="field"><label>Proposed Foreign Subcontract Royalty / License Fees</label><div class="prefix-wrap"><span>$</span><input type="number" id="f227-fee" value="45000"></div></div>
-          <div class="field"><label>USG Already Holds Royalty-Free License Right?</label><select id="f227-held"><option value="1">Yes (USG License Active)</option><option value="0">No</option></select></div>
-        </div>
-        <div class="panel">
-          <h2>Royalty Allowability Audit</h2>
-          <div class="readout"><div class="rlabel">DFARS 227.672 Fee Allowability</div><div class="rvalue" id="f227-out-status" style="color:var(--red);">—</div></div>
-          <div class="readout"><div class="rlabel">Disallowed Cost Reduction Amount</div><div class="rvalue" id="f227-out-disallowed">—</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="tool-withhold" class="tool-view">
-      <h1>DFARS 252.227-7030 Data Withholding Risk Calculator</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Assess potential 10% payment withholding exposure for overdue or non-conforming technical data.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Contract Payment Baseline</h2>
-          <div class="field"><label>Total Contract Value (TCV)</label><div class="prefix-wrap"><span>$</span><input type="number" id="with-tcv" value="2000000"></div></div>
-          <div class="field"><label>Late or Non-Conforming Technical Data Deliverables?</label><select id="with-flag"><option value="1">Yes (Overdue/Non-Conforming Data)</option><option value="0">No (All Compliant)</option></select></div>
-        </div>
-        <div class="panel">
-          <h2>Payment Exposure</h2>
-          <div class="readout"><div class="rlabel">Maximum Withhold Rate (DFARS 252.227-7030)</div><div class="rvalue" id="with-out-rate">10.0%</div></div>
-          <div class="readout"><div class="rlabel">Contract Payment Withholding Exposure</div><div class="rvalue" id="with-out-dollars" style="color:var(--red);">—</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="pillar-closeout" class="tab-pillar">
-    <div class="subnav-bar">
-      <button class="sub-btn active" onclick="switchTool('closeout', 'dd1597', this)">DD Form 1597 Closeout Checklist</button>
-      <button class="sub-btn" onclick="switchTool('closeout', 'gfp', this)">FAR 45 Property Disposition (DD 1428)</button>
-      <button class="sub-btn" onclick="switchTool('closeout', 'trueup', this)">DCAA Indirect Rate Settlement</button>
-      <button class="sub-btn" onclick="switchTool('closeout', 'ulo', this)">ULO De-obligation Reconciler</button>
-    </div>
-
-    <div id="tool-dd1597" class="tool-view active">
-      <h1>Contract Closeout Checklist (FAR 4.804 / DD Form 1597)</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Automated closeout gate verification for Firm-Fixed-Price (6 mo) and Cost-Type (36 mo) contracts.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Verification Milestones</h2>
-          <div class="field"><label>1. Final Disposition of Classified Material Complete?</label><select id="c-1"><option value="1">Yes</option><option value="0">No</option></select></div>
-          <div class="field"><label>2. Final Patent Report (DD Form 882) Cleared?</label><select id="c-2"><option value="1">Yes</option><option value="0">No</option></select></div>
-          <div class="field"><label>3. Final Property Clearance (DD Form 1428) Received?</label><select id="c-3"><option value="1">Yes</option><option value="0">No</option></select></div>
-          <div class="field"><label>4. All Subcontracts Closed Out (FAR 4.804-5)?</label><select id="c-4"><option value="1">Yes</option><option value="0">No</option></select></div>
-        </div>
-        <div class="panel">
-          <h2>DD Form 1594 Completion Status</h2>
-          <div class="readout"><div class="rlabel">Closeout Checklist Verification Score</div><div class="rvalue" id="c-out-score">—</div></div>
-          <div class="readout"><div class="rlabel">DD Form 1594 Contract Completion Readiness</div><div class="rvalue" id="c-out-status" style="color:var(--green);">—</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="tool-gfp" class="tool-view">
-      <h1>FAR 45 / GFP Property Disposition (DD Form 1428)</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Track GFP/CAP plant clearance officer approvals and PIEE property ledger clearance.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Property Audit Check</h2>
-          <div class="field"><label>GFP Tagged &amp; Registered in PIEE / JAM?</label><select id="gfp-1"><option value="1">Yes (Compliant)</option><option value="0">No</option></select></div>
-          <div class="field"><label>Special Tooling (ST/STE) Calibration Up-to-Date?</label><select id="gfp-2"><option value="1">Yes (Compliant)</option><option value="0">No</option></select></div>
-          <div class="field"><label>Plant Clearance Officer DD Form 1428 Approved?</label><select id="gfp-3"><option value="1">Yes (Compliant)</option><option value="0">No</option></select></div>
-        </div>
-        <div class="panel">
-          <h2>Property System Audit Status</h2>
-          <div class="readout"><div class="rlabel">Property System Audit Grade</div><div class="rvalue" id="gfp-out-status" style="color:var(--green);">—</div></div>
-          <div class="readout"><div class="rlabel">FAR 52.245-1 Liability Exposure</div><div class="rvalue" id="gfp-out-risk">—</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="tool-trueup" class="tool-view">
-      <h1>DCAA Indirect Rate Settlement &amp; True-Up Calculator</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Reconcile provisional billing rates against final audited DCAA indirect rates for cost-type closeouts.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Indirect Cost True-Up</h2>
-          <div class="field"><label>Total Direct Labor Base Billed</label><div class="prefix-wrap"><span>$</span><input type="number" id="rate-base" value="500000"></div></div>
-          <div class="field"><label>Provisional Overhead Rate (%) Billed</label><input type="number" id="rate-prov" value="45.0"></div>
-          <div class="field"><label>Final DCAA Audited Negotiated Overhead Rate (%)</label><input type="number" id="rate-audited" value="48.5"></div>
-        </div>
-        <div class="panel">
-          <h2>Settlement Adjustments</h2>
-          <div class="readout"><div class="rlabel">Total Invoiced Indirect Costs</div><div class="rvalue" id="rate-out-prov">—</div></div>
-          <div class="readout"><div class="rlabel">Final Allowable Indirect Costs</div><div class="rvalue" id="rate-out-audited">—</div></div>
-          <div class="readout"><div class="rlabel">Retroactive Contractor Adjustment Claim</div><div class="rvalue" id="rate-out-adj" style="color:var(--amber);">—</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="tool-ulo" class="tool-view">
-      <h1>Unliquidated Obligations (ULO) De-obligation Reconciler</h1>
-      <p style="color:var(--text-mid); margin-bottom:20px;">Identify unexpended obligated funds prior to executing final de-obligation contract modifications.</p>
-      <div class="grid">
-        <div class="panel">
-          <h2>Obligated Balances</h2>
-          <div class="field"><label>Total Contract Obligated Funds</label><div class="prefix-wrap"><span>$</span><input type="number" id="ulo-funded" value="1250000"></div></div>
-          <div class="field"><label>Final Paid Voucher Cumulative Amount</label><div class="prefix-wrap"><span>$</span><input type="number" id="ulo-paid" value="1215000"></div></div>
-        </div>
-        <div class="panel">
-          <h2>De-obligation Summary</h2>
-          <div class="readout"><div class="rlabel">Unliquidated Obligations (ULO) Balance</div><div class="rvalue" id="ulo-out-bal" style="color:var(--amber);">—</div></div>
-          <div class="readout"><div class="rlabel">De-obligation Modification Authorization</div><div class="rvalue" id="ulo-out-status">—</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </div>
 
 <script>
-  // Save & Load Engine
-  function autoSaveInputs() {
-    document.querySelectorAll('input, select, textarea').forEach(el => {
-      if(el.id) {
-        el.addEventListener('input', () => localStorage.setItem('suite_' + el.id, el.value));
-        el.addEventListener('change', () => localStorage.setItem('suite_' + el.id, el.value));
-      }
-    });
-  }
+  const CLAUSES = [
+    { id: "FAR 52.204-21", title: "Basic Safeguarding of Covered Contractor Information Systems", category: "cybersecurity", keywords: ["safeguarding","covered contractor information","federal contract information","fci"], summary: "Requires 15 basic security controls for protecting Federal Contract Information (FCI) on contractor information systems." },
+    { id: "DFARS 252.204-7012", title: "Safeguarding Covered Defense Information and Cyber Incident Reporting", category: "cybersecurity", keywords: ["covered defense information","cdi","cyber incident","nist 800-171","800-171","incident reporting","72 hours"], summary: "Requires implementation of NIST SP 800-171 security requirements and reporting of cyber incidents affecting covered defense information within 72 hours." },
+    { id: "DFARS 252.204-7019", title: "Notice of NIST SP 800-171 DoD Assessment Requirements", category: "cybersecurity", keywords: ["800-171 assessment","basic assessment","sprs","supplier performance risk system"], summary: "Requires an offeror to have a current NIST SP 800-171 DoD Assessment posted in SPRS prior to award." },
+    { id: "DFARS 252.204-7020", title: "NIST SP 800-171 DoD Assessment Requirements", category: "cybersecurity", keywords: ["800-171 assessment","sprs","government access","assessment methodology"], summary: "Requires contractors to provide the Government access to conduct or verify NIST SP 800-171 assessments and flow down the requirement to subcontractors." },
+    { id: "DFARS 252.204-7021", title: "Cybersecurity Maturity Model Certification Requirements", category: "cybersecurity", keywords: ["cmmc","certification level","maturity model","third-party assessment"], summary: "Requires the contractor to have a current CMMC certificate at the level specified in the contract before award." },
+    { id: "DFARS 252.239-7010", title: "Cloud Computing Services", category: "cybersecurity", keywords: ["cloud computing","fedramp","cloud service provider","csp"], summary: "Establishes requirements for cloud service providers, including FedRAMP moderate baseline authorization and incident reporting." },
+    { id: "DFARS 252.204-7008", title: "Compliance with Safeguarding Covered Defense Information Controls", category: "cybersecurity", keywords: ["representation","system security plan","ssp","compliance representation"], summary: "Requires offerors to represent compliance with NIST SP 800-171 or identify any not yet implemented requirements via a system security plan and plans of action." },
+    { id: "FAR 52.204-25", title: "Prohibition on Contracting for Certain Telecommunications and Video Surveillance Services or Equipment", category: "supply chain", keywords: ["telecommunications","video surveillance","covered equipment","section 889"], summary: "Prohibits contractors from providing or using covered telecommunications equipment or services as a substantial or essential component of any system." },
+    { id: "DFARS 252.244-7001", title: "Contractor Purchasing System Administration", category: "supply chain", keywords: ["purchasing system","subcontract management","cpsr"], summary: "Establishes requirements for an approved contractor purchasing system for managing subcontracts and purchases." },
+    { id: "DFARS 252.225-7048", title: "Export-Controlled Items", category: "export control", keywords: ["export control","itar","ear","controlled items"], summary: "Requires the contractor to comply with all applicable export control laws and regulations." },
+    { id: "DFARS 252.246-7008", title: "Sources of Electronic Parts", category: "supply chain", keywords: ["electronic parts","counterfeit","authorized supplier"], summary: "Requires contractors to obtain electronic parts from trusted sources to prevent counterfeit parts from entering the supply chain." },
+    { id: "FAR 52.203-13", title: "Contractor Code of Business Ethics and Conduct", category: "ethics", keywords: ["code of ethics","business conduct","hotline","compliance program"], summary: "Requires contractors to have a written code of business ethics and an internal control system, and to display fraud hotline posters." },
+    { id: "DFARS 252.211-7003", title: "Item Unique Identification and Valuation", category: "logistics", keywords: ["uid","unique identification","item marking","iuid"], summary: "Requires unique item identification (UID) marking on qualifying deliverable items." },
+    { id: "FAR 52.219-14", title: "Limitations on Subcontracting", category: "small business", keywords: ["subcontracting limit","small business","self-performance"], summary: "Limits the percentage of contract cost a small business concern may subcontract to non-similarly-situated entities." },
+    { id: "DFARS 252.223-7008", title: "Prohibition of Hexavalent Chromium", category: "environmental", keywords: ["hexavalent chromium","hazardous materials","coatings"], summary: "Restricts the use of hexavalent chromium in specified coatings and materials on deliverable items." }
+  ];
 
-  function autoLoadInputs() {
-    document.querySelectorAll('input, select, textarea').forEach(el => {
-      if(el.id && localStorage.getItem('suite_' + el.id) !== null) {
-        el.value = localStorage.getItem('suite_' + el.id);
-      }
-    });
-  }
+  const CONTROLS = [
+    { id: "3.1.1", family: "Access Control", title: "Limit system access to authorized users", keywords: ["authorized users","access control","account management"], summary: "Limit information system access to authorized users, processes acting on behalf of authorized users, and devices." },
+    { id: "3.1.2", family: "Access Control", title: "Limit system access to authorized functions", keywords: ["authorized transactions","least functionality","authorized functions"], summary: "Limit system access to the types of transactions and functions that authorized users are permitted to execute." },
+    { id: "3.1.5", family: "Access Control", title: "Employ least privilege", keywords: ["least privilege","privileged accounts"], summary: "Employ the principle of least privilege, including for specific security functions and privileged accounts." },
+    { id: "3.1.12", family: "Access Control", title: "Monitor and control remote access sessions", keywords: ["remote access","vpn","remote session"], summary: "Monitor and control remote access sessions." },
+    { id: "3.2.1", family: "Awareness and Training", title: "Security awareness training", keywords: ["security awareness","training","insider threat awareness"], summary: "Ensure managers, systems administrators, and users are made aware of security risks and applicable policies." },
+    { id: "3.3.1", family: "Audit and Accountability", title: "Create and retain system audit logs", keywords: ["audit logs","logging","audit records"], summary: "Create and retain system audit logs and records to enable monitoring, analysis, investigation, and reporting of unlawful or unauthorized activity." },
+    { id: "3.4.1", family: "Configuration Management", title: "Establish baseline configurations", keywords: ["baseline configuration","configuration management","inventory"], summary: "Establish and maintain baseline configurations and inventories of organizational systems throughout the lifecycle." },
+    { id: "3.5.1", family: "Identification and Authentication", title: "Identify users and processes", keywords: ["identification","authentication","user identification"], summary: "Identify system users, processes acting on behalf of users, and devices." },
+    { id: "3.5.3", family: "Identification and Authentication", title: "Multifactor authentication", keywords: ["multifactor authentication","mfa","two-factor"], summary: "Use multifactor authentication for local and network access to privileged accounts and for network access to non-privileged accounts." },
+    { id: "3.6.1", family: "Incident Response", title: "Establish incident-handling capability", keywords: ["incident response","incident handling","detection","reporting"], summary: "Establish an operational incident-handling capability including preparation, detection, analysis, containment, recovery, and user response activities." },
+    { id: "3.7.1", family: "Maintenance", title: "Perform system maintenance", keywords: ["maintenance","system maintenance"], summary: "Perform maintenance on organizational systems." },
+    { id: "3.8.1", family: "Media Protection", title: "Protect system media", keywords: ["media protection","removable media","sanitize"], summary: "Protect (i.e., physically control and securely store) system media containing CUI, both paper and digital." },
+    { id: "3.9.1", family: "Personnel Security", title: "Screen individuals", keywords: ["personnel screening","background check"], summary: "Screen individuals prior to authorizing access to organizational systems containing CUI." },
+    { id: "3.10.1", family: "Physical Protection", title: "Limit physical access", keywords: ["physical access","physical protection","facility access"], summary: "Limit physical access to organizational systems, equipment, and the respective operating environments to authorized individuals." },
+    { id: "3.11.1", family: "Risk Assessment", title: "Assess risk periodically", keywords: ["risk assessment","risk management"], summary: "Periodically assess the risk to organizational operations, assets, and individuals resulting from operation of organizational systems and processing of CUI." },
+    { id: "3.12.1", family: "Security Assessment", title: "Periodically assess security controls", keywords: ["security assessment","control assessment","poam","plan of action"], summary: "Periodically assess the security controls in organizational systems to determine if the controls are effective." },
+    { id: "3.13.1", family: "System and Communications Protection", title: "Monitor and control communications", keywords: ["boundary protection","network segmentation","firewall"], summary: "Monitor, control, and protect communications at the external boundaries and key internal boundaries of organizational systems." },
+    { id: "3.13.11", family: "System and Communications Protection", title: "Employ FIPS-validated cryptography", keywords: ["fips","cryptography","encryption"], summary: "Employ FIPS-validated cryptography when used to protect the confidentiality of CUI." },
+    { id: "3.14.1", family: "System and Information Integrity", title: "Identify and correct flaws", keywords: ["flaw remediation","patching","vulnerability management"], summary: "Identify, report, and correct system flaws in a timely manner." },
+    { id: "3.14.2", family: "System and Information Integrity", title: "Provide malicious code protection", keywords: ["malware protection","antivirus","malicious code"], summary: "Provide protection from malicious code at designated locations within organizational systems." }
+  ];
 
-  // Export Engine
-  function exportCSV() {
-    let csvData = "Metric,Value\n";
-    document.querySelectorAll('.readout').forEach(row => {
-      const label = row.querySelector('.rlabel').innerText.split('\n')[0].replace(/,/g, '');
-      const val = row.querySelector('.rvalue').innerText.replace(/,/g, '');
-      csvData += `${label},${val}\n`;
-    });
-    const blob = new Blob([csvData], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.setAttribute('href', url);
-    a.setAttribute('download', 'Defense_Suite_Export.csv');
-    a.click();
-  }
+  const DEFAULT_BASELINE = [
+    "FAR 52.204-21","DFARS 252.204-7012","DFARS 252.204-7019","DFARS 252.204-7020","DFARS 252.204-7021",
+    "3.1.1","3.2.1","3.3.1","3.4.1","3.5.1","3.6.1","3.7.1","3.8.1","3.9.1","3.10.1","3.11.1","3.12.1","3.13.1","3.14.1"
+  ];
 
-  function exportPDF() {
-    if (typeof html2pdf === 'undefined') {
-      alert('PDF export requires the html2pdf library, which loads from a CDN (cdnjs.cloudflare.com). It could not be reached — check network/firewall access, or use "Export CSV Data" instead, which works fully offline.');
-      return;
-    }
-    const element = document.getElementById('report-container');
-    const opt = {
-      margin:       0.3,
-      filename:     'Defense_Operations_Summary.pdf',
-      image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  { scale: 2 },
-      jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
-    };
-    html2pdf().set(opt).from(element).save();
-  }
+  const POSTURE_CHECKLIST = [
+    { id: "LNX-001", question: "Is SSH root login disabled (PermitRootLogin no)?", remediation: "Set 'PermitRootLogin no' in /etc/ssh/sshd_config and restart sshd." },
+    { id: "LNX-002", question: "Is SSH password authentication disabled (key-based only)?", remediation: "Set 'PasswordAuthentication no' in /etc/ssh/sshd_config to require key-based authentication." },
+    { id: "LNX-003", question: "Is a host firewall (firewalld/ufw/nftables) enabled and running?", remediation: "Enable and start a host firewall service (firewalld, ufw, or nftables/iptables)." },
+    { id: "LNX-004", question: "Is the audit daemon (auditd) enabled and running?", remediation: "Install and enable auditd to satisfy NIST 800-171 3.3.1 audit logging requirements." },
+    { id: "LNX-005", question: "Are there no world-writable files under /etc?", remediation: "Remove world-writable permissions from files under /etc (find /etc -xdev -type f -perm -0002)." },
+    { id: "LNX-006", question: "Is a minimum password length of 14+ characters enforced?", remediation: "Set 'minlen = 14' or greater in /etc/security/pwquality.conf." },
+    { id: "LNX-007", question: "Are there no accounts with empty passwords?", remediation: "Lock or set a password on any account with an empty password field in /etc/shadow." },
+    { id: "LNX-008", question: "Is automatic/unattended security patching enabled?", remediation: "Install and enable an automatic patching mechanism to satisfy NIST 800-171 3.14.1 flaw remediation." }
+  ];
 
-  // Navigation Controller
   function switchPillar(pillarId, btnEl) {
     document.querySelectorAll('.tab-pillar').forEach(e => e.classList.remove('active'));
     document.querySelectorAll('.pillar-btn').forEach(e => e.classList.remove('active'));
@@ -874,348 +249,121 @@
     btnEl.classList.add('active');
   }
 
-  function switchTool(pillarId, toolId, btnEl) {
-    const parent = document.getElementById('pillar-' + pillarId);
-    parent.querySelectorAll('.tool-view').forEach(e => e.classList.remove('active'));
-    parent.querySelectorAll('.sub-btn').forEach(e => e.classList.remove('active'));
-    document.getElementById('tool-' + toolId).classList.add('active');
-    btnEl.classList.add('active');
+  function normalizeId(id) { return id.toLowerCase().replace(/[^a-z0-9]/g, ''); }
+
+  function scoreItem(query, item) {
+    const q = query.toLowerCase();
+    let score = 0;
+    if (item.id.toLowerCase().includes(q)) score += 5;
+    if (item.title.toLowerCase().includes(q)) score += 3;
+    if ((item.keywords || []).some(k => k.toLowerCase().includes(q))) score += 2;
+    if (item.summary.toLowerCase().includes(q)) score += 1;
+    return score;
   }
 
-  // Formatting Helpers
-  function fmtMoney(n){ return !isFinite(n) ? '—' : (n < 0 ? '-' : '') + '$' + Math.abs(n).toLocaleString(undefined,{maximumFractionDigits:0}); }
-  function fmtIndex(n){ return !isFinite(n) ? '—' : n.toFixed(2); }
+  function runSearch() {
+    const query = document.getElementById('search-query').value.trim();
+    const container = document.getElementById('search-results');
+    if (!query) { container.innerHTML = ''; return; }
 
-  // Calculation Modules
-  function calcWGL() {
-    const cost = parseFloat(document.getElementById('wgl-cost').value);
-    const perf = parseFloat(document.getElementById('wgl-perf').value);
-    const type = parseFloat(document.getElementById('wgl-type').value);
-    const cap = parseFloat(document.getElementById('wgl-cap').value);
-    const perfDollars = cost * (perf / 100);
-    const typeDollars = cost * (type / 100);
-    const capDollars = cost * (cap / 100);
-    const totalRate = perf + type + cap;
-    const totalDollars = perfDollars + typeDollars + capDollars;
-    document.getElementById('wgl-out-perf').textContent = fmtMoney(perfDollars);
-    document.getElementById('wgl-out-type').textContent = fmtMoney(typeDollars);
-    document.getElementById('wgl-out-cap').textContent = fmtMoney(capDollars);
-    document.getElementById('wgl-out-rate').textContent = totalRate.toFixed(2) + '%';
-    document.getElementById('wgl-out-total').textContent = fmtMoney(totalDollars);
+    const results = [];
+    CLAUSES.forEach(c => { const s = scoreItem(query, c); if (s > 0) results.push({ source: 'clause', score: s, id: c.id, title: c.title, summary: c.summary }); });
+    CONTROLS.forEach(c => { const s = scoreItem(query, c); if (s > 0) results.push({ source: 'control', score: s, id: c.id, title: c.title + ' (' + c.family + ')', summary: c.summary }); });
+    results.sort((a, b) => b.score - a.score);
+
+    if (!results.length) { container.innerHTML = '<div class="panel" style="color:var(--text-dim);">No matches.</div>'; return; }
+    container.innerHTML = results.map(r => `
+      <div class="result-card">
+        <span class="result-id">${r.id}</span>
+        <span class="result-source ${r.source}">${r.source === 'clause' ? 'FAR/DFARS' : 'NIST 800-171'}</span>
+        <div class="result-title">${r.title}</div>
+        <div class="result-summary">${r.summary}</div>
+      </div>`).join('');
   }
 
-  function calcTINA() {
-    const val = parseFloat(document.getElementById('tina-val').value);
-    const comm = parseInt(document.getElementById('tina-comm').value);
-    const comp = parseInt(document.getElementById('tina-comp').value);
-    document.getElementById('tina-out-trigger').textContent = val >= 2500000 ? 'EXCEEDED ($2.5M)' : 'BELOW THRESHOLD';
-    if (val >= 2500000 && comm === 0 && comp === 0) {
-      document.getElementById('tina-out-status').textContent = 'MANDATORY CERTIFIED DATA';
-      document.getElementById('tina-out-status').style.color = 'var(--red)';
-      document.getElementById('tina-out-table').textContent = 'REQUIRED';
-    } else {
-      document.getElementById('tina-out-status').textContent = 'EXEMPT / NOT REQUIRED';
-      document.getElementById('tina-out-status').style.color = 'var(--green)';
-      document.getElementById('tina-out-table').textContent = 'NOT REQUIRED';
-    }
+  function catalog() {
+    const map = {};
+    CLAUSES.forEach(c => map[c.id] = { ...c, source: 'clause' });
+    CONTROLS.forEach(c => map[c.id] = { ...c, source: 'control', title: c.title + ' (' + c.family + ')' });
+    return map;
   }
 
-  function calcMakeBuy() {
-    const comp = parseInt(document.getElementById('mb-comp').value);
-    const cap = parseInt(document.getElementById('mb-cap').value);
-    const cost = parseInt(document.getElementById('mb-cost').value);
-    const total = comp + cap + cost;
-    document.getElementById('mb-out-score').textContent = total + ' / 15';
-    document.getElementById('mb-out-rec').textContent = total >= 10 ? 'MAKE (IN-HOUSE)' : 'BUY (SUBCONTRACT)';
+  function isReferenced(textLower, textNormalized, item) {
+    if (textNormalized.includes(normalizeId(item.id))) return true;
+    return (item.keywords || []).some(k => textLower.includes(k.toLowerCase()));
   }
 
-  function calcModLog() {
-    const base = parseFloat(document.getElementById('mod-base').value);
-    const mods = parseFloat(document.getElementById('mod-mods').value);
-    const pending = parseFloat(document.getElementById('mod-pending').value);
-    const def = base + mods;
-    const tcv = def + pending;
-    const growth = ((tcv - base) / base) * 100;
-    document.getElementById('mod-out-def').textContent = fmtMoney(def);
-    document.getElementById('mod-out-tcv').textContent = fmtMoney(tcv);
-    document.getElementById('mod-out-growth').textContent = isNaN(growth) ? '—' : '+' + growth.toFixed(1) + '%';
+  function checkDocument() {
+    const text = document.getElementById('doc-text').value;
+    const textLower = text.toLowerCase();
+    const textNormalized = textLower.replace(/[^a-z0-9]/g, '');
+    const cat = catalog();
+
+    const referenced = [], missing = [];
+    DEFAULT_BASELINE.forEach(id => {
+      const item = cat[id];
+      if (!item) return;
+      (isReferenced(textLower, textNormalized, item) ? referenced : missing).push(item);
+    });
+
+    document.getElementById('doc-board').style.display = 'grid';
+    document.getElementById('doc-results').style.display = 'block';
+    document.getElementById('doc-referenced').textContent = referenced.length;
+    document.getElementById('doc-missing').textContent = missing.length;
+    const total = referenced.length + missing.length;
+    const pct = total ? Math.round((referenced.length / total) * 100) : 100;
+    document.getElementById('doc-coverage').textContent = pct + '%';
+    document.getElementById('doc-coverage').style.color = pct === 100 ? 'var(--green)' : (pct >= 50 ? 'var(--amber)' : 'var(--red)');
+
+    const row = (item, ok) => `
+      <div class="result-card">
+        <span class="result-id">${ok ? '✔' : '✘'} ${item.id}</span>
+        <span class="result-source ${item.source}">${item.source === 'clause' ? 'FAR/DFARS' : 'NIST 800-171'}</span>
+        <div class="result-title">${item.title}</div>
+      </div>`;
+    document.getElementById('doc-results-list').innerHTML =
+      referenced.map(i => row(i, true)).join('') + missing.map(i => row(i, false)).join('');
   }
 
-  function calcLoF() {
-    const alloc = parseFloat(document.getElementById('lof-alloc').value);
-    const spent = parseFloat(document.getElementById('lof-spent').value);
-    const pct = (spent / alloc) * 100;
-    const rem = (alloc * 0.75) - spent;
-    document.getElementById('lof-out-pct').textContent = isNaN(pct) ? '—' : pct.toFixed(1) + '%';
-    document.getElementById('lof-out-status').textContent = pct >= 75 ? 'ACTION REQUIRED (SEND 60-DAY NOTICE)' : 'NORMAL OPERATIONAL RANGE';
-    document.getElementById('lof-out-status').style.color = pct >= 75 ? 'var(--red)' : 'var(--green)';
-    document.getElementById('lof-out-rem').textContent = rem <= 0 ? '$0 (75% Threshold Exceeded)' : fmtMoney(rem);
+  function renderBaselineList() {
+    const cat = catalog();
+    document.getElementById('baseline-list').innerHTML = DEFAULT_BASELINE
+      .map(id => cat[id] ? `<span class="mono">${id}</span> — ${cat[id].title}` : id)
+      .join('<br>');
   }
 
-  function calcEVM(){
-    const bac = parseFloat(document.getElementById('bac').value), pv = parseFloat(document.getElementById('pv').value), ev = parseFloat(document.getElementById('ev').value), ac = parseFloat(document.getElementById('ac').value);
-    const cv = ev - ac, sv = ev - pv, cpi = ev / ac, spi = ev / pv, eac = ac + (bac - ev) / cpi;
-    const overall = (isFinite(cpi) && isFinite(spi)) ? (cpi + spi) / 2 : NaN;
-    document.getElementById('val-cpi').textContent = fmtIndex(cpi); document.getElementById('val-spi').textContent = fmtIndex(spi); document.getElementById('val-overall').textContent = fmtIndex(overall);
-    document.getElementById('out-cv').textContent = fmtMoney(cv); document.getElementById('out-sv').textContent = fmtMoney(sv); document.getElementById('out-cpi').textContent = fmtIndex(cpi); document.getElementById('out-spi').textContent = fmtIndex(spi); document.getElementById('out-eac').textContent = fmtMoney(eac);
+  function renderChecklist() {
+    document.getElementById('posture-checklist').innerHTML = POSTURE_CHECKLIST.map(c => `
+      <div class="checklist-row">
+        <div class="q"><span class="id">${c.id}</span>${c.question}</div>
+        <select id="posture-${c.id}" onchange="scorePosture()">
+          <option value="0">No / Unknown</option>
+          <option value="1">Yes</option>
+        </select>
+      </div>`).join('');
   }
 
-  const clauseDB = [
-    { num: "252.204-7012", title: "Safeguarding Covered Defense Info", flow: "Mandatory Flow-Down to Tier-1 & Sub-tiers handling CUI." },
-    { num: "252.204-7020", title: "NIST SP 800-171 DoD Assessment", flow: "Mandatory Flow-Down across all subcontracts." },
-    { num: "252.225-7001", title: "Buy American & Balance of Payments", flow: "Mandatory Flow-Down for supply subcontracts." }
-  ];
-  function analyzeDFARS(){
-    const text = document.getElementById('contractText').value, container = document.getElementById('dfarsResults'), matched = clauseDB.filter(c => text.includes(c.num));
-    if (!matched.length) { container.innerHTML = '<div style="color:var(--text-dim);">No mapped DFARS clauses detected in text.</div>'; return; }
-    container.innerHTML = matched.map(c => `<div class="clause-card"><div style="display:flex; justify-content:space-between; align-items:center;"><span class="clause-num">DFARS ${c.num}</span><span class="badge-mandatory">MANDATORY</span></div><div style="font-size:12.5px; font-weight:600; margin-top:4px;">${c.title}</div><div class="clause-flowdown">⚡ ${c.flow}</div></div>`).join('');
+  function scorePosture() {
+    const gaps = POSTURE_CHECKLIST.filter(c => document.getElementById('posture-' + c.id).value === '0');
+    const passed = POSTURE_CHECKLIST.length - gaps.length;
+    document.getElementById('posture-pass').textContent = passed + ' / ' + POSTURE_CHECKLIST.length;
+    const status = document.getElementById('posture-status');
+    if (passed === POSTURE_CHECKLIST.length) { status.textContent = 'READY'; status.style.color = 'var(--green)'; }
+    else if (passed >= POSTURE_CHECKLIST.length / 2) { status.textContent = 'GAPS FOUND'; status.style.color = 'var(--amber)'; }
+    else { status.textContent = 'AT RISK'; status.style.color = 'var(--red)'; }
+
+    const gapsPanel = document.getElementById('posture-gaps');
+    if (!gaps.length) { gapsPanel.style.display = 'none'; return; }
+    gapsPanel.style.display = 'block';
+    document.getElementById('posture-gaps-list').innerHTML = gaps.map(g => `
+      <div class="readout">
+        <div class="rlabel">${g.id} — ${g.question}<div style="font-size:11px; color:var(--text-dim); margin-top:2px;">${g.remediation}</div></div>
+      </div>`).join('');
   }
 
-  function calcEOQ(){
-    const d = parseFloat(document.getElementById('eoq-d').value), s = parseFloat(document.getElementById('eoq-s').value), h = parseFloat(document.getElementById('eoq-h').value), l = parseFloat(document.getElementById('eoq-l').value), buf = parseFloat(document.getElementById('eoq-buffer').value);
-    const eoq = Math.sqrt((2 * d * s) / h), rop = ((d / 365) * l) + buf;
-    document.getElementById('out-eoq').textContent = isNaN(eoq) ? '—' : Math.round(eoq).toLocaleString() + ' Units';
-    document.getElementById('out-rop').textContent = isNaN(rop) ? '—' : Math.round(rop).toLocaleString() + ' Units';
-    document.getElementById('out-holding').textContent = fmtMoney((eoq / 2) * h); document.getElementById('out-ordering').textContent = fmtMoney((d / eoq) * s);
-  }
-
-  function calcQuality(){
-    const total = parseFloat(document.getElementById('q-total').value), defects = parseFloat(document.getElementById('q-defects').value);
-    const yieldPct = ((total - defects) / total) * 100, dppm = (defects / total) * 1000000;
-    document.getElementById('out-yield').textContent = isNaN(yieldPct) ? '—' : yieldPct.toFixed(2) + '%';
-    document.getElementById('out-dppm').textContent = isNaN(dppm) ? '—' : Math.round(dppm).toLocaleString() + ' DPPM';
-    document.getElementById('out-sigma').textContent = dppm > 6210 ? '~3.0 σ' : '~5.0 σ';
-  }
-
-  function renderClauseDB(){
-    const query = document.getElementById('db-search').value.toLowerCase(), listContainer = document.getElementById('clause-db-list');
-    const filtered = clauseDB.filter(c => c.num.toLowerCase().includes(query) || c.title.toLowerCase().includes(query));
-    listContainer.innerHTML = filtered.map(c => `<div class="clause-card"><div class="clause-num">DFARS ${c.num}</div><div style="font-weight:600;">${c.title}</div><div style="font-size:11.5px; color:var(--text-mid); margin-top:4px;">${c.flow}</div></div>`).join('');
-  }
-
-  function calcLearning(){
-    const t1 = parseFloat(document.getElementById('lc-t1').value), n = parseFloat(document.getElementById('lc-n').value), rate = parseFloat(document.getElementById('lc-rate').value);
-    const tn = t1 * Math.pow(n, Math.log(rate)/Math.log(2));
-    document.getElementById('out-unit-n').textContent = isNaN(tn) ? '—' : tn.toFixed(1) + ' Labor Hours';
-    document.getElementById('out-reduction').textContent = isNaN(tn) ? '—' : '-' + (((t1 - tn) / t1) * 100).toFixed(1) + '%';
-  }
-
-  function calcShouldCost(){
-    const hours = parseFloat(document.getElementById('sc-hours').value), rate = parseFloat(document.getElementById('sc-rate').value);
-    const bom = parseFloat(document.getElementById('sc-bom').value), matOh = parseFloat(document.getElementById('sc-mat-oh').value)/100;
-    const ga = parseFloat(document.getElementById('sc-ga').value)/100, profit = parseFloat(document.getElementById('sc-profit').value)/100;
-    const laborCost = hours * rate, matTotal = bom * (1 + matOh), subtotal = (laborCost + matTotal) * (1 + ga), totalPrice = subtotal * (1 + profit);
-    document.getElementById('sc-out-labor').textContent = fmtMoney(laborCost); document.getElementById('sc-out-mat').textContent = fmtMoney(matTotal);
-    document.getElementById('sc-out-subtotal').textContent = fmtMoney(subtotal); document.getElementById('sc-out-total').textContent = fmtMoney(totalPrice);
-  }
-
-  function calcLeadTime(){
-    const base = parseFloat(document.getElementById('lt-admin').value) + parseFloat(document.getElementById('lt-mat').value) + parseFloat(document.getElementById('lt-mfg').value) + parseFloat(document.getElementById('lt-transit').value);
-    const bufDays = base * (parseFloat(document.getElementById('lt-buffer').value)/100);
-    document.getElementById('lt-out-base').textContent = Math.round(base) + ' Days'; document.getElementById('lt-out-buf').textContent = '+' + Math.round(bufDays) + ' Days'; document.getElementById('lt-out-total').textContent = Math.round(base + bufDays) + ' Days';
-  }
-
-  function calcCMMC(){
-    const sum = ['cmmc-1','cmmc-2','cmmc-3','cmmc-4'].reduce((acc, id) => acc + parseInt(document.getElementById(id).value), 0);
-    document.getElementById('cmmc-out-score').textContent = sum + ' / 4 Requirements Passed'; document.getElementById('cmmc-out-status').textContent = sum === 4 ? 'READY FOR SPRS / AUDIT' : 'GAP IDENTIFIED';
-  }
-
-  function calcSourceSelect(){
-    const composite = (parseFloat(document.getElementById('ss-tech').value) * 0.4) + (parseFloat(document.getElementById('ss-price').value) * 0.4) + (parseFloat(document.getElementById('ss-past').value) * 0.2);
-    document.getElementById('ss-out-score').textContent = composite.toFixed(1) + ' / 10.0'; document.getElementById('ss-out-rec').textContent = composite >= 7.5 ? 'RECOMMEND AWARD' : 'HIGH RISK — NEGOTIATE';
-  }
-
-  function calcContractType(){
-    const type = document.getElementById('ct-select').value;
-    if(type === 'ffp'){ document.getElementById('ct-out-buyer').textContent = 'Low Risk'; document.getElementById('ct-out-seller').textContent = 'High Risk'; document.getElementById('ct-out-audit').textContent = 'Standard'; }
-    else if(type === 'cpff'){ document.getElementById('ct-out-buyer').textContent = 'High Risk'; document.getElementById('ct-out-seller').textContent = 'Low Risk'; document.getElementById('ct-out-audit').textContent = 'Extensive (DCAA Audit)'; }
-    else { document.getElementById('ct-out-buyer').textContent = 'High Risk'; document.getElementById('ct-out-seller').textContent = 'Moderate Risk'; document.getElementById('ct-out-audit').textContent = 'Moderate Audit'; }
-  }
-
-  function calcBOMRisk(){
-    const pct = (parseFloat(document.getElementById('bom-single').value) / parseFloat(document.getElementById('bom-total').value)) * 100;
-    document.getElementById('bom-out-pct').textContent = isNaN(pct) ? '—' : pct.toFixed(1) + '%'; document.getElementById('bom-out-status').textContent = pct > 15 ? 'HIGH SINGLE-SOURCE RISK' : 'BALANCED SOURCING';
-  }
-
-  function calcITAR(){
-    const val1 = document.getElementById('itar-1').value;
-    document.getElementById('itar-out-reg').textContent = val1 === 'itar' ? 'ITAR / USML (22 CFR)' : 'EAR / CCL (15 CFR)';
-    document.getElementById('itar-out-access').textContent = val1 === 'itar' ? 'US Persons Only' : 'ECCN / License Exception';
-  }
-
-  function calcGFP(){
-    const sum = ['gfp-1','gfp-2','gfp-3'].reduce((acc, id) => acc + parseInt(document.getElementById(id).value), 0);
-    document.getElementById('gfp-out-status').textContent = sum === 3 ? 'SYSTEM APPROVED' : 'AUDIT DEFICIENCY';
-    document.getElementById('gfp-out-risk').textContent = sum === 3 ? 'LOW LIABILITY' : 'HIGH DISALLOWANCE RISK';
-  }
-
-  function calcSCRM(){
-    const sum = ['scrm-1','scrm-2','scrm-3'].reduce((acc, id) => acc + parseInt(document.getElementById(id).value), 0);
-    document.getElementById('scrm-out-score').textContent = sum === 3 ? 'PASSED (LOW RISK)' : 'VULNERABILITY DETECTED';
-    document.getElementById('scrm-out-risk').textContent = sum === 3 ? 'HARDENED PROVENANCE' : 'UNSAFE SUPPLY CHAIN';
-  }
-
-  function calcSpecialty() {
-    const s1 = parseInt(document.getElementById('spec-1').value);
-    const s2 = parseInt(document.getElementById('spec-2').value);
-    if (s1 === 1 || s2 === 1) {
-      document.getElementById('spec-out-status').textContent = 'BERRY COMPLIANT';
-      document.getElementById('spec-out-status').style.color = 'var(--green)';
-      document.getElementById('spec-out-auth').textContent = 'CLEARED FOR HARDWARE INTEGRATION';
-    } else {
-      document.getElementById('spec-out-status').textContent = 'NON-COMPLIANT ALLOY';
-      document.getElementById('spec-out-status').style.color = 'var(--red)';
-      document.getElementById('spec-out-auth').textContent = 'HOLD HARDWARE ACCEPTANCE';
-    }
-  }
-
-  function calcFOCI(){
-    const sum = ['foci-1','foci-2','foci-3'].reduce((acc, id) => acc + parseInt(document.getElementById(id).value), 0);
-    document.getElementById('foci-out-risk').textContent = sum === 0 ? 'CLEARED (NO FOCI)' : 'FOCI EXPOSURE DETECTED';
-    document.getElementById('foci-out-action').textContent = sum === 0 ? 'STANDARD AWARD' : 'SSA / PROXY AGREEMENT REQUIRED';
-  }
-
-  function calcPBP(){
-    const val = parseFloat(document.getElementById('pbp-val').value), cost = parseFloat(document.getElementById('pbp-cost').value), rate = parseFloat(document.getElementById('pbp-rate').value);
-    const progress = cost * rate, liquid = val - progress;
-    document.getElementById('pbp-out-progress').textContent = fmtMoney(progress); document.getElementById('pbp-out-liquid').textContent = fmtMoney(liquid);
-  }
-
-  function calcCLIN(){
-    const fund = parseFloat(document.getElementById('clin-fund').value), billed = parseFloat(document.getElementById('clin-billed').value), burn = parseFloat(document.getElementById('clin-burn').value);
-    const rem = fund - billed, runway = rem / burn;
-    document.getElementById('clin-out-rem').textContent = fmtMoney(rem); document.getElementById('clin-out-runway').textContent = isNaN(runway) ? '—' : runway.toFixed(1) + ' Months Buffer';
-  }
-
-  function calcECN(){
-    const hrs = parseFloat(document.getElementById('ecn-hrs').value), rate = parseFloat(document.getElementById('ecn-rate').value), scrap = parseFloat(document.getElementById('ecn-scrap').value);
-    const reworkHrs = parseFloat(document.getElementById('ecn-rework-hrs').value), reworkUnits = parseFloat(document.getElementById('ecn-rework-units').value);
-    const nre = hrs * rate, reworkLabor = (reworkHrs * reworkUnits) * rate, total = nre + scrap + reworkLabor;
-    document.getElementById('ecn-out-nre').textContent = fmtMoney(nre); document.getElementById('ecn-out-rework').textContent = fmtMoney(reworkLabor); document.getElementById('ecn-out-total').textContent = fmtMoney(total);
-  }
-
-  function calcFAI(){
-    const sum = ['fai-1','fai-2','fai-3'].reduce((acc, id) => acc + parseInt(document.getElementById(id).value), 0);
-    document.getElementById('fai-out-status').textContent = sum === 3 ? 'FAI COMPLETE & ACCEPTED' : 'OPEN ACTION ITEMS';
-    document.getElementById('fai-out-auth').textContent = sum === 3 ? 'CLEARED FOR FULL RATE' : 'HOLD FULL RATE';
-  }
-
-  function calcSDRL() {
-    const total = parseFloat(document.getElementById('sdrl-total').value);
-    const approved = parseFloat(document.getElementById('sdrl-approved').value);
-    const overdue = parseFloat(document.getElementById('sdrl-overdue').value);
-    const completionPct = (approved / total) * 100;
-    document.getElementById('sdrl-out-pct').textContent = isNaN(completionPct) ? '—' : completionPct.toFixed(1) + '%';
-    if (overdue > 0) {
-      document.getElementById('sdrl-out-status').textContent = 'CRITICAL OVERDUE DELIVERABLE';
-      document.getElementById('sdrl-out-status').style.color = 'var(--red)';
-      document.getElementById('sdrl-out-withhold').textContent = 'WITHHOLD RISK (UP TO 10%)';
-    } else {
-      document.getElementById('sdrl-out-status').textContent = 'ON TRACK';
-      document.getElementById('sdrl-out-status').style.color = 'var(--green)';
-      document.getElementById('sdrl-out-withhold').textContent = 'NO WITHHOLD RISK';
-    }
-  }
-
-  function calcPatents() {
-    const disclosed = parseInt(document.getElementById('pat-disclosed').value);
-    const months = parseInt(document.getElementById('pat-months').value);
-    document.getElementById('pat-out-interim').textContent = months <= 12 ? 'COMPLIANT (INTERIM DUE IN ' + (12 - months) + ' MO)' : 'OVERDUE INTERIM REPORT';
-    document.getElementById('pat-out-interim').style.color = months <= 12 ? 'var(--green)' : 'var(--red)';
-    document.getElementById('pat-out-closeout').textContent = disclosed >= 0 ? 'READY FOR FINAL DD FORM 882' : 'DISCLOSURES PENDING';
-  }
-
-  function calcForeign227() {
-    const fee = parseFloat(document.getElementById('f227-fee').value);
-    const held = parseInt(document.getElementById('f227-held').value);
-    if (held === 1) {
-      document.getElementById('f227-out-status').textContent = 'UNALLOWABLE (USG LICENSE EXISTS)';
-      document.getElementById('f227-out-status').style.color = 'var(--red)';
-      document.getElementById('f227-out-disallowed').textContent = fmtMoney(fee);
-    } else {
-      document.getElementById('f227-out-status').textContent = 'ALLOWABLE ROYALTY FEE';
-      document.getElementById('f227-out-status').style.color = 'var(--green)';
-      document.getElementById('f227-out-disallowed').textContent = '$0';
-    }
-  }
-
-  function calcWithhold() {
-    const tcv = parseFloat(document.getElementById('with-tcv').value);
-    const flag = parseInt(document.getElementById('with-flag').value);
-    const withholdDollars = flag === 1 ? tcv * 0.10 : 0;
-    document.getElementById('with-out-dollars').textContent = fmtMoney(withholdDollars);
-    document.getElementById('with-out-dollars').style.color = flag === 1 ? 'var(--red)' : 'var(--green)';
-  }
-
-  function calcCloseout() {
-    const sum = ['c-1','c-2','c-3','c-4'].reduce((acc, id) => acc + parseInt(document.getElementById(id).value), 0);
-    document.getElementById('c-out-score').textContent = sum + ' / 4 Milestones Verified';
-    document.getElementById('c-out-status').textContent = sum === 4 ? 'READY FOR DD 1594 CLOSEOUT' : 'ACTION ITEMS OPEN';
-    document.getElementById('c-out-status').style.color = sum === 4 ? 'var(--green)' : 'var(--amber)';
-  }
-
-  function calcTrueUp() {
-    const base = parseFloat(document.getElementById('rate-base').value);
-    const prov = parseFloat(document.getElementById('rate-prov').value) / 100;
-    const audited = parseFloat(document.getElementById('rate-audited').value) / 100;
-    const provDollars = base * prov;
-    const auditedDollars = base * audited;
-    const adj = auditedDollars - provDollars;
-    document.getElementById('rate-out-prov').textContent = fmtMoney(provDollars);
-    document.getElementById('rate-out-audited').textContent = fmtMoney(auditedDollars);
-    document.getElementById('rate-out-adj').textContent = fmtMoney(adj);
-  }
-
-  function calcULO() {
-    const funded = parseFloat(document.getElementById('ulo-funded').value);
-    const paid = parseFloat(document.getElementById('ulo-paid').value);
-    const bal = funded - paid;
-    document.getElementById('ulo-out-bal').textContent = fmtMoney(bal);
-    document.getElementById('ulo-out-status').textContent = bal > 0 ? 'EXECUTE DE-OBLIGATION MODIFICATION' : 'FULLY LIQUIDATED';
-  }
-
-  // Listener Attachments
-  function attachListeners() {
-    ['wgl-cost','wgl-perf','wgl-type','wgl-cap'].forEach(id => document.getElementById(id).addEventListener('input', calcWGL));
-    ['tina-val','tina-comm','tina-comp'].forEach(id => document.getElementById(id).addEventListener('change', calcTINA));
-    ['mb-comp','mb-cap','mb-cost'].forEach(id => document.getElementById(id).addEventListener('input', calcMakeBuy));
-    ['mod-base','mod-mods','mod-pending'].forEach(id => document.getElementById(id).addEventListener('input', calcModLog));
-    ['lof-alloc','lof-spent'].forEach(id => document.getElementById(id).addEventListener('input', calcLoF));
-    ['bac','pv','ev','ac'].forEach(id => document.getElementById(id).addEventListener('input', calcEVM));
-    ['eoq-d','eoq-s','eoq-h','eoq-l','eoq-buffer'].forEach(id => document.getElementById(id).addEventListener('input', calcEOQ));
-    ['q-total','q-defects'].forEach(id => document.getElementById(id).addEventListener('input', calcQuality));
-    ['lc-t1','lc-n','lc-rate'].forEach(id => document.getElementById(id).addEventListener('input', calcLearning));
-    ['sc-hours','sc-rate','sc-bom','sc-mat-oh','sc-ga','sc-profit'].forEach(id => document.getElementById(id).addEventListener('input', calcShouldCost));
-    ['lt-admin','lt-mat','lt-mfg','lt-transit','lt-buffer'].forEach(id => document.getElementById(id).addEventListener('input', calcLeadTime));
-    ['cmmc-1','cmmc-2','cmmc-3','cmmc-4'].forEach(id => document.getElementById(id).addEventListener('change', calcCMMC));
-    ['ss-tech','ss-price','ss-past'].forEach(id => document.getElementById(id).addEventListener('input', calcSourceSelect));
-    ['bom-total','bom-single'].forEach(id => document.getElementById(id).addEventListener('input', calcBOMRisk));
-    ['itar-1','itar-2'].forEach(id => document.getElementById(id).addEventListener('change', calcITAR));
-    ['gfp-1','gfp-2','gfp-3'].forEach(id => document.getElementById(id).addEventListener('change', calcGFP));
-    ['scrm-1','scrm-2','scrm-3'].forEach(id => document.getElementById(id).addEventListener('change', calcSCRM));
-    ['spec-1','spec-2'].forEach(id => document.getElementById(id).addEventListener('change', calcSpecialty));
-    ['foci-1','foci-2','foci-3'].forEach(id => document.getElementById(id).addEventListener('change', calcFOCI));
-    ['pbp-val','pbp-cost','pbp-rate'].forEach(id => document.getElementById(id).addEventListener('input', calcPBP));
-    ['clin-fund','clin-billed','clin-burn'].forEach(id => document.getElementById(id).addEventListener('input', calcCLIN));
-    ['ecn-hrs','ecn-rate','ecn-scrap','ecn-rework-hrs','ecn-rework-units'].forEach(id => document.getElementById(id).addEventListener('input', calcECN));
-    ['fai-1','fai-2','fai-3'].forEach(id => document.getElementById(id).addEventListener('change', calcFAI));
-    ['sdrl-total','sdrl-approved','sdrl-pending','sdrl-overdue'].forEach(id => document.getElementById(id).addEventListener('input', calcSDRL));
-    ['pat-disclosed','pat-filed','pat-months'].forEach(id => document.getElementById(id).addEventListener('input', calcPatents));
-    ['f227-fee','f227-held'].forEach(id => document.getElementById(id).addEventListener('change', calcForeign227));
-    ['with-tcv','with-flag'].forEach(id => document.getElementById(id).addEventListener('change', calcWithhold));
-    ['c-1','c-2','c-3','c-4'].forEach(id => document.getElementById(id).addEventListener('change', calcCloseout));
-    ['rate-base','rate-prov','rate-audited'].forEach(id => document.getElementById(id).addEventListener('input', calcTrueUp));
-    ['ulo-funded','ulo-paid'].forEach(id => document.getElementById(id).addEventListener('input', calcULO));
-  }
-
-  // Engine Setup
-  autoLoadInputs();
-  attachListeners();
-  autoSaveInputs();
-
-  // Run Calculations
-  calcWGL(); calcTINA(); calcMakeBuy(); calcModLog(); calcLoF(); calcEVM(); analyzeDFARS(); calcEOQ(); calcQuality(); renderClauseDB(); calcLearning(); calcShouldCost(); calcLeadTime(); calcCMMC(); calcSourceSelect(); calcContractType(); calcBOMRisk(); calcITAR(); calcGFP(); calcSCRM(); calcSpecialty(); calcFOCI(); calcPBP(); calcCLIN(); calcECN(); calcFAI(); calcSDRL(); calcPatents(); calcForeign227(); calcWithhold(); calcCloseout(); calcTrueUp(); calcULO();
+  renderBaselineList();
+  renderChecklist();
+  scorePosture();
 </script>
-
 </body>
 </html>

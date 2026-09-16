@@ -1,13 +1,24 @@
 # DefenseUtility-Tool
 
-Utilities for working against DoD acquisition rules, regulations, and clauses.
+Three tools for working against DoD acquisition rules, regulations, and clauses — a
+searchable clause/control reference, a document compliance gap-checker, and a local
+system security-posture check. Available both as a web app and as a Python CLI, backed
+by the same datasets so results stay consistent between the two.
 
 ## Web app (`public/index.html`)
 
-A single-file, client-side "Defense Contract & Operations Management Suite" covering
-pre-award/strategy, admin & mods, hardware/ops, compliance & SCRM, data rights, and
-closeout/audit calculators. Everything runs in the browser (no backend) and inputs are
-persisted to `localStorage`, so it's suitable for static hosting or fully air-gapped use.
+A single-file, dependency-free, client-side app (no CDN, no build step, no backend) with
+three tabs:
+
+1. **Clause & Control Search** — keyword/ID search across a curated set of FAR/DFARS
+   clauses and NIST SP 800-171 controls.
+2. **Document Compliance Check** — paste contract/SOW/SSP text and see which baseline
+   clauses/controls are referenced vs. missing, with a coverage score.
+3. **Security Posture** — an 8-item STIG-style self-assessment checklist (self-reported,
+   scored in the browser) with a pointer to the CLI's `scan-system` for a real automated
+   check, since a browser can't inspect the host OS.
+
+Nothing typed into the page is sent anywhere — it's suitable for fully air-gapped use.
 Open `public/index.html` directly in a browser to use it standalone.
 
 ### Deploying to Cloudflare Workers (free tier)
