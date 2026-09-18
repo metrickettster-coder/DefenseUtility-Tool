@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Any
 
-from .datastore import load_clauses, load_controls
+from .datastore import load_clauses, load_controls, load_standards
 
 
 @dataclass
@@ -27,7 +27,7 @@ def _score(query: str, item: dict[str, Any], summary_key: str) -> int:
     return score
 
 
-def search(query: str, sources: tuple[str, ...] = ("clauses", "controls")) -> list[SearchResult]:
+def search(query: str, sources: tuple[str, ...] = ("clauses", "controls", "standards")) -> list[SearchResult]:
     results: list[SearchResult] = []
     if "clauses" in sources:
         for clause in load_clauses():
@@ -47,5 +47,10 @@ def search(query: str, sources: tuple[str, ...] = ("clauses", "controls")) -> li
                         score,
                     )
                 )
+    if "standards" in sources:
+        for standard in load_standards():
+            score = _score(query, standard, "summary")
+            if score > 0:
+                results.append(SearchResult("mil_std", standard["id"], standard["title"], standard["summary"], score))
     results.sort(key=lambda r: r.score, reverse=True)
     return results

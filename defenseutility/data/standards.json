@@ -1,0 +1,37 @@
+[
+  {
+    "id": "MIL-STD-31000B",
+    "title": "Technical Data Packages",
+    "section": "1. Scope",
+    "keywords": ["technical data package", "tdp", "engineering drawings", "3di", "model based definition"],
+    "summary": "Defines DoD requirements for the content, format, and structure of a Technical Data Package (TDP) — the authoritative technical description of an item, used to support acquisition, production, inspection, engineering, and logistics support."
+  },
+  {
+    "id": "MIL-STD-31000B §4.2/5.2",
+    "title": "TDP Levels — Conceptual, Developmental, Product",
+    "section": "4.2 / 5.2",
+    "keywords": ["tdp level", "conceptual level", "developmental level", "product level"],
+    "summary": "TDPs progress through three levels: Conceptual (design concepts, sketches/renderings for analysis), Developmental (sufficient data for prototype fabrication or limited production), and Product (full design/manufacturing/inspection/QA data needed for a competent manufacturer to duplicate the item without further design engineering)."
+  },
+  {
+    "id": "MIL-STD-31000B §4.3/5.3",
+    "title": "TDP Types — 2D and 3D",
+    "section": "4.3 / 5.3",
+    "keywords": ["2d tdp", "3d tdp", "native cad", "neutral cad", "3di viewable"],
+    "summary": "TDP type describes the form/format of the technical data: Type 2D is based on 2-dimensional engineering drawings (ASME Y14.100 series); Type 3D is based on product model data and may include 3D native models, 2D drawings derived from them, 3Di PDF viewables, and neutral files."
+  },
+  {
+    "id": "MIL-STD-31000B §4.4",
+    "title": "TDP Elements",
+    "section": "4.4",
+    "keywords": ["engineering design data", "special inspection equipment", "special tooling", "special packaging instruction", "quality assurance provisions", "sie", "spi", "qap"],
+    "summary": "TDP elements are the components that make up a Technical Data Package: engineering design data, Special Inspection Equipment (SIE) data, specifications, software documentation, Special Packaging Instruction (SPI) data, quality assurance provisions (QAP), and special tooling data."
+  },
+  {
+    "id": "MIL-STD-31000B §4.5",
+    "title": "TDP Data Management Products",
+    "section": "4.5",
+    "keywords": ["technical data package list", "tdpl", "document number assignment report", "critical manufacturing process", "source control approval request", "engineering drawing tree"],
+    "summary": "Data management products used by the procuring activity to control and manage TDP development: the Technical Data Package List (TDPL), document number assignment report, critical manufacturing process description, source control approval request, and engineering drawing tree."
+  }
+]

@@ -22,3 +22,8 @@ def load_controls() -> list[dict[str, Any]]:
 @lru_cache(maxsize=None)
 def load_stig_checks() -> list[dict[str, Any]]:
     return _load("stig_checks.json")
+
+
+@lru_cache(maxsize=None)
+def load_standards() -> list[dict[str, Any]]:
+    return _load("standards.json")

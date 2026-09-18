@@ -103,5 +103,19 @@
     "category": "environmental",
     "keywords": ["hexavalent chromium", "hazardous materials", "coatings"],
     "summary": "Restricts the use of hexavalent chromium in specified coatings and materials on deliverable items."
+  },
+  {
+    "id": "DFARS 252.227-7013",
+    "title": "Rights in Technical Data--Noncommercial Items",
+    "category": "data rights",
+    "keywords": ["technical data rights", "unlimited rights", "government purpose rights", "limited rights", "noncommercial items", "technical data package", "tdp"],
+    "summary": "Establishes the Government's rights (unlimited, government purpose, limited, or restricted) in technical data for noncommercial items, and the marking requirements contractors must follow to assert restrictions."
+  },
+  {
+    "id": "DFARS 252.227-7014",
+    "title": "Rights in Noncommercial Computer Software and Noncommercial Computer Software Documentation",
+    "category": "data rights",
+    "keywords": ["computer software rights", "noncommercial computer software", "restricted rights", "government purpose rights", "software documentation"],
+    "summary": "Establishes the Government's rights (unlimited, government purpose, restricted, or specifically negotiated) in noncommercial computer software and its documentation, and the marking requirements contractors must follow to assert restrictions."
   }
 ]
