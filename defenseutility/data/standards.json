@@ -46,9 +46,15 @@
     "id": "MIL-STD-963",
     "title": "Data Item Descriptions (DIDs)",
     "category": "DoD Standard",
-    "keywords": ["data item description", "did", "cdrl"],
-    "summary": "Referenced by MIL-STD-31000B for the completed-document format defining specific data deliverables (Data Item Descriptions) required of a contractor.",
-    "cited_in": "MIL-STD-31000B §2"
+    "keywords": ["data item description", "did", "cdrl", "dd form 1423", "self-contained", "abstract-reference"],
+    "summary": "MIL-STD-963C establishes format and content requirements for Data Item Descriptions (DIDs) — the standardization documents that define the data content, format, and intended use required of a contractor, paired with the Contract Data Requirements List (CDRL, DD Form 1423) that identifies which DIDs apply to a contract. A DID may be self-contained (a complete description with no external references) or abstract-reference (describing data by pointing to other documents). DIDs must not direct work tasks (e.g. inspection, testing, 'the contractor shall...') — those belong in the contract statement of work; a DID only specifies the data product's content and format."
+  },
+  {
+    "id": "MIL-STD-963 §4.2",
+    "title": "DID Structure — Self-Contained vs. Abstract-Reference",
+    "category": "DoD Standard",
+    "keywords": ["did structure", "self-contained did", "abstract-reference did"],
+    "summary": "Two authorized DID structures: a self-contained DID is a complete description of data content, format, and intended use with no reference to other documents (preferred, since it minimizes referenced documents); an abstract-reference DID instead points to other documents for additional content/format/intended-use information, used when that information is too voluminous to include directly."
   },
   {
     "id": "MIL-STD-2073-1",
@@ -62,9 +68,22 @@
     "id": "DOD-STD-2101",
     "title": "Classification of Characteristics",
     "category": "DoD Standard",
-    "keywords": ["classification of characteristics", "critical characteristics", "quality assurance"],
-    "summary": "Referenced by MIL-STD-31000B for classifying item characteristics (e.g. critical, major, minor) used in quality assurance provisions.",
-    "cited_in": "MIL-STD-31000B §2"
+    "keywords": ["classification of characteristics", "c of c", "critical characteristics", "major characteristics", "minor characteristics", "clifs", "quality assurance"],
+    "summary": "DOD-STD-2101(OS) establishes requirements and procedures for classifying the essential design characteristics of an item — appearing in its drawings and specifications — as Critical, Major, or Minor, based on the CLIFS criteria (Coordination, Life, Interchangeability, Function, Safety). Classification is performed by the design activity prior to release of the associated drawings/specifications, informing government inspection sampling, waiver/deviation approval authority, and inspection effort allocation."
+  },
+  {
+    "id": "DOD-STD-2101 §3.1.6",
+    "title": "CLIFS Classification Criteria",
+    "category": "DoD Standard",
+    "keywords": ["clifs", "coordination", "interchangeability", "function", "safety criterion"],
+    "summary": "The five criteria (Coordination, Life, Interchangeability, Function, Safety — acronym CLIFS) used to determine a characteristic's classification: Coordination (features affected by mating/assembly/integration with adjoining items), Life (service/storage/fatigue life, durability, reliability, environmental resistance), Interchangeability (form/fit/function enabling common use or replacement), Function (ability to perform intended purpose), and Safety (risk to personnel from the item's integrity or proper functioning)."
+  },
+  {
+    "id": "DOD-STD-2101 §5.5",
+    "title": "Classification Codes — Critical, Major, Minor",
+    "category": "DoD Standard",
+    "keywords": ["classification code", "critical characteristic code", "major characteristic code", "minor characteristic"],
+    "summary": "Characteristics are annotated on drawings/specifications with a category code letter: Critical = 'C' (likely, if defective, to create/increase a safety hazard or cause failure of a weapon system/major system to perform its mission), Major = 'M' (likely, if defective, to result in failure of an end item to perform a required mission, but not critical), Minor = no letter (significant to product quality but not likely to impair mission performance)."
   },
   {
     "id": "DoD Manual 4100.39-M",
@@ -201,5 +220,133 @@
     "keywords": ["technical data package", "national aerospace standard"],
     "summary": "Referenced by MIL-STD-31000B as the National Aerospace Standard counterpart addressing Technical Data Package composition, communication, and application.",
     "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "DOD-D-1000",
+    "title": "Drawings, Engineering and Associated Lists",
+    "category": "DoD Specification",
+    "keywords": ["engineering drawings", "associated lists", "drawing specification"],
+    "summary": "Referenced by DOD-STD-2101(OS) as the specification governing engineering drawings and associated lists, relevant to where characteristic classification codes are annotated on drawings.",
+    "cited_in": "DOD-STD-2101(OS) §2.1"
+  },
+  {
+    "id": "MIL-S-83490",
+    "title": "Specifications, Types and Forms",
+    "category": "DoD Specification",
+    "keywords": ["specification types", "specification forms", "form 1 specification"],
+    "summary": "Referenced by DOD-STD-2101(OS) as the specification defining specification types and forms (e.g. Form 1 specifications), relevant to where classification codes and inspection requirements are annotated in specifications.",
+    "cited_in": "DOD-STD-2101(OS) §2.1 / §5.9"
+  },
+  {
+    "id": "MIL-STD-100",
+    "title": "Engineering Drawing Practices",
+    "category": "DoD Standard",
+    "keywords": ["engineering drawing practices", "drawing annotation"],
+    "summary": "Referenced by DOD-STD-2101(OS) as the standard for engineering drawing practices — classification codes for items described by drawings are annotated directly on MIL-STD-100 format drawings, immediately beside the characteristic call-out.",
+    "cited_in": "DOD-STD-2101(OS) §2.1 / §5.3"
+  },
+  {
+    "id": "MIL-STD-105",
+    "title": "Sampling Procedures and Tables for Inspection by Attributes",
+    "category": "DoD Standard",
+    "keywords": ["sampling plan", "inspection by attributes", "aql"],
+    "summary": "Referenced by DOD-STD-2101(OS) as a standard sampling plan source (attributes sampling, e.g. AQL-based) usable for inspecting classified characteristics.",
+    "cited_in": "DOD-STD-2101(OS) §2.1 / §3.1.19"
+  },
+  {
+    "id": "MIL-STD-109",
+    "title": "Quality Assurance Terms and Definitions",
+    "category": "DoD Standard",
+    "keywords": ["quality assurance terminology", "quality definitions"],
+    "summary": "Referenced by DOD-STD-2101(OS) as the source for general quality assurance terminology not separately defined within that standard.",
+    "cited_in": "DOD-STD-2101(OS) §2.1 / §3.1"
+  },
+  {
+    "id": "MIL-STD-414",
+    "title": "Sampling Procedures and Tables for Inspection by Variables for Percent Defective",
+    "category": "DoD Standard",
+    "keywords": ["sampling plan", "inspection by variables", "percent defective"],
+    "summary": "Referenced by DOD-STD-2101(OS) as a standard sampling plan source (variables sampling for percent defective) usable for inspecting classified characteristics.",
+    "cited_in": "DOD-STD-2101(OS) §2.1 / §3.1.19"
+  },
+  {
+    "id": "MIL-STD-490",
+    "title": "Specification Practices",
+    "category": "DoD Standard",
+    "keywords": ["specification practices", "specification sections"],
+    "summary": "Referenced by DOD-STD-2101(OS) as the standard governing specification practices — for items described by specifications prepared under MIL-STD-490, classification codes are annotated in Section 3 (Requirements) and Section 5 (Packaging/Preparation for Delivery).",
+    "cited_in": "DOD-STD-2101(OS) §2.1 / §5.2"
+  },
+  {
+    "id": "MIL-STD-1235",
+    "title": "Single and Multi-Level Continuous Sampling Procedures and Tables for Inspection by Attributes",
+    "category": "DoD Standard",
+    "keywords": ["continuous sampling", "inspection by attributes"],
+    "summary": "Referenced by DOD-STD-2101(OS) as a standard sampling plan source (continuous sampling procedures) usable for inspecting classified characteristics.",
+    "cited_in": "DOD-STD-2101(OS) §2.1 / §3.1.19"
+  },
+  {
+    "id": "MIL-HDBK-53",
+    "title": "Guide for Sampling Inspection",
+    "category": "DoD Handbook",
+    "keywords": ["sampling inspection guide"],
+    "summary": "Referenced by DOD-STD-2101(OS) as a guidance handbook for sampling inspection, supporting selection of inspection sampling plans for classified characteristics.",
+    "cited_in": "DOD-STD-2101(OS) §2.1"
+  },
+  {
+    "id": "MIL-HDBK-106",
+    "title": "Multi-Level Continuous Sampling Procedures and Tables for Inspection by Attributes",
+    "category": "DoD Handbook",
+    "keywords": ["continuous sampling", "inspection by attributes", "handbook"],
+    "summary": "Referenced by DOD-STD-2101(OS) as a handbook of multi-level continuous sampling procedures and tables for inspection by attributes.",
+    "cited_in": "DOD-STD-2101(OS) §2.1"
+  },
+  {
+    "id": "MIL-HDBK-107",
+    "title": "Single-Level Continuous Sampling Procedures and Tables for Inspection by Attributes",
+    "category": "DoD Handbook",
+    "keywords": ["continuous sampling", "inspection by attributes", "handbook"],
+    "summary": "Referenced by DOD-STD-2101(OS) as a handbook of single-level continuous sampling procedures and tables for inspection by attributes.",
+    "cited_in": "DOD-STD-2101(OS) §2.1"
+  },
+  {
+    "id": "ASME Y14.38",
+    "title": "Abbreviations and Acronyms for Use on Drawings and Related Documents",
+    "category": "ASME Standard",
+    "keywords": ["abbreviations", "acronyms", "drawing notation"],
+    "summary": "Referenced by MIL-STD-963C as the governing standard for abbreviations used in Data Item Descriptions; abbreviations not covered by ASME Y14.38 default to the GPO Style Manual.",
+    "cited_in": "MIL-STD-963C §2.3 / §4.4.1"
+  },
+  {
+    "id": "IEEE 260.1",
+    "title": "Letter Symbols for Units of Measurement (SI Units, Customary Inch-Pound Units)",
+    "category": "IEEE Standard",
+    "keywords": ["letter symbols", "units of measurement", "si units"],
+    "summary": "Referenced by MIL-STD-963C as the governing standard for symbols used in Data Item Descriptions; symbols not covered by IEEE 260.1 default to the GPO Style Manual.",
+    "cited_in": "MIL-STD-963C §2.3 / §4.4.3"
+  },
+  {
+    "id": "DoDI 7750.07",
+    "title": "DoD Forms Management Program",
+    "category": "DoD Instruction",
+    "keywords": ["forms management", "dod forms"],
+    "summary": "Referenced by MIL-STD-963C for DoD forms management program requirements relevant to forms referenced within a DID.",
+    "cited_in": "MIL-STD-963C §2.2.1"
+  },
+  {
+    "id": "DoD 5200.1-R",
+    "title": "Information Security Program",
+    "category": "DoD Regulation",
+    "keywords": ["information security program", "classified material marking"],
+    "summary": "Referenced by MIL-STD-963C for marking and handling requirements when a DID must contain classified material; the DID title itself may never be classified, and any classified DID must be a one-time DID.",
+    "cited_in": "MIL-STD-963C §2.2.1 / §4.3.2"
+  },
+  {
+    "id": "SD-1",
+    "title": "Standardization Directory",
+    "category": "DoD Publication",
+    "keywords": ["standardization directory", "did approval authority", "preparing activity"],
+    "summary": "Referenced by MIL-STD-963C as the directory listing DID Approval Authorities and data standardization area designations for each Military Department/Defense Agency.",
+    "cited_in": "MIL-STD-963C §2.2.1"
   }
 ]

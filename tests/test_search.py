@@ -33,3 +33,19 @@ def test_search_standards_cited_document():
 def test_search_data_rights_clause():
     results = search("noncommercial computer software")
     assert any(r.id == "DFARS 252.227-7014" for r in results)
+
+
+def test_search_clifs_criteria():
+    results = search("CLIFS")
+    assert any(r.id == "DOD-STD-2101 §3.1.6" for r in results)
+
+
+def test_search_did_structure():
+    results = search("abstract-reference")
+    assert any(r.id == "MIL-STD-963 §4.2" for r in results)
+
+
+def test_search_standards_no_duplicate_ids():
+    from defenseutility.datastore import load_standards
+    ids = [s["id"] for s in load_standards()]
+    assert len(ids) == len(set(ids))

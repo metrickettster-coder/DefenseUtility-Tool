@@ -11,9 +11,9 @@ A single-file, dependency-free, client-side app (no CDN, no build step, no backe
 three tabs:
 
 1. **Clause & Control Search** — keyword/ID search across a curated set of FAR/DFARS
-   clauses, NIST SP 800-171 controls, and referenced MIL-STDs/DoD manuals/ASME/ISO
-   standards (currently sourced from MIL-STD-31000B, Technical Data Packages, and the
-   ~20 documents it cites).
+   clauses, NIST SP 800-171 controls, and referenced MIL-STDs/DoD manuals/ASME/ISO/IEEE
+   standards (currently sourced from MIL-STD-31000B, MIL-STD-963C, and DOD-STD-2101, plus
+   the ~35 documents they cite).
 2. **Document Compliance Check** — paste contract/SOW/SSP text and see which baseline
    clauses/controls are referenced vs. missing, with a coverage score.
 3. **Security Posture** — an 8-item STIG-style self-assessment checklist (self-reported,
