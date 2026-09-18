@@ -106,16 +106,58 @@
   },
   {
     "id": "DFARS 252.227-7013",
-    "title": "Rights in Technical Data--Noncommercial Items",
+    "title": "Rights in Technical Data—Other Than Commercial Products and Commercial Services",
     "category": "data rights",
-    "keywords": ["technical data rights", "unlimited rights", "government purpose rights", "limited rights", "noncommercial items", "technical data package", "tdp"],
-    "summary": "Establishes the Government's rights (unlimited, government purpose, limited, or restricted) in technical data for noncommercial items, and the marking requirements contractors must follow to assert restrictions."
+    "keywords": ["technical data rights", "unlimited rights", "government purpose rights", "limited rights", "noncommercial items", "other than commercial products", "technical data package", "tdp", "developed exclusively at private expense", "mixed funding"],
+    "summary": "Establishes the Government's license rights in technical data (other than computer software documentation) for items, components, or processes that are not commercial products/services or were developed in whole or part at Government expense. Grants unlimited rights, government purpose rights (a default 5-year period), limited rights, or specifically negotiated rights depending on how development was funded. All rights not expressly granted to the Government are retained by the Contractor, and data delivered without a proper restrictive marking is presumed furnished with unlimited rights."
+  },
+  {
+    "id": "DFARS 252.227-7013 — Unlimited Rights",
+    "title": "Unlimited Rights in Technical Data (252.227-7013(c)(1))",
+    "category": "data rights",
+    "keywords": ["unlimited rights", "technical data", "form fit function data", "developed exclusively with government funds"],
+    "summary": "The Government has unlimited rights (use, modify, reproduce, perform, display, release, or disclose in any manner, for any purpose) in technical data developed exclusively with Government funds, form/fit/function data, data necessary for installation/operation/maintenance/training (other than detailed manufacturing or process data), studies/analyses/test data required as a contract deliverable, and data that is otherwise publicly available or was previously released without restriction."
+  },
+  {
+    "id": "DFARS 252.227-7013 — Government Purpose Rights",
+    "title": "Government Purpose Rights in Technical Data (252.227-7013(c)(2))",
+    "category": "data rights",
+    "keywords": ["government purpose rights", "mixed funding", "5-year period", "technical data"],
+    "summary": "For technical data pertaining to items or processes developed with mixed (partly Government, partly private) funding, the Government receives government purpose rights: unrestricted use within the Government, plus the right to release outside the Government to authorized recipients for U.S. Government purposes only (not commercial use). This default lasts 5 years from contract/modification execution (or a negotiated period), after which the data converts to unlimited rights; during that period the Contractor retains the exclusive right to commercial use, including licensing others."
+  },
+  {
+    "id": "DFARS 252.227-7013 — Limited Rights and Marking",
+    "title": "Limited Rights and Marking Requirements (252.227-7013(c)(3), (g))",
+    "category": "data rights",
+    "keywords": ["limited rights", "restrictive legend", "marking requirements", "developed exclusively at private expense"],
+    "summary": "Technical data pertaining to items or processes developed exclusively at private expense carries only limited rights: usable within the Government, but not releasable outside the Government, not usable for manufacture, and not authorized for use by others without the Contractor's written permission — with narrow exceptions for emergency repair/overhaul and release to covered Government support contractors under nondisclosure. Contractors must conspicuously mark each page/item with the appropriate legend (limited rights, government purpose rights, or special license rights) to assert restrictions; data delivered without such a marking is presumed furnished with unlimited rights."
   },
   {
     "id": "DFARS 252.227-7014",
-    "title": "Rights in Noncommercial Computer Software and Noncommercial Computer Software Documentation",
+    "title": "Rights in Other Than Commercial Computer Software and Other Than Commercial Computer Software Documentation",
     "category": "data rights",
-    "keywords": ["computer software rights", "noncommercial computer software", "restricted rights", "government purpose rights", "software documentation"],
-    "summary": "Establishes the Government's rights (unlimited, government purpose, restricted, or specifically negotiated) in noncommercial computer software and its documentation, and the marking requirements contractors must follow to assert restrictions."
+    "keywords": ["computer software rights", "other than commercial computer software", "restricted rights", "government purpose rights", "software documentation"],
+    "summary": "Establishes the Government's license rights in computer software and computer software documentation that do not qualify as commercial computer software: unlimited rights, government purpose rights (a default 5-year period), restricted rights, or specifically negotiated rights, depending on funding source. Unlike 252.227-7013's 'limited rights' for technical data, privately-funded software instead carries 'restricted rights' — a narrower, software-specific set of permitted uses. All rights not granted to the Government are retained by the Contractor, and unmarked deliverables are presumed furnished with unlimited rights."
+  },
+  {
+    "id": "DFARS 252.227-7014 — Unlimited Rights",
+    "title": "Unlimited Rights in Computer Software (252.227-7014(c)(1))",
+    "category": "data rights",
+    "keywords": ["unlimited rights", "computer software", "developed exclusively with government funds"],
+    "summary": "The Government has unlimited rights in computer software developed exclusively with Government funds, in all computer software documentation required to be delivered under the contract (regardless of how the underlying software was funded), and in software/documentation that is otherwise publicly available or was previously released without restriction."
+  },
+  {
+    "id": "DFARS 252.227-7014 — Government Purpose Rights",
+    "title": "Government Purpose Rights in Computer Software (252.227-7014(c)(2))",
+    "category": "data rights",
+    "keywords": ["government purpose rights", "mixed funding", "5-year period", "computer software"],
+    "summary": "Computer software developed with mixed funding carries government purpose rights for a default 5-year period — full Government use plus release to authorized recipients for U.S. Government purposes, but not commercial use — after which it converts to unlimited rights, mirroring the treatment of mixed-funded technical data under 252.227-7013."
+  },
+  {
+    "id": "DFARS 252.227-7014 — Restricted Rights and Marking",
+    "title": "Restricted Rights and Marking Requirements (252.227-7014(c)(3), (g))",
+    "category": "data rights",
+    "keywords": ["restricted rights", "restrictive legend", "marking requirements", "developed exclusively at private expense", "decompile", "reverse engineer"],
+    "summary": "Other than commercial computer software developed exclusively at private expense carries only restricted rights: use on one computer at a time, a reasonable number of copies for backup/archive/modification, and narrow rights to modify or permit contractors to diagnose/correct/adapt the software under nondisclosure — with no right to decompile, disassemble, or reverse-engineer beyond what's authorized. As with 252.227-7013, the Contractor must mark each item with the appropriate restrictive legend or the software is presumed delivered with unlimited rights."
   }
 ]

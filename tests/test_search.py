@@ -31,8 +31,26 @@ def test_search_standards_cited_document():
 
 
 def test_search_data_rights_clause():
-    results = search("noncommercial computer software")
+    results = search("other than commercial computer software")
     assert any(r.id == "DFARS 252.227-7014" for r in results)
+
+
+def test_search_restricted_rights_sub_entry():
+    results = search("decompile")
+    assert any(r.id == "DFARS 252.227-7014 — Restricted Rights and Marking" for r in results)
+
+
+def test_search_government_purpose_rights():
+    results = search("government purpose rights")
+    ids = {r.id for r in results}
+    assert "DFARS 252.227-7013 — Government Purpose Rights" in ids
+    assert "DFARS 252.227-7014 — Government Purpose Rights" in ids
+
+
+def test_search_clauses_no_duplicate_ids():
+    from defenseutility.datastore import load_clauses
+    ids = [c["id"] for c in load_clauses()]
+    assert len(ids) == len(set(ids))
 
 
 def test_search_clifs_criteria():
