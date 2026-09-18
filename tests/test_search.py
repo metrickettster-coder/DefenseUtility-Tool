@@ -67,3 +67,19 @@ def test_search_standards_no_duplicate_ids():
     from defenseutility.datastore import load_standards
     ids = [s["id"] for s in load_standards()]
     assert len(ids) == len(set(ids))
+
+
+def test_search_mil_prf_dtl_identifiers():
+    results = search("MIL-PRF")
+    assert any(r.id == "MIL-STD-961 §5.4" for r in results)
+
+
+def test_search_mil_std_490_flags_cancellation():
+    results = search("MIL-STD-490")
+    match = next(r for r in results if r.id == "MIL-STD-490")
+    assert "canceled" in match.summary.lower()
+
+
+def test_search_six_section_format():
+    results = search("section 6 notes")
+    assert any(r.id == "MIL-STD-961 §5" for r in results)

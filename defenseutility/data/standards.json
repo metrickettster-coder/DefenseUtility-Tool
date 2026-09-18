@@ -36,11 +36,39 @@
   },
   {
     "id": "MIL-STD-961",
-    "title": "Defense and Program-unique Specifications Format and Content",
+    "title": "Defense and Program-Unique Specifications Format and Content",
     "category": "DoD Standard",
-    "keywords": ["specifications format", "program-unique specification", "defense specification"],
-    "summary": "Referenced by MIL-STD-31000B for the format and content requirements of defense and program-unique specifications cited in a Technical Data Package.",
-    "cited_in": "MIL-STD-31000B §2"
+    "keywords": ["specifications format", "program-unique specification", "defense specification", "mil-prf", "mil-dtl", "amsc"],
+    "summary": "MIL-STD-961E (w/Change 4) establishes format and content requirements for defense specifications (used across multiple programs, coordinated and indexed in the ASSIST database) and program-unique specifications (developed for a single program/system), plus specification sheets, supplements, revisions, amendments, and notices. Every specification follows the same six-section format: Scope, Applicable Documents, Requirements, Verification, Packaging, and Notes. This standard integrated program-unique specification requirements previously covered by MIL-STD-490, Specification Practices, which it canceled."
+  },
+  {
+    "id": "MIL-STD-961 §5",
+    "title": "Six-Section Specification Format",
+    "category": "DoD Standard",
+    "keywords": ["section 1 scope", "section 2 applicable documents", "section 3 requirements", "section 4 verification", "section 5 packaging", "section 6 notes"],
+    "summary": "The standard specification structure used throughout DoD acquisition documents: Section 1 Scope (brief abstract, no requirements), Section 2 Applicable Documents, Section 3 Requirements (what the entity must meet), Section 4 Verification (how compliance is confirmed), Section 5 Packaging, and Section 6 Notes (not contractually binding — general/explanatory information only, e.g. intended use, tailoring guidance)."
+  },
+  {
+    "id": "MIL-STD-961 §3",
+    "title": "Specification Types",
+    "category": "DoD Standard",
+    "keywords": ["performance specification", "detail specification", "general specification", "specification sheet", "item specification", "material specification", "process specification", "software specification", "system specification"],
+    "summary": "Defense specifications are either performance specifications (states required results and verification criteria, not the method) or detail specifications (specifies design requirements — materials, how to build it); a general specification covers requirements common to a group of parts and is paired with specification sheets for style/type/class/grade variants. Program-unique specifications further divide into item, material, process, software, and system specifications, based on what they describe (parts/components, raw/processed materials, fabrication procedures, software requirements, or a whole system)."
+  },
+  {
+    "id": "MIL-STD-961 §5.4",
+    "title": "Specification Identifiers — MIL-PRF / MIL-DTL",
+    "category": "DoD Standard",
+    "keywords": ["mil-prf", "mil-dtl", "specification identifier", "limited-coordination specification", "interim specification"],
+    "summary": "A coordinated defense specification identifier is 'MIL-' plus 'PRF' (performance) or 'DTL' (detail) plus an Arabic numeral, e.g. MIL-PRF-123 or MIL-DTL-123. A limited-coordination specification (covering items needed by only one activity/Department/Agency) adds a parenthetical SD-1 symbol suffix, e.g. MIL-PRF-12345(CR). An interim (not-yet-fully-coordinated) specification is prefixed with '00', e.g. MIL-PRF-00915(SH), with the '00' and suffix removed once fully approved. A 'SUPERSEDING' block on the first page names the document(s) it replaces."
+  },
+  {
+    "id": "MIL-STD-490",
+    "title": "Specification Practices",
+    "category": "DoD Standard",
+    "keywords": ["specification practices", "specification sections", "canceled", "superseded"],
+    "summary": "Canceled. MIL-STD-490's specification practices were integrated into and replaced by MIL-STD-961 (Defense and Program-Unique Specifications Format and Content); do not use MIL-STD-490 for new specifications. Referenced only historically by DOD-STD-2101(OS) — for items described by specifications prepared under the (now-canceled) MIL-STD-490, classification codes were annotated in Section 3 (Requirements) and Section 5 (Packaging/Preparation for Delivery).",
+    "cited_in": "DOD-STD-2101(OS) §2.1 / §5.2; canceled and absorbed by MIL-STD-961"
   },
   {
     "id": "MIL-STD-963",
@@ -270,14 +298,6 @@
     "cited_in": "DOD-STD-2101(OS) §2.1 / §3.1.19"
   },
   {
-    "id": "MIL-STD-490",
-    "title": "Specification Practices",
-    "category": "DoD Standard",
-    "keywords": ["specification practices", "specification sections"],
-    "summary": "Referenced by DOD-STD-2101(OS) as the standard governing specification practices — for items described by specifications prepared under MIL-STD-490, classification codes are annotated in Section 3 (Requirements) and Section 5 (Packaging/Preparation for Delivery).",
-    "cited_in": "DOD-STD-2101(OS) §2.1 / §5.2"
-  },
-  {
     "id": "MIL-STD-1235",
     "title": "Single and Multi-Level Continuous Sampling Procedures and Tables for Inspection by Attributes",
     "category": "DoD Standard",
@@ -348,5 +368,61 @@
     "keywords": ["standardization directory", "did approval authority", "preparing activity"],
     "summary": "Referenced by MIL-STD-963C as the directory listing DID Approval Authorities and data standardization area designations for each Military Department/Defense Agency.",
     "cited_in": "MIL-STD-963C §2.2.1"
+  },
+  {
+    "id": "GPO Style Manual",
+    "title": "United States Government Printing Office Style Manual",
+    "category": "Federal Publication",
+    "keywords": ["style manual", "grammar", "abbreviations"],
+    "summary": "Referenced by both MIL-STD-961 and MIL-STD-963C as the fallback style guide for grammar, abbreviations, and symbols not otherwise covered by ASME Y14.38 or IEEE 260.1.",
+    "cited_in": "MIL-STD-961 §2.2.1 / MIL-STD-963C §2.2.1"
+  },
+  {
+    "id": "SD-10",
+    "title": "Guide for Identification and Development of Metric Standards",
+    "category": "DoD Publication",
+    "keywords": ["metric standards", "metric conversion guide"],
+    "summary": "Referenced by MIL-STD-961 as the Defense Standardization Program Office guide for identifying and developing metric standards, relevant to designating a specification as metric, inch-pound, or not measurement sensitive.",
+    "cited_in": "MIL-STD-961 §2.2.1"
+  },
+  {
+    "id": "SD-15",
+    "title": "Performance Specification Guide",
+    "category": "DoD Publication",
+    "keywords": ["performance specification guide"],
+    "summary": "Referenced by MIL-STD-961 as the Defense Standardization Program Office guide for developing performance specifications (MIL-PRF- identifiers), which state required results and verification criteria rather than design/manufacturing methods.",
+    "cited_in": "MIL-STD-961 §2.2.1"
+  },
+  {
+    "id": "DLIS H2",
+    "title": "Federal Supply Classification Groups and Classes",
+    "category": "DoD Publication",
+    "keywords": ["federal supply classification", "fsc"],
+    "summary": "Referenced by MIL-STD-961 as the Defense Logistics Information Service cataloging handbook defining Federal Supply Classification (FSC) groups and classes, used to designate the FSC on item and material program-unique specification cover pages.",
+    "cited_in": "MIL-STD-961 §2.2.1 / §5.4"
+  },
+  {
+    "id": "DLIS H6",
+    "title": "Federal Item Name Directory",
+    "category": "DoD Publication",
+    "keywords": ["federal item name directory", "item nomenclature"],
+    "summary": "Referenced by MIL-STD-961 as the Defense Logistics Information Service directory of approved item names, used for program-unique specification titles.",
+    "cited_in": "MIL-STD-961 §2.2.1"
+  },
+  {
+    "id": "IEEE/ASTM SI 10",
+    "title": "Use of the International System of Units (SI) — The Modern Metric System",
+    "category": "IEEE Standard",
+    "keywords": ["si units", "metric system", "international system of units"],
+    "summary": "Jointly published by IEEE and ASTM International; referenced by MIL-STD-961 as the definition of metric units (SI) used to distinguish metric, inch-pound, and dual-dimension specifications.",
+    "cited_in": "MIL-STD-961 §2.3 / §3.28"
+  },
+  {
+    "id": "DoD 4120.24-M",
+    "title": "Defense Standardization Program Policies and Procedures",
+    "category": "DoD Manual",
+    "keywords": ["defense standardization program", "dsp policy"],
+    "summary": "Referenced in MIL-STD-961's foreword as the manual governing the procedural matters of the Defense Standardization Program — document development authorization, coordination, comment resolution, indexing, distribution, application, and document maintenance.",
+    "cited_in": "MIL-STD-961 (Foreword)"
   }
 ]
