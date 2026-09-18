@@ -72,6 +72,7 @@
   .result-source{ font-size:9.5px; font-weight:700; padding:2px 6px; border-radius:4px; text-transform:uppercase; letter-spacing:0.05em; }
   .result-source.clause{ background:rgba(217,88,79,0.18); border:1px solid var(--red); color:var(--red); }
   .result-source.control{ background:rgba(63,178,127,0.18); border:1px solid var(--green); color:var(--green); }
+  .result-source.standard{ background:rgba(111,179,255,0.18); border:1px solid var(--focus); color:var(--focus); }
   .result-title{ font-size:12.5px; font-weight:600; margin-top:4px; }
   .result-summary{ font-size:11.5px; color:var(--text-mid); margin-top:4px; }
 
@@ -200,7 +201,9 @@
     { id: "FAR 52.203-13", title: "Contractor Code of Business Ethics and Conduct", category: "ethics", keywords: ["code of ethics","business conduct","hotline","compliance program"], summary: "Requires contractors to have a written code of business ethics and an internal control system, and to display fraud hotline posters." },
     { id: "DFARS 252.211-7003", title: "Item Unique Identification and Valuation", category: "logistics", keywords: ["uid","unique identification","item marking","iuid"], summary: "Requires unique item identification (UID) marking on qualifying deliverable items." },
     { id: "FAR 52.219-14", title: "Limitations on Subcontracting", category: "small business", keywords: ["subcontracting limit","small business","self-performance"], summary: "Limits the percentage of contract cost a small business concern may subcontract to non-similarly-situated entities." },
-    { id: "DFARS 252.223-7008", title: "Prohibition of Hexavalent Chromium", category: "environmental", keywords: ["hexavalent chromium","hazardous materials","coatings"], summary: "Restricts the use of hexavalent chromium in specified coatings and materials on deliverable items." }
+    { id: "DFARS 252.223-7008", title: "Prohibition of Hexavalent Chromium", category: "environmental", keywords: ["hexavalent chromium","hazardous materials","coatings"], summary: "Restricts the use of hexavalent chromium in specified coatings and materials on deliverable items." },
+    { id: "DFARS 252.227-7013", title: "Rights in Technical Data--Noncommercial Items", category: "data rights", keywords: ["technical data rights","unlimited rights","government purpose rights","limited rights","noncommercial items","technical data package","tdp"], summary: "Establishes the Government's rights (unlimited, government purpose, limited, or restricted) in technical data for noncommercial items, and the marking requirements contractors must follow to assert restrictions." },
+    { id: "DFARS 252.227-7014", title: "Rights in Noncommercial Computer Software and Noncommercial Computer Software Documentation", category: "data rights", keywords: ["computer software rights","noncommercial computer software","restricted rights","government purpose rights","software documentation"], summary: "Establishes the Government's rights (unlimited, government purpose, restricted, or specifically negotiated) in noncommercial computer software and its documentation, and the marking requirements contractors must follow to assert restrictions." }
   ];
 
   const CONTROLS = [
@@ -224,6 +227,35 @@
     { id: "3.13.11", family: "System and Communications Protection", title: "Employ FIPS-validated cryptography", keywords: ["fips","cryptography","encryption"], summary: "Employ FIPS-validated cryptography when used to protect the confidentiality of CUI." },
     { id: "3.14.1", family: "System and Information Integrity", title: "Identify and correct flaws", keywords: ["flaw remediation","patching","vulnerability management"], summary: "Identify, report, and correct system flaws in a timely manner." },
     { id: "3.14.2", family: "System and Information Integrity", title: "Provide malicious code protection", keywords: ["malware protection","antivirus","malicious code"], summary: "Provide protection from malicious code at designated locations within organizational systems." }
+  ];
+
+  const STANDARDS = [
+    { id: "MIL-STD-31000B", title: "Technical Data Packages", category: "DoD Standard", keywords: ["technical data package","tdp","engineering drawings","3di","model based definition"], summary: "Defines DoD requirements for the content, format, and structure of a Technical Data Package (TDP) — the authoritative technical description of an item, used to support acquisition, production, inspection, engineering, and logistics support." },
+    { id: "MIL-STD-31000B §4.2/5.2", title: "TDP Levels — Conceptual, Developmental, Product", category: "DoD Standard", keywords: ["tdp level","conceptual level","developmental level","product level"], summary: "TDPs progress through three levels: Conceptual (design concepts, sketches/renderings for analysis), Developmental (sufficient data for prototype fabrication or limited production), and Product (full design/manufacturing/inspection/QA data needed for a competent manufacturer to duplicate the item without further design engineering)." },
+    { id: "MIL-STD-31000B §4.3/5.3", title: "TDP Types — 2D and 3D", category: "DoD Standard", keywords: ["2d tdp","3d tdp","native cad","neutral cad","3di viewable"], summary: "TDP type describes the form/format of the technical data: Type 2D is based on 2-dimensional engineering drawings (ASME Y14.100 series); Type 3D is based on product model data and may include 3D native models, 2D drawings derived from them, 3Di PDF viewables, and neutral files." },
+    { id: "MIL-STD-31000B §4.4", title: "TDP Elements", category: "DoD Standard", keywords: ["engineering design data","special inspection equipment","special tooling","special packaging instruction","quality assurance provisions","sie","spi","qap"], summary: "TDP elements are the components that make up a Technical Data Package: engineering design data, Special Inspection Equipment (SIE) data, specifications, software documentation, Special Packaging Instruction (SPI) data, quality assurance provisions (QAP), and special tooling data." },
+    { id: "MIL-STD-31000B §4.5", title: "TDP Data Management Products", category: "DoD Standard", keywords: ["technical data package list","tdpl","document number assignment report","critical manufacturing process","source control approval request","engineering drawing tree"], summary: "Data management products used by the procuring activity to control and manage TDP development: the Technical Data Package List (TDPL), document number assignment report, critical manufacturing process description, source control approval request, and engineering drawing tree." },
+    { id: "MIL-STD-961", title: "Defense and Program-unique Specifications Format and Content", category: "DoD Standard", keywords: ["specifications format","program-unique specification","defense specification"], summary: "Referenced by MIL-STD-31000B for the format and content requirements of defense and program-unique specifications cited in a Technical Data Package." },
+    { id: "MIL-STD-963", title: "Data Item Descriptions (DIDs)", category: "DoD Standard", keywords: ["data item description","did","cdrl"], summary: "Referenced by MIL-STD-31000B for the completed-document format defining specific data deliverables (Data Item Descriptions) required of a contractor." },
+    { id: "MIL-STD-2073-1", title: "Standard Practice for Military Packaging", category: "DoD Standard", keywords: ["military packaging","special packaging instruction","spi"], summary: "Referenced by MIL-STD-31000B as the standard practice governing military packaging requirements, relevant to Special Packaging Instruction (SPI) TDP elements." },
+    { id: "DOD-STD-2101", title: "Classification of Characteristics", category: "DoD Standard", keywords: ["classification of characteristics","critical characteristics","quality assurance"], summary: "Referenced by MIL-STD-31000B for classifying item characteristics (e.g. critical, major, minor) used in quality assurance provisions." },
+    { id: "DoD Manual 4100.39-M", title: "Federal Logistics Information System (FLIS) Procedures", category: "DoD Manual", keywords: ["flis","federal logistics information system","logistics"], summary: "Referenced by MIL-STD-31000B for Federal Logistics Information System procedures relevant to item identification and TDP logistics support data." },
+    { id: "DoD Manual 5220.22-M", title: "DoD Industrial Security Manual for Safeguarding Classified Information", category: "DoD Manual", keywords: ["industrial security","classified information","safeguarding"], summary: "Referenced by MIL-STD-31000B for requirements on safeguarding classified information that may appear within a Technical Data Package." },
+    { id: "DoD Instruction 5230.24", title: "Distribution Statements on Technical Documents", category: "DoD Instruction", keywords: ["distribution statement","technical documents","export control marking"], summary: "Referenced by MIL-STD-31000B for the distribution statement markings required on technical documents, including TDP elements." },
+    { id: "DoD Directive 5230.25", title: "Withholding of Unclassified Technical Data From Public Disclosure", category: "DoD Directive", keywords: ["withholding technical data","public disclosure","unclassified technical data"], summary: "Referenced by MIL-STD-31000B for the criteria and procedures governing withholding of unclassified technical data from public disclosure." },
+    { id: "Federal Standardization Manual", title: "Federal Standardization Manual", category: "Federal Publication", keywords: ["federal standardization","standardization manual"], summary: "Referenced by MIL-STD-31000B as the governing manual for federal standardization program policies and procedures." },
+    { id: "ASME Y14.1", title: "Decimal Inch Drawing Sheet Size and Format", category: "ASME Standard", keywords: ["drawing sheet size","decimal inch","drawing format"], summary: "Referenced by MIL-STD-31000B for decimal-inch engineering drawing sheet size and format requirements." },
+    { id: "ASME Y14.1M", title: "Metric Drawing Sheet Size and Format", category: "ASME Standard", keywords: ["drawing sheet size","metric","drawing format"], summary: "Referenced by MIL-STD-31000B for metric engineering drawing sheet size and format requirements." },
+    { id: "ASME Y14.24", title: "Types and Applications of Engineering Drawings", category: "ASME Standard", keywords: ["engineering drawing types","drawing applications"], summary: "Referenced by MIL-STD-31000B for the types and appropriate applications of engineering drawings used as TDP engineering design data." },
+    { id: "ASME Y14.34", title: "Associated Lists", category: "ASME Standard", keywords: ["associated lists","parts list","engineering drawing"], summary: "Referenced by MIL-STD-31000B for the format of associated lists (e.g. parts lists) accompanying engineering design data." },
+    { id: "ASME Y14.35", title: "Revision of Engineering Drawings and Associated Documents", category: "ASME Standard", keywords: ["drawing revision","engineering change","revision control"], summary: "Referenced by MIL-STD-31000B for the practices governing revision of engineering drawings and associated documents." },
+    { id: "ASME Y14.41", title: "Digital Product Definition Data Practices", category: "ASME Standard", keywords: ["model based definition","mbd","digital product definition","3d annotation"], summary: "Referenced by MIL-STD-31000B for digital product definition (Model Based Definition) data practices used in 3D Technical Data Packages." },
+    { id: "ASME Y14.5", title: "Dimensioning and Tolerancing", category: "ASME Standard", keywords: ["gd&t","dimensioning","tolerancing"], summary: "Referenced by MIL-STD-31000B for geometric dimensioning and tolerancing (GD&T) practices used in engineering design data." },
+    { id: "ASME Y14.100", title: "Engineering Drawing Practices", category: "ASME Standard", keywords: ["engineering drawing practices","2d tdp","drawing standards"], summary: "Referenced by MIL-STD-31000B as the general engineering drawing practices standard underlying Type 2D Technical Data Packages." },
+    { id: "ISO/IEC 12207", title: "System and Software Engineering — Software Lifecycle Processes", category: "ISO/IEC Standard", keywords: ["software lifecycle","software engineering","software life cycle data"], summary: "Referenced by MIL-STD-31000B for software lifecycle process terminology (e.g. \"software life cycle data\"), relevant to computer software documentation TDP elements." },
+    { id: "ISO 32000-1", title: "Document Management — Portable Document Format", category: "ISO Standard", keywords: ["pdf","portable document format","3di viewable"], summary: "Referenced by MIL-STD-31000B as the PDF standard underlying 3Di (3-Dimensional Intelligent) viewable technical data." },
+    { id: "ISO 10303", title: "Standard for the Exchange of Product Model Data (STEP)", category: "ISO Standard", keywords: ["step","product model data","neutral cad format"], summary: "Referenced by MIL-STD-31000B as the standard (STEP) for neutral CAD data formats derived from 3D native models." },
+    { id: "NAS 3500", title: "Technical Data Package: Composition, Communication, and Application", category: "NAS Standard", keywords: ["technical data package","national aerospace standard"], summary: "Referenced by MIL-STD-31000B as the National Aerospace Standard counterpart addressing Technical Data Package composition, communication, and application." }
   ];
 
   const DEFAULT_BASELINE = [
@@ -269,16 +301,23 @@
     const results = [];
     CLAUSES.forEach(c => { const s = scoreItem(query, c); if (s > 0) results.push({ source: 'clause', score: s, id: c.id, title: c.title, summary: c.summary }); });
     CONTROLS.forEach(c => { const s = scoreItem(query, c); if (s > 0) results.push({ source: 'control', score: s, id: c.id, title: c.title + ' (' + c.family + ')', summary: c.summary }); });
+    STANDARDS.forEach(c => { const s = scoreItem(query, c); if (s > 0) results.push({ source: 'standard', score: s, id: c.id, title: c.title + ' (' + c.category + ')', summary: c.summary }); });
     results.sort((a, b) => b.score - a.score);
 
     if (!results.length) { container.innerHTML = '<div class="panel" style="color:var(--text-dim);">No matches.</div>'; return; }
     container.innerHTML = results.map(r => `
       <div class="result-card">
         <span class="result-id">${r.id}</span>
-        <span class="result-source ${r.source}">${r.source === 'clause' ? 'FAR/DFARS' : 'NIST 800-171'}</span>
+        <span class="result-source ${r.source}">${sourceLabel(r.source)}</span>
         <div class="result-title">${r.title}</div>
         <div class="result-summary">${r.summary}</div>
       </div>`).join('');
+  }
+
+  function sourceLabel(source) {
+    if (source === 'clause') return 'FAR/DFARS';
+    if (source === 'control') return 'NIST 800-171';
+    return 'STANDARD';
   }
 
   function catalog() {

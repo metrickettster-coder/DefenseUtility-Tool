@@ -2,36 +2,204 @@
   {
     "id": "MIL-STD-31000B",
     "title": "Technical Data Packages",
-    "section": "1. Scope",
+    "category": "DoD Standard",
     "keywords": ["technical data package", "tdp", "engineering drawings", "3di", "model based definition"],
     "summary": "Defines DoD requirements for the content, format, and structure of a Technical Data Package (TDP) — the authoritative technical description of an item, used to support acquisition, production, inspection, engineering, and logistics support."
   },
   {
     "id": "MIL-STD-31000B §4.2/5.2",
     "title": "TDP Levels — Conceptual, Developmental, Product",
-    "section": "4.2 / 5.2",
+    "category": "DoD Standard",
     "keywords": ["tdp level", "conceptual level", "developmental level", "product level"],
     "summary": "TDPs progress through three levels: Conceptual (design concepts, sketches/renderings for analysis), Developmental (sufficient data for prototype fabrication or limited production), and Product (full design/manufacturing/inspection/QA data needed for a competent manufacturer to duplicate the item without further design engineering)."
   },
   {
     "id": "MIL-STD-31000B §4.3/5.3",
     "title": "TDP Types — 2D and 3D",
-    "section": "4.3 / 5.3",
+    "category": "DoD Standard",
     "keywords": ["2d tdp", "3d tdp", "native cad", "neutral cad", "3di viewable"],
     "summary": "TDP type describes the form/format of the technical data: Type 2D is based on 2-dimensional engineering drawings (ASME Y14.100 series); Type 3D is based on product model data and may include 3D native models, 2D drawings derived from them, 3Di PDF viewables, and neutral files."
   },
   {
     "id": "MIL-STD-31000B §4.4",
     "title": "TDP Elements",
-    "section": "4.4",
+    "category": "DoD Standard",
     "keywords": ["engineering design data", "special inspection equipment", "special tooling", "special packaging instruction", "quality assurance provisions", "sie", "spi", "qap"],
     "summary": "TDP elements are the components that make up a Technical Data Package: engineering design data, Special Inspection Equipment (SIE) data, specifications, software documentation, Special Packaging Instruction (SPI) data, quality assurance provisions (QAP), and special tooling data."
   },
   {
     "id": "MIL-STD-31000B §4.5",
     "title": "TDP Data Management Products",
-    "section": "4.5",
+    "category": "DoD Standard",
     "keywords": ["technical data package list", "tdpl", "document number assignment report", "critical manufacturing process", "source control approval request", "engineering drawing tree"],
     "summary": "Data management products used by the procuring activity to control and manage TDP development: the Technical Data Package List (TDPL), document number assignment report, critical manufacturing process description, source control approval request, and engineering drawing tree."
+  },
+  {
+    "id": "MIL-STD-961",
+    "title": "Defense and Program-unique Specifications Format and Content",
+    "category": "DoD Standard",
+    "keywords": ["specifications format", "program-unique specification", "defense specification"],
+    "summary": "Referenced by MIL-STD-31000B for the format and content requirements of defense and program-unique specifications cited in a Technical Data Package.",
+    "cited_in": "MIL-STD-31000B §2"
+  },
+  {
+    "id": "MIL-STD-963",
+    "title": "Data Item Descriptions (DIDs)",
+    "category": "DoD Standard",
+    "keywords": ["data item description", "did", "cdrl"],
+    "summary": "Referenced by MIL-STD-31000B for the completed-document format defining specific data deliverables (Data Item Descriptions) required of a contractor.",
+    "cited_in": "MIL-STD-31000B §2"
+  },
+  {
+    "id": "MIL-STD-2073-1",
+    "title": "Standard Practice for Military Packaging",
+    "category": "DoD Standard",
+    "keywords": ["military packaging", "special packaging instruction", "spi"],
+    "summary": "Referenced by MIL-STD-31000B as the standard practice governing military packaging requirements, relevant to Special Packaging Instruction (SPI) TDP elements.",
+    "cited_in": "MIL-STD-31000B §2"
+  },
+  {
+    "id": "DOD-STD-2101",
+    "title": "Classification of Characteristics",
+    "category": "DoD Standard",
+    "keywords": ["classification of characteristics", "critical characteristics", "quality assurance"],
+    "summary": "Referenced by MIL-STD-31000B for classifying item characteristics (e.g. critical, major, minor) used in quality assurance provisions.",
+    "cited_in": "MIL-STD-31000B §2"
+  },
+  {
+    "id": "DoD Manual 4100.39-M",
+    "title": "Federal Logistics Information System (FLIS) Procedures",
+    "category": "DoD Manual",
+    "keywords": ["flis", "federal logistics information system", "logistics"],
+    "summary": "Referenced by MIL-STD-31000B for Federal Logistics Information System procedures relevant to item identification and TDP logistics support data.",
+    "cited_in": "MIL-STD-31000B §2"
+  },
+  {
+    "id": "DoD Manual 5220.22-M",
+    "title": "DoD Industrial Security Manual for Safeguarding Classified Information",
+    "category": "DoD Manual",
+    "keywords": ["industrial security", "classified information", "safeguarding"],
+    "summary": "Referenced by MIL-STD-31000B for requirements on safeguarding classified information that may appear within a Technical Data Package.",
+    "cited_in": "MIL-STD-31000B §2"
+  },
+  {
+    "id": "DoD Instruction 5230.24",
+    "title": "Distribution Statements on Technical Documents",
+    "category": "DoD Instruction",
+    "keywords": ["distribution statement", "technical documents", "export control marking"],
+    "summary": "Referenced by MIL-STD-31000B for the distribution statement markings required on technical documents, including TDP elements.",
+    "cited_in": "MIL-STD-31000B §2"
+  },
+  {
+    "id": "DoD Directive 5230.25",
+    "title": "Withholding of Unclassified Technical Data From Public Disclosure",
+    "category": "DoD Directive",
+    "keywords": ["withholding technical data", "public disclosure", "unclassified technical data"],
+    "summary": "Referenced by MIL-STD-31000B for the criteria and procedures governing withholding of unclassified technical data from public disclosure.",
+    "cited_in": "MIL-STD-31000B §2"
+  },
+  {
+    "id": "Federal Standardization Manual",
+    "title": "Federal Standardization Manual",
+    "category": "Federal Publication",
+    "keywords": ["federal standardization", "standardization manual"],
+    "summary": "Referenced by MIL-STD-31000B as the governing manual for federal standardization program policies and procedures.",
+    "cited_in": "MIL-STD-31000B §2"
+  },
+  {
+    "id": "ASME Y14.1",
+    "title": "Decimal Inch Drawing Sheet Size and Format",
+    "category": "ASME Standard",
+    "keywords": ["drawing sheet size", "decimal inch", "drawing format"],
+    "summary": "Referenced by MIL-STD-31000B for decimal-inch engineering drawing sheet size and format requirements.",
+    "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "ASME Y14.1M",
+    "title": "Metric Drawing Sheet Size and Format",
+    "category": "ASME Standard",
+    "keywords": ["drawing sheet size", "metric", "drawing format"],
+    "summary": "Referenced by MIL-STD-31000B for metric engineering drawing sheet size and format requirements.",
+    "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "ASME Y14.24",
+    "title": "Types and Applications of Engineering Drawings",
+    "category": "ASME Standard",
+    "keywords": ["engineering drawing types", "drawing applications"],
+    "summary": "Referenced by MIL-STD-31000B for the types and appropriate applications of engineering drawings used as TDP engineering design data.",
+    "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "ASME Y14.34",
+    "title": "Associated Lists",
+    "category": "ASME Standard",
+    "keywords": ["associated lists", "parts list", "engineering drawing"],
+    "summary": "Referenced by MIL-STD-31000B for the format of associated lists (e.g. parts lists) accompanying engineering design data.",
+    "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "ASME Y14.35",
+    "title": "Revision of Engineering Drawings and Associated Documents",
+    "category": "ASME Standard",
+    "keywords": ["drawing revision", "engineering change", "revision control"],
+    "summary": "Referenced by MIL-STD-31000B for the practices governing revision of engineering drawings and associated documents.",
+    "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "ASME Y14.41",
+    "title": "Digital Product Definition Data Practices",
+    "category": "ASME Standard",
+    "keywords": ["model based definition", "mbd", "digital product definition", "3d annotation"],
+    "summary": "Referenced by MIL-STD-31000B for digital product definition (Model Based Definition) data practices used in 3D Technical Data Packages.",
+    "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "ASME Y14.5",
+    "title": "Dimensioning and Tolerancing",
+    "category": "ASME Standard",
+    "keywords": ["gd&t", "dimensioning", "tolerancing"],
+    "summary": "Referenced by MIL-STD-31000B for geometric dimensioning and tolerancing (GD&T) practices used in engineering design data.",
+    "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "ASME Y14.100",
+    "title": "Engineering Drawing Practices",
+    "category": "ASME Standard",
+    "keywords": ["engineering drawing practices", "2d tdp", "drawing standards"],
+    "summary": "Referenced by MIL-STD-31000B as the general engineering drawing practices standard underlying Type 2D Technical Data Packages.",
+    "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "ISO/IEC 12207",
+    "title": "System and Software Engineering — Software Lifecycle Processes",
+    "category": "ISO/IEC Standard",
+    "keywords": ["software lifecycle", "software engineering", "software life cycle data"],
+    "summary": "Referenced by MIL-STD-31000B for software lifecycle process terminology (e.g. \"software life cycle data\"), relevant to computer software documentation TDP elements.",
+    "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "ISO 32000-1",
+    "title": "Document Management — Portable Document Format",
+    "category": "ISO Standard",
+    "keywords": ["pdf", "portable document format", "3di viewable"],
+    "summary": "Referenced by MIL-STD-31000B as the PDF standard underlying 3Di (3-Dimensional Intelligent) viewable technical data.",
+    "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "ISO 10303",
+    "title": "Standard for the Exchange of Product Model Data (STEP)",
+    "category": "ISO Standard",
+    "keywords": ["step", "product model data", "neutral cad format"],
+    "summary": "Referenced by MIL-STD-31000B as the standard (STEP) for neutral CAD data formats derived from 3D native models.",
+    "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "NAS 3500",
+    "title": "Technical Data Package: Composition, Communication, and Application",
+    "category": "NAS Standard",
+    "keywords": ["technical data package", "national aerospace standard"],
+    "summary": "Referenced by MIL-STD-31000B as the National Aerospace Standard counterpart addressing Technical Data Package composition, communication, and application.",
+    "cited_in": "MIL-STD-31000B §2.3"
   }
 ]

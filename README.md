@@ -11,7 +11,9 @@ A single-file, dependency-free, client-side app (no CDN, no build step, no backe
 three tabs:
 
 1. **Clause & Control Search** — keyword/ID search across a curated set of FAR/DFARS
-   clauses and NIST SP 800-171 controls.
+   clauses, NIST SP 800-171 controls, and referenced MIL-STDs/DoD manuals/ASME/ISO
+   standards (currently sourced from MIL-STD-31000B, Technical Data Packages, and the
+   ~20 documents it cites).
 2. **Document Compliance Check** — paste contract/SOW/SSP text and see which baseline
    clauses/controls are referenced vs. missing, with a coverage score.
 3. **Security Posture** — an 8-item STIG-style self-assessment checklist (self-reported,
@@ -43,7 +45,8 @@ Or connect this GitHub repo in the Cloudflare dashboard under **Workers & Pages 
 A command-line companion covering three things:
 
 1. **Regulation/clause reference & search** — keyword/ID search across a curated set of
-   FAR/DFARS clauses and NIST SP 800-171 control families.
+   FAR/DFARS clauses, NIST SP 800-171 control families, and referenced military/industry
+   standards (MIL-STDs, DoD manuals/instructions/directives, ASME, ISO/IEC, NAS).
 2. **Document compliance gap-checking** — scan a document (SOW, SSP, contract text) for
    references to a baseline set of clauses/controls and report what's missing.
 3. **Local system security posture scanning** — read-only, STIG-style checks against the
@@ -59,9 +62,10 @@ pip install -e .
 ### Usage
 
 ```bash
-# Search clauses/controls
+# Search clauses/controls/standards
 defutil search "multifactor"
 defutil search "cmmc" --source clauses
+defutil search "technical data package" --source standards
 
 # Check a document against the default CUI/DFARS baseline
 defutil check-doc path/to/sow.txt
@@ -79,10 +83,13 @@ failed checks, `0` if everything is covered/passing, so they can be used in CI g
 
 ### Notes / limitations
 
-- The bundled clause and NIST SP 800-171 control datasets (`defenseutility/data/*.json`)
-  are illustrative, curated subsets — **not** a complete or authoritative restatement of
-  FAR/DFARS or NIST SP 800-171. Verify against acquisition.gov, the DFARS PGI, and
-  NIST SP 800-171 Rev. 2/3 before relying on this for actual compliance determinations.
+- The bundled clause, NIST SP 800-171 control, and standards datasets
+  (`defenseutility/data/*.json`) are illustrative, curated subsets — **not** a complete or
+  authoritative restatement of FAR/DFARS, NIST SP 800-171, or the cited MIL-STDs/DoD
+  manuals/ASME/ISO documents. Standards entries are summarized from what MIL-STD-31000B
+  itself cites about them, not from having read each referenced document in full. Verify
+  against acquisition.gov, the DFARS PGI, NIST SP 800-171 Rev. 2/3, and the standards'
+  own publishers before relying on this for actual compliance determinations.
 - `check-doc` matching is keyword/ID-based (not semantic), so it can both over- and
   under-match — treat results as a starting point for review, not a final determination.
 - `scan-system` only inspects the local host it runs on and never modifies configuration;

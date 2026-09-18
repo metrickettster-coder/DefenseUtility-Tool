@@ -7,7 +7,7 @@ from .search import search as run_search
 
 
 def _cmd_search(args: argparse.Namespace) -> int:
-    sources = tuple(args.source) if args.source else ("clauses", "controls")
+    sources = tuple(args.source) if args.source else ("clauses", "controls", "standards")
     results = run_search(args.query, sources=sources)
     if not results:
         print(f"No matches for '{args.query}'.")
@@ -64,14 +64,14 @@ def _cmd_scan_system(args: argparse.Namespace) -> int:
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="defutil",
-        description="DoD acquisition regulation reference, document compliance gap checker, and local system security posture scanner.",
+        description="DoD acquisition regulation/standards reference, document compliance gap checker, and local system security posture scanner.",
     )
     parser.add_argument("--json", action="store_true", help="emit machine-readable JSON output")
     sub = parser.add_subparsers(dest="command", required=True)
 
-    p_search = sub.add_parser("search", help="search DFARS/FAR clauses and NIST SP 800-171 controls")
+    p_search = sub.add_parser("search", help="search DFARS/FAR clauses, NIST SP 800-171 controls, and referenced MIL-STDs/DoD/ASME/ISO standards")
     p_search.add_argument("query")
-    p_search.add_argument("--source", choices=["clauses", "controls"], action="append", help="restrict to clauses and/or controls (default: both)")
+    p_search.add_argument("--source", choices=["clauses", "controls", "standards"], action="append", help="restrict to clauses, controls, and/or standards (default: all three)")
     p_search.set_defaults(func=_cmd_search)
 
     p_check = sub.add_parser("check-doc", help="check a document for references to baseline clauses/controls")
