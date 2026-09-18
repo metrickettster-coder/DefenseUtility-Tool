@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Defense Compliance & Security Posture Suite</title>
+<script>
+  (function(){
+    try {
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch(e){}
+  })();
+</script>
 
 <style>
   :root{
@@ -21,8 +30,22 @@
     --radius:     8px;
   }
 
+  :root[data-theme="light"]{
+    --ink:        #f4f6f9;
+    --panel:      #ffffff;
+    --panel-2:    #eef1f6;
+    --grid-line:  #d9e1ea;
+    --text-hi:    #101825;
+    --text-mid:   #465364;
+    --text-dim:   #7c8899;
+    --amber:      #b45309;
+    --green:      #15803d;
+    --red:        #b91c1c;
+    --focus:      #1d4ed8;
+  }
+
   *{ box-sizing:border-box; }
-  body{ margin:0; padding:0; background:var(--ink); color:var(--text-hi); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif; min-height:100vh; }
+  body{ margin:0; padding:0; background:var(--ink); color:var(--text-hi); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif; min-height:100vh; transition:background-color .15s ease, color .15s ease; }
   code, .mono{ font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace; }
   .shell{ max-width:1100px; margin:0 auto; padding:20px 20px 60px; }
 
@@ -31,8 +54,12 @@
   .brand .name{ font-weight:800; font-size:17px; }
   .brand .sub{ font-size:12px; color:var(--text-dim); margin-top:2px; }
 
+  .btn-theme{ background:var(--panel-2); border:1px solid var(--grid-line); color:var(--text-hi); font-family:ui-monospace,monospace; font-size:12.5px; font-weight:600; padding:8px 14px; border-radius:6px; cursor:pointer; white-space:nowrap; }
+  .btn-theme:hover{ border-color:var(--amber); color:var(--amber); }
+
   nav.pillar-nav{ display:grid; grid-template-columns: repeat(3, 1fr); gap:8px; margin-bottom:20px; }
-  @media(max-width: 700px){ nav.pillar-nav{ grid-template-columns: 1fr; } }
+  @media(max-width: 900px){ nav.pillar-nav{ grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 560px){ nav.pillar-nav{ grid-template-columns: 1fr; } }
 
   .pillar-btn{ background:var(--panel); border:1px solid var(--grid-line); color:var(--text-mid); padding:14px 10px; text-align:center; border-radius:var(--radius); cursor:pointer; transition:all 0.15s ease; }
   .pillar-btn:hover{ border-color:var(--text-dim); }
@@ -101,6 +128,7 @@
       <span class="name">Regulation Reference, Gap Check &amp; Security Posture</span>
       <div class="sub">Runs entirely client-side. Nothing you type here leaves the browser.</div>
     </div>
+    <button class="btn-theme" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light/dark theme">🌙 Dark</button>
   </header>
 
   <nav class="pillar-nav">
@@ -305,6 +333,20 @@
     document.getElementById('pillar-' + pillarId).classList.add('active');
     btnEl.classList.add('active');
   }
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    const btn = document.getElementById('theme-toggle');
+    if (btn) btn.textContent = theme === 'light' ? '☀️ Light' : '🌙 Dark';
+    try { localStorage.setItem('theme', theme); } catch(e) {}
+  }
+
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  }
+
+  applyTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
 
   function normalizeId(id) { return id.toLowerCase().replace(/[^a-z0-9]/g, ''); }
 

@@ -23,6 +23,10 @@ three tabs:
 Nothing typed into the page is sent anywhere — it's suitable for fully air-gapped use.
 Open `public/index.html` directly in a browser to use it standalone.
 
+Light/dark theme toggle (top right, persisted in `localStorage`) and a responsive layout
+tuned for desktop and tablet widths (nav collapses from 3 to 2 columns at 900px, and to 1
+column at 560px).
+
 ### Deploying to Cloudflare Workers (free tier)
 
 The repo is set up to deploy as a Worker serving static assets (`wrangler.toml` +
