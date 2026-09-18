@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Defense Compliance & Security Posture Suite</title>
+<script>
+  (function(){
+    try {
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch(e){}
+  })();
+</script>
+
+<style>
+  :root{
+    --ink:        #0b131e;
+    --panel:      #132236;
+    --panel-2:    #1a2d47;
+    --grid-line:  #253e61;
+    --text-hi:    #eef2f7;
+    --text-mid:   #a9b8cc;
+    --text-dim:   #6f829c;
+    --amber:      #e0a52c;
+    --green:      #3fb27f;
+    --red:        #d9584f;
+    --focus:      #6fb3ff;
+    --radius:     8px;
+  }
+
+  :root[data-theme="light"]{
+    --ink:        #f4f6f9;
+    --panel:      #ffffff;
+    --panel-2:    #eef1f6;
+    --grid-line:  #d9e1ea;
+    --text-hi:    #101825;
+    --text-mid:   #465364;
+    --text-dim:   #7c8899;
+    --amber:      #b45309;
+    --green:      #15803d;
+    --red:        #b91c1c;
+    --focus:      #1d4ed8;
+  }
+
+  *{ box-sizing:border-box; }
+  body{ margin:0; padding:0; background:var(--ink); color:var(--text-hi); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif; min-height:100vh; transition:background-color .15s ease, color .15s ease; }
+  code, .mono{ font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace; }
+  .shell{ max-width:1100px; margin:0 auto; padding:20px 20px 60px; }
+
+  header.top{ display:flex; justify-content:space-between; align-items:center; padding-bottom:14px; margin-bottom:16px; border-bottom:1px solid var(--grid-line); flex-wrap:wrap; gap:10px; }
+  .brand .mark{ font-family:ui-monospace,monospace; font-size:11px; color:var(--amber); border:1px solid rgba(224,165,44,0.4); padding:2px 6px; border-radius:4px; margin-right:8px; }
+  .brand .name{ font-weight:800; font-size:17px; }
+  .brand .sub{ font-size:12px; color:var(--text-dim); margin-top:2px; }
+
+  .btn-theme{ background:var(--panel-2); border:1px solid var(--grid-line); color:var(--text-hi); font-family:ui-monospace,monospace; font-size:12.5px; font-weight:600; padding:8px 14px; border-radius:6px; cursor:pointer; white-space:nowrap; }
+  .btn-theme:hover{ border-color:var(--amber); color:var(--amber); }
+
+  nav.pillar-nav{ display:grid; grid-template-columns: repeat(3, 1fr); gap:8px; margin-bottom:20px; }
+  @media(max-width: 900px){ nav.pillar-nav{ grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 560px){ nav.pillar-nav{ grid-template-columns: 1fr; } }
+
+  .pillar-btn{ background:var(--panel); border:1px solid var(--grid-line); color:var(--text-mid); padding:14px 10px; text-align:center; border-radius:var(--radius); cursor:pointer; transition:all 0.15s ease; }
+  .pillar-btn:hover{ border-color:var(--text-dim); }
+  .pillar-btn.active{ background:var(--panel-2); border-color:var(--amber); color:var(--amber); font-weight:700; }
+  .pillar-btn .title{ font-size:13px; font-weight:700; display:block; }
+  .pillar-btn .desc{ font-size:11px; color:var(--text-dim); display:block; margin-top:3px; font-weight:400; }
+  .pillar-btn.active .desc{ color:var(--text-mid); }
+
+  .tab-pillar{ display:none; }
+  .tab-pillar.active{ display:block; }
+
+  .board{ display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-bottom:20px; }
+  @media (max-width: 720px){ .board{ grid-template-columns: 1fr; } }
+
+  .light-card{ background: linear-gradient(180deg, var(--panel-2), var(--panel)); border:1px solid var(--grid-line); border-radius: var(--radius); padding:16px; position:relative; }
+  .light-card::before{ content:""; position:absolute; inset:0 0 auto 0; height:3px; background:var(--status-color, var(--text-dim)); }
+  .light-row{ display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+  .light-dot{ width:9px; height:9px; border-radius:50%; background:var(--status-color, var(--text-dim)); }
+  .light-label{ font-family:ui-monospace,monospace; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-dim); }
+  .light-value{ font-family:ui-monospace,monospace; font-size:24px; font-weight:600; line-height:1; margin-bottom:4px; }
+  .light-status{ font-size:12px; color:var(--text-mid); }
+
+  .panel{ background: var(--panel); border:1px solid var(--grid-line); border-radius: var(--radius); padding:20px; margin-bottom:18px; }
+  .panel h2{ font-size:12px; font-family:ui-monospace,monospace; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-dim); margin:0 0 16px; }
+
+  .field{ margin-bottom:14px; }
+  .field label{ display:block; font-size:12.5px; font-weight:600; margin-bottom:4px; }
+  .field .hint{ font-size:11px; color:var(--text-dim); margin-bottom:4px; }
+  .field input, .field select, textarea{ width:100%; background:var(--ink); border:1px solid var(--grid-line); color:var(--text-hi); font-family:ui-monospace,monospace; font-size:13px; padding:8px 10px; border-radius:6px; outline:none; }
+  .field input:focus, textarea:focus, select:focus{ border-color: var(--focus); }
+
+  textarea{ height:160px; resize:vertical; }
+  .btn-action{ background:var(--amber); color:var(--ink); font-weight:700; font-family:ui-monospace,monospace; font-size:13px; padding:10px 16px; border:none; border-radius:6px; cursor:pointer; }
+
+  .result-card{ background:var(--panel-2); border:1px solid var(--grid-line); border-radius:8px; padding:12px; margin-bottom:10px; }
+  .result-id{ font-family:ui-monospace,monospace; font-weight:700; color:var(--amber); }
+  .result-source{ font-size:9.5px; font-weight:700; padding:2px 6px; border-radius:4px; text-transform:uppercase; letter-spacing:0.05em; }
+  .result-source.clause{ background:rgba(217,88,79,0.18); border:1px solid var(--red); color:var(--red); }
+  .result-source.control{ background:rgba(63,178,127,0.18); border:1px solid var(--green); color:var(--green); }
+  .result-source.standard{ background:rgba(111,179,255,0.18); border:1px solid var(--focus); color:var(--focus); }
+  .result-title{ font-size:12.5px; font-weight:600; margin-top:4px; }
+  .result-summary{ font-size:11.5px; color:var(--text-mid); margin-top:4px; }
+
+  .checklist-row{ display:flex; justify-content:space-between; align-items:flex-start; gap:14px; padding:12px 0; border-bottom:1px solid var(--grid-line); }
+  .checklist-row:last-child{ border-bottom:none; }
+  .checklist-row .q{ font-size:13px; }
+  .checklist-row .q .id{ font-family:ui-monospace,monospace; font-size:10.5px; color:var(--text-dim); display:block; margin-bottom:2px; }
+  .checklist-row select{ width:auto; min-width:110px; }
+
+  .cli-box{ background:var(--ink); border:1px solid var(--grid-line); border-radius:6px; padding:12px 14px; font-family:ui-monospace,monospace; font-size:12.5px; color:var(--focus); overflow-x:auto; }
+
+  .readout{ display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--grid-line); gap:12px; }
+  .readout:last-child{ border-bottom:none; }
+  .readout .rlabel{ font-size:13px; color:var(--text-mid); }
+  .readout .rvalue{ font-family:ui-monospace,monospace; font-size:16px; font-weight:600; }
+
+  .disclaimer{ font-size:11.5px; color:var(--text-dim); border-top:1px solid var(--grid-line); margin-top:24px; padding-top:14px; }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <header class="top">
+    <div class="brand">
+      <span class="mark">DEFENSE//COMPLIANCE</span>
+      <span class="name">Regulation Reference, Gap Check &amp; Security Posture</span>
+      <div class="sub">Runs entirely client-side. Nothing you type here leaves the browser.</div>
+    </div>
+    <button class="btn-theme" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light/dark theme">🌙 Dark</button>
+  </header>
+
+  <nav class="pillar-nav">
+    <div class="pillar-btn active" onclick="switchPillar('search', this)">
+      <span class="title">🔎 Clause &amp; Control Search</span>
+      <span class="desc">FAR/DFARS clauses + NIST SP 800-171 controls</span>
+    </div>
+    <div class="pillar-btn" onclick="switchPillar('docs', this)">
+      <span class="title">📄 Document Compliance Check</span>
+      <span class="desc">Flag baseline items missing from contract text</span>
+    </div>
+    <div class="pillar-btn" onclick="switchPillar('posture', this)">
+      <span class="title">🛡️ Security Posture</span>
+      <span class="desc">STIG-style self-assessment (informational)</span>
+    </div>
+  </nav>
+
+  <div id="pillar-search" class="tab-pillar active">
+    <div class="panel">
+      <h2>Search Clauses &amp; Controls</h2>
+      <div class="field">
+        <label>Search by ID or keyword</label>
+        <div class="hint">Try "7012", "multifactor", "cmmc", "audit logs"...</div>
+        <input type="text" id="search-query" placeholder="Type to search..." oninput="runSearch()">
+      </div>
+    </div>
+    <div id="search-results"></div>
+  </div>
+
+  <div id="pillar-docs" class="tab-pillar">
+    <div class="panel">
+      <h2>Input Contract / SOW / SSP Text</h2>
+      <textarea id="doc-text" placeholder="Paste contract text...">The contractor shall comply with DFARS 252.204-7012 and shall employ multifactor authentication for all privileged accounts.</textarea>
+      <button class="btn-action" style="margin-top:10px;" onclick="checkDocument()">Analyze Against Baseline</button>
+    </div>
+    <div class="board" id="doc-board" style="display:none;">
+      <div class="light-card"><div class="light-row"><span class="light-dot"></span><span class="light-label">Referenced</span></div><div class="light-value" id="doc-referenced">—</div><div class="light-status">baseline items found</div></div>
+      <div class="light-card"><div class="light-row"><span class="light-dot"></span><span class="light-label">Missing</span></div><div class="light-value" id="doc-missing">—</div><div class="light-status">baseline items not found</div></div>
+      <div class="light-card"><div class="light-row"><span class="light-dot"></span><span class="light-label">Coverage</span></div><div class="light-value" id="doc-coverage">—</div><div class="light-status">of baseline referenced</div></div>
+    </div>
+    <div class="panel" id="doc-results" style="display:none;">
+      <h2>Baseline Coverage Detail</h2>
+      <div id="doc-results-list"></div>
+    </div>
+    <div class="panel">
+      <h2>Baseline in Use</h2>
+      <div class="hint" style="margin-bottom:10px;">CUI / DFARS Safeguarding baseline — the same default baseline as <code>defutil check-doc</code> in the companion CLI.</div>
+      <div id="baseline-list" style="font-size:11.5px; color:var(--text-mid);"></div>
+    </div>
+  </div>
+
+  <div id="pillar-posture" class="tab-pillar">
+    <div class="board">
+      <div class="light-card"><div class="light-row"><span class="light-dot"></span><span class="light-label">Passed</span></div><div class="light-value" id="posture-pass">0 / 8</div><div class="light-status">self-reported checks</div></div>
+      <div class="light-card"><div class="light-row"><span class="light-dot"></span><span class="light-label">Status</span></div><div class="light-value" id="posture-status" style="font-size:16px;">—</div><div class="light-status">overall readiness</div></div>
+    </div>
+    <div class="panel">
+      <h2>STIG-Style Self-Assessment</h2>
+      <div class="hint" style="margin-bottom:6px;">Answer based on your own knowledge of the host — this is self-reported, not an automated scan. See below for the real thing.</div>
+      <div id="posture-checklist"></div>
+    </div>
+    <div class="panel" id="posture-gaps" style="display:none;">
+      <h2>Open Items &amp; Remediation</h2>
+      <div id="posture-gaps-list"></div>
+    </div>
+    <div class="panel">
+      <h2>Run an Actual Local Scan</h2>
+      <p style="font-size:12.5px; color:var(--text-mid); margin-top:0;">
+        A browser can't inspect your OS. The companion Python CLI (<code>defutil scan-system</code>) runs the same
+        8 checks for real — reading <code>sshd_config</code>, querying <code>systemctl</code>, checking file
+        permissions and <code>/etc/shadow</code> — entirely read-only, entirely local, nothing sent anywhere.
+      </p>
+      <div class="cli-box">pip install -e .<br>defutil scan-system</div>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    The bundled clause and NIST SP 800-171 control datasets are illustrative, curated subsets — not a complete or
+    authoritative restatement of FAR/DFARS or NIST SP 800-171. Verify against acquisition.gov, the DFARS PGI, and
+    NIST SP 800-171 before relying on this for actual compliance determinations. Matching is keyword/ID-based, not
+    semantic, and can both over- and under-match.
+  </div>
+</div>
+
+<script>
+  const CLAUSES = [
+    { id: "FAR 52.204-21", title: "Basic Safeguarding of Covered Contractor Information Systems", category: "cybersecurity", keywords: ["safeguarding", "covered contractor information", "federal contract information", "fci"], summary: "Requires 15 basic security controls for protecting Federal Contract Information (FCI) on contractor information systems." },
+    { id: "DFARS 252.204-7012", title: "Safeguarding Covered Defense Information and Cyber Incident Reporting", category: "cybersecurity", keywords: ["covered defense information", "cdi", "cyber incident", "nist 800-171", "800-171", "incident reporting", "72 hours"], summary: "Requires implementation of NIST SP 800-171 security requirements and reporting of cyber incidents affecting covered defense information within 72 hours." },
+    { id: "DFARS 252.204-7019", title: "Notice of NIST SP 800-171 DoD Assessment Requirements", category: "cybersecurity", keywords: ["800-171 assessment", "basic assessment", "sprs", "supplier performance risk system"], summary: "Requires an offeror to have a current NIST SP 800-171 DoD Assessment posted in SPRS prior to award." },
+    { id: "DFARS 252.204-7020", title: "NIST SP 800-171 DoD Assessment Requirements", category: "cybersecurity", keywords: ["800-171 assessment", "sprs", "government access", "assessment methodology"], summary: "Requires contractors to provide the Government access to conduct or verify NIST SP 800-171 assessments and flow down the requirement to subcontractors." },
+    { id: "DFARS 252.204-7021", title: "Cybersecurity Maturity Model Certification Requirements", category: "cybersecurity", keywords: ["cmmc", "certification level", "maturity model", "third-party assessment"], summary: "Requires the contractor to have a current CMMC certificate at the level specified in the contract before award." },
+    { id: "DFARS 252.239-7010", title: "Cloud Computing Services", category: "cybersecurity", keywords: ["cloud computing", "fedramp", "cloud service provider", "csp"], summary: "Establishes requirements for cloud service providers, including FedRAMP moderate baseline authorization and incident reporting." },
+    { id: "DFARS 252.204-7008", title: "Compliance with Safeguarding Covered Defense Information Controls", category: "cybersecurity", keywords: ["representation", "system security plan", "ssp", "compliance representation"], summary: "Requires offerors to represent compliance with NIST SP 800-171 or identify any not yet implemented requirements via a system security plan and plans of action." },
+    { id: "FAR 52.204-25", title: "Prohibition on Contracting for Certain Telecommunications and Video Surveillance Services or Equipment", category: "supply chain", keywords: ["telecommunications", "video surveillance", "covered equipment", "section 889"], summary: "Prohibits contractors from providing or using covered telecommunications equipment or services as a substantial or essential component of any system." },
+    { id: "DFARS 252.244-7001", title: "Contractor Purchasing System Administration", category: "supply chain", keywords: ["purchasing system", "subcontract management", "cpsr"], summary: "Establishes requirements for an approved contractor purchasing system for managing subcontracts and purchases." },
+    { id: "DFARS 252.225-7048", title: "Export-Controlled Items", category: "export control", keywords: ["export control", "itar", "ear", "controlled items"], summary: "Requires the contractor to comply with all applicable export control laws and regulations." },
+    { id: "DFARS 252.246-7008", title: "Sources of Electronic Parts", category: "supply chain", keywords: ["electronic parts", "counterfeit", "authorized supplier"], summary: "Requires contractors to obtain electronic parts from trusted sources to prevent counterfeit parts from entering the supply chain." },
+    { id: "FAR 52.203-13", title: "Contractor Code of Business Ethics and Conduct", category: "ethics", keywords: ["code of ethics", "business conduct", "hotline", "compliance program"], summary: "Requires contractors to have a written code of business ethics and an internal control system, and to display fraud hotline posters." },
+    { id: "DFARS 252.211-7003", title: "Item Unique Identification and Valuation", category: "logistics", keywords: ["uid", "unique identification", "item marking", "iuid"], summary: "Requires unique item identification (UID) marking on qualifying deliverable items." },
+    { id: "FAR 52.219-14", title: "Limitations on Subcontracting", category: "small business", keywords: ["subcontracting limit", "small business", "self-performance"], summary: "Limits the percentage of contract cost a small business concern may subcontract to non-similarly-situated entities." },
+    { id: "DFARS 252.223-7008", title: "Prohibition of Hexavalent Chromium", category: "environmental", keywords: ["hexavalent chromium", "hazardous materials", "coatings"], summary: "Restricts the use of hexavalent chromium in specified coatings and materials on deliverable items." },
+    { id: "DFARS 252.227-7013", title: "Rights in Technical Data\u2014Other Than Commercial Products and Commercial Services", category: "data rights", keywords: ["technical data rights", "unlimited rights", "government purpose rights", "limited rights", "noncommercial items", "other than commercial products", "technical data package", "tdp", "developed exclusively at private expense", "mixed funding"], summary: "Establishes the Government's license rights in technical data (other than computer software documentation) for items, components, or processes that are not commercial products/services or were developed in whole or part at Government expense. Grants unlimited rights, government purpose rights (a default 5-year period), limited rights, or specifically negotiated rights depending on how development was funded. All rights not expressly granted to the Government are retained by the Contractor, and data delivered without a proper restrictive marking is presumed furnished with unlimited rights." },
+    { id: "DFARS 252.227-7013 \u2014 Unlimited Rights", title: "Unlimited Rights in Technical Data (252.227-7013(c)(1))", category: "data rights", keywords: ["unlimited rights", "technical data", "form fit function data", "developed exclusively with government funds"], summary: "The Government has unlimited rights (use, modify, reproduce, perform, display, release, or disclose in any manner, for any purpose) in technical data developed exclusively with Government funds, form/fit/function data, data necessary for installation/operation/maintenance/training (other than detailed manufacturing or process data), studies/analyses/test data required as a contract deliverable, and data that is otherwise publicly available or was previously released without restriction." },
+    { id: "DFARS 252.227-7013 \u2014 Government Purpose Rights", title: "Government Purpose Rights in Technical Data (252.227-7013(c)(2))", category: "data rights", keywords: ["government purpose rights", "mixed funding", "5-year period", "technical data"], summary: "For technical data pertaining to items or processes developed with mixed (partly Government, partly private) funding, the Government receives government purpose rights: unrestricted use within the Government, plus the right to release outside the Government to authorized recipients for U.S. Government purposes only (not commercial use). This default lasts 5 years from contract/modification execution (or a negotiated period), after which the data converts to unlimited rights; during that period the Contractor retains the exclusive right to commercial use, including licensing others." },
+    { id: "DFARS 252.227-7013 \u2014 Limited Rights and Marking", title: "Limited Rights and Marking Requirements (252.227-7013(c)(3), (g))", category: "data rights", keywords: ["limited rights", "restrictive legend", "marking requirements", "developed exclusively at private expense"], summary: "Technical data pertaining to items or processes developed exclusively at private expense carries only limited rights: usable within the Government, but not releasable outside the Government, not usable for manufacture, and not authorized for use by others without the Contractor's written permission \u2014 with narrow exceptions for emergency repair/overhaul and release to covered Government support contractors under nondisclosure. Contractors must conspicuously mark each page/item with the appropriate legend (limited rights, government purpose rights, or special license rights) to assert restrictions; data delivered without such a marking is presumed furnished with unlimited rights." },
+    { id: "DFARS 252.227-7014", title: "Rights in Other Than Commercial Computer Software and Other Than Commercial Computer Software Documentation", category: "data rights", keywords: ["computer software rights", "other than commercial computer software", "restricted rights", "government purpose rights", "software documentation"], summary: "Establishes the Government's license rights in computer software and computer software documentation that do not qualify as commercial computer software: unlimited rights, government purpose rights (a default 5-year period), restricted rights, or specifically negotiated rights, depending on funding source. Unlike 252.227-7013's 'limited rights' for technical data, privately-funded software instead carries 'restricted rights' \u2014 a narrower, software-specific set of permitted uses. All rights not granted to the Government are retained by the Contractor, and unmarked deliverables are presumed furnished with unlimited rights." },
+    { id: "DFARS 252.227-7014 \u2014 Unlimited Rights", title: "Unlimited Rights in Computer Software (252.227-7014(c)(1))", category: "data rights", keywords: ["unlimited rights", "computer software", "developed exclusively with government funds"], summary: "The Government has unlimited rights in computer software developed exclusively with Government funds, in all computer software documentation required to be delivered under the contract (regardless of how the underlying software was funded), and in software/documentation that is otherwise publicly available or was previously released without restriction." },
+    { id: "DFARS 252.227-7014 \u2014 Government Purpose Rights", title: "Government Purpose Rights in Computer Software (252.227-7014(c)(2))", category: "data rights", keywords: ["government purpose rights", "mixed funding", "5-year period", "computer software"], summary: "Computer software developed with mixed funding carries government purpose rights for a default 5-year period \u2014 full Government use plus release to authorized recipients for U.S. Government purposes, but not commercial use \u2014 after which it converts to unlimited rights, mirroring the treatment of mixed-funded technical data under 252.227-7013." },
+    { id: "DFARS 252.227-7014 \u2014 Restricted Rights and Marking", title: "Restricted Rights and Marking Requirements (252.227-7014(c)(3), (g))", category: "data rights", keywords: ["restricted rights", "restrictive legend", "marking requirements", "developed exclusively at private expense", "decompile", "reverse engineer"], summary: "Other than commercial computer software developed exclusively at private expense carries only restricted rights: use on one computer at a time, a reasonable number of copies for backup/archive/modification, and narrow rights to modify or permit contractors to diagnose/correct/adapt the software under nondisclosure \u2014 with no right to decompile, disassemble, or reverse-engineer beyond what's authorized. As with 252.227-7013, the Contractor must mark each item with the appropriate restrictive legend or the software is presumed delivered with unlimited rights." }
+  ];
+
+  const CONTROLS = [
+    { id: "3.1.1", family: "Access Control", title: "Limit system access to authorized users", keywords: ["authorized users","access control","account management"], summary: "Limit information system access to authorized users, processes acting on behalf of authorized users, and devices." },
+    { id: "3.1.2", family: "Access Control", title: "Limit system access to authorized functions", keywords: ["authorized transactions","least functionality","authorized functions"], summary: "Limit system access to the types of transactions and functions that authorized users are permitted to execute." },
+    { id: "3.1.5", family: "Access Control", title: "Employ least privilege", keywords: ["least privilege","privileged accounts"], summary: "Employ the principle of least privilege, including for specific security functions and privileged accounts." },
+    { id: "3.1.12", family: "Access Control", title: "Monitor and control remote access sessions", keywords: ["remote access","vpn","remote session"], summary: "Monitor and control remote access sessions." },
+    { id: "3.2.1", family: "Awareness and Training", title: "Security awareness training", keywords: ["security awareness","training","insider threat awareness"], summary: "Ensure managers, systems administrators, and users are made aware of security risks and applicable policies." },
+    { id: "3.3.1", family: "Audit and Accountability", title: "Create and retain system audit logs", keywords: ["audit logs","logging","audit records"], summary: "Create and retain system audit logs and records to enable monitoring, analysis, investigation, and reporting of unlawful or unauthorized activity." },
+    { id: "3.4.1", family: "Configuration Management", title: "Establish baseline configurations", keywords: ["baseline configuration","configuration management","inventory"], summary: "Establish and maintain baseline configurations and inventories of organizational systems throughout the lifecycle." },
+    { id: "3.5.1", family: "Identification and Authentication", title: "Identify users and processes", keywords: ["identification","authentication","user identification"], summary: "Identify system users, processes acting on behalf of users, and devices." },
+    { id: "3.5.3", family: "Identification and Authentication", title: "Multifactor authentication", keywords: ["multifactor authentication","mfa","two-factor"], summary: "Use multifactor authentication for local and network access to privileged accounts and for network access to non-privileged accounts." },
+    { id: "3.6.1", family: "Incident Response", title: "Establish incident-handling capability", keywords: ["incident response","incident handling","detection","reporting"], summary: "Establish an operational incident-handling capability including preparation, detection, analysis, containment, recovery, and user response activities." },
+    { id: "3.7.1", family: "Maintenance", title: "Perform system maintenance", keywords: ["maintenance","system maintenance"], summary: "Perform maintenance on organizational systems." },
+    { id: "3.8.1", family: "Media Protection", title: "Protect system media", keywords: ["media protection","removable media","sanitize"], summary: "Protect (i.e., physically control and securely store) system media containing CUI, both paper and digital." },
+    { id: "3.9.1", family: "Personnel Security", title: "Screen individuals", keywords: ["personnel screening","background check"], summary: "Screen individuals prior to authorizing access to organizational systems containing CUI." },
+    { id: "3.10.1", family: "Physical Protection", title: "Limit physical access", keywords: ["physical access","physical protection","facility access"], summary: "Limit physical access to organizational systems, equipment, and the respective operating environments to authorized individuals." },
+    { id: "3.11.1", family: "Risk Assessment", title: "Assess risk periodically", keywords: ["risk assessment","risk management"], summary: "Periodically assess the risk to organizational operations, assets, and individuals resulting from operation of organizational systems and processing of CUI." },
+    { id: "3.12.1", family: "Security Assessment", title: "Periodically assess security controls", keywords: ["security assessment","control assessment","poam","plan of action"], summary: "Periodically assess the security controls in organizational systems to determine if the controls are effective." },
+    { id: "3.13.1", family: "System and Communications Protection", title: "Monitor and control communications", keywords: ["boundary protection","network segmentation","firewall"], summary: "Monitor, control, and protect communications at the external boundaries and key internal boundaries of organizational systems." },
+    { id: "3.13.11", family: "System and Communications Protection", title: "Employ FIPS-validated cryptography", keywords: ["fips","cryptography","encryption"], summary: "Employ FIPS-validated cryptography when used to protect the confidentiality of CUI." },
+    { id: "3.14.1", family: "System and Information Integrity", title: "Identify and correct flaws", keywords: ["flaw remediation","patching","vulnerability management"], summary: "Identify, report, and correct system flaws in a timely manner." },
+    { id: "3.14.2", family: "System and Information Integrity", title: "Provide malicious code protection", keywords: ["malware protection","antivirus","malicious code"], summary: "Provide protection from malicious code at designated locations within organizational systems." }
+  ];
+
+  const STANDARDS = [
+    { id: "MIL-STD-31000B", title: "Technical Data Packages", category: "DoD Standard", keywords: ["technical data package", "tdp", "engineering drawings", "3di", "model based definition"], summary: "Defines DoD requirements for the content, format, and structure of a Technical Data Package (TDP) \u2014 the authoritative technical description of an item, used to support acquisition, production, inspection, engineering, and logistics support." },
+    { id: "MIL-STD-31000B \u00a74.2/5.2", title: "TDP Levels \u2014 Conceptual, Developmental, Product", category: "DoD Standard", keywords: ["tdp level", "conceptual level", "developmental level", "product level"], summary: "TDPs progress through three levels: Conceptual (design concepts, sketches/renderings for analysis), Developmental (sufficient data for prototype fabrication or limited production), and Product (full design/manufacturing/inspection/QA data needed for a competent manufacturer to duplicate the item without further design engineering)." },
+    { id: "MIL-STD-31000B \u00a74.3/5.3", title: "TDP Types \u2014 2D and 3D", category: "DoD Standard", keywords: ["2d tdp", "3d tdp", "native cad", "neutral cad", "3di viewable"], summary: "TDP type describes the form/format of the technical data: Type 2D is based on 2-dimensional engineering drawings (ASME Y14.100 series); Type 3D is based on product model data and may include 3D native models, 2D drawings derived from them, 3Di PDF viewables, and neutral files." },
+    { id: "MIL-STD-31000B \u00a74.4", title: "TDP Elements", category: "DoD Standard", keywords: ["engineering design data", "special inspection equipment", "special tooling", "special packaging instruction", "quality assurance provisions", "sie", "spi", "qap"], summary: "TDP elements are the components that make up a Technical Data Package: engineering design data, Special Inspection Equipment (SIE) data, specifications, software documentation, Special Packaging Instruction (SPI) data, quality assurance provisions (QAP), and special tooling data." },
+    { id: "MIL-STD-31000B \u00a74.5", title: "TDP Data Management Products", category: "DoD Standard", keywords: ["technical data package list", "tdpl", "document number assignment report", "critical manufacturing process", "source control approval request", "engineering drawing tree"], summary: "Data management products used by the procuring activity to control and manage TDP development: the Technical Data Package List (TDPL), document number assignment report, critical manufacturing process description, source control approval request, and engineering drawing tree." },
+    { id: "MIL-STD-961", title: "Defense and Program-Unique Specifications Format and Content", category: "DoD Standard", keywords: ["specifications format", "program-unique specification", "defense specification", "mil-prf", "mil-dtl", "amsc"], summary: "MIL-STD-961E (w/Change 4) establishes format and content requirements for defense specifications (used across multiple programs, coordinated and indexed in the ASSIST database) and program-unique specifications (developed for a single program/system), plus specification sheets, supplements, revisions, amendments, and notices. Every specification follows the same six-section format: Scope, Applicable Documents, Requirements, Verification, Packaging, and Notes. This standard integrated program-unique specification requirements previously covered by MIL-STD-490, Specification Practices, which it canceled." },
+    { id: "MIL-STD-961 \u00a75", title: "Six-Section Specification Format", category: "DoD Standard", keywords: ["section 1 scope", "section 2 applicable documents", "section 3 requirements", "section 4 verification", "section 5 packaging", "section 6 notes"], summary: "The standard specification structure used throughout DoD acquisition documents: Section 1 Scope (brief abstract, no requirements), Section 2 Applicable Documents, Section 3 Requirements (what the entity must meet), Section 4 Verification (how compliance is confirmed), Section 5 Packaging, and Section 6 Notes (not contractually binding \u2014 general/explanatory information only, e.g. intended use, tailoring guidance)." },
+    { id: "MIL-STD-961 \u00a73", title: "Specification Types", category: "DoD Standard", keywords: ["performance specification", "detail specification", "general specification", "specification sheet", "item specification", "material specification", "process specification", "software specification", "system specification"], summary: "Defense specifications are either performance specifications (states required results and verification criteria, not the method) or detail specifications (specifies design requirements \u2014 materials, how to build it); a general specification covers requirements common to a group of parts and is paired with specification sheets for style/type/class/grade variants. Program-unique specifications further divide into item, material, process, software, and system specifications, based on what they describe (parts/components, raw/processed materials, fabrication procedures, software requirements, or a whole system)." },
+    { id: "MIL-STD-961 \u00a75.4", title: "Specification Identifiers \u2014 MIL-PRF / MIL-DTL", category: "DoD Standard", keywords: ["mil-prf", "mil-dtl", "specification identifier", "limited-coordination specification", "interim specification"], summary: "A coordinated defense specification identifier is 'MIL-' plus 'PRF' (performance) or 'DTL' (detail) plus an Arabic numeral, e.g. MIL-PRF-123 or MIL-DTL-123. A limited-coordination specification (covering items needed by only one activity/Department/Agency) adds a parenthetical SD-1 symbol suffix, e.g. MIL-PRF-12345(CR). An interim (not-yet-fully-coordinated) specification is prefixed with '00', e.g. MIL-PRF-00915(SH), with the '00' and suffix removed once fully approved. A 'SUPERSEDING' block on the first page names the document(s) it replaces." },
+    { id: "MIL-STD-490", title: "Specification Practices", category: "DoD Standard", keywords: ["specification practices", "specification sections", "canceled", "superseded"], summary: "Canceled. MIL-STD-490's specification practices were integrated into and replaced by MIL-STD-961 (Defense and Program-Unique Specifications Format and Content); do not use MIL-STD-490 for new specifications. Referenced only historically by DOD-STD-2101(OS) \u2014 for items described by specifications prepared under the (now-canceled) MIL-STD-490, classification codes were annotated in Section 3 (Requirements) and Section 5 (Packaging/Preparation for Delivery)." },
+    { id: "MIL-STD-963", title: "Data Item Descriptions (DIDs)", category: "DoD Standard", keywords: ["data item description", "did", "cdrl", "dd form 1423", "self-contained", "abstract-reference"], summary: "MIL-STD-963C establishes format and content requirements for Data Item Descriptions (DIDs) \u2014 the standardization documents that define the data content, format, and intended use required of a contractor, paired with the Contract Data Requirements List (CDRL, DD Form 1423) that identifies which DIDs apply to a contract. A DID may be self-contained (a complete description with no external references) or abstract-reference (describing data by pointing to other documents). DIDs must not direct work tasks (e.g. inspection, testing, 'the contractor shall...') \u2014 those belong in the contract statement of work; a DID only specifies the data product's content and format." },
+    { id: "MIL-STD-963 \u00a74.2", title: "DID Structure \u2014 Self-Contained vs. Abstract-Reference", category: "DoD Standard", keywords: ["did structure", "self-contained did", "abstract-reference did"], summary: "Two authorized DID structures: a self-contained DID is a complete description of data content, format, and intended use with no reference to other documents (preferred, since it minimizes referenced documents); an abstract-reference DID instead points to other documents for additional content/format/intended-use information, used when that information is too voluminous to include directly." },
+    { id: "MIL-STD-2073-1", title: "Standard Practice for Military Packaging", category: "DoD Standard", keywords: ["military packaging", "special packaging instruction", "spi", "methods of preservation", "military preservation", "military packing"], summary: "MIL-STD-2073-1E establishes standard processes for developing and documenting military packaging (distinct from commercial packaging): methods of preservation protecting materiel against corrosion, deterioration, and physical/mechanical damage during storage, handling, and shipment in the defense transportation system. Applies to items that can't be cost-effectively protected with commercial packaging, wartime-deployed items, depot-level repairables, items needing reusable containers, and Foreign Military Sales items, among others. Packaging of classified items must additionally meet DoD 5220.22-M (NISPOM)." },
+    { id: "MIL-STD-2073-1 \u00a75.2.3", title: "Methods of Preservation (MOP 10/20/30/40/50)", category: "DoD Standard", keywords: ["method of preservation", "mop", "waterproof protection", "watervaporproof protection", "desiccant"], summary: "Five basic methods of preservation: Method 10 (physical protection only, no preservative), Method 20 (physical protection with contact preservative coating), Method 30 (waterproof or waterproof-greaseproof protection with preservative, e.g. a heat-sealed bag), Method 40 (watervaporproof protection with preservative), and Method 50 (watervaporproof protection with desiccant, for maximum moisture control). Each has numbered sub-methods (e.g. Method 31 = waterproof bag, heat sealed) specifying exact materials and construction." },
+    { id: "MIL-STD-2073-1 \u00a73 (Level A/B)", title: "Military Packing Levels A and B", category: "DoD Standard", keywords: ["level a packing", "level b packing", "worldwide shipment", "foreign military sales"], summary: "Level A packing provides protection for the most severe worldwide shipment, handling, and storage conditions (War Reserve Material, mobilization, deployment, open storage, deck loading) \u2014 e.g. overseas-type wood boxes, reusable plastic/metal containers. Level B packing meets moderate worldwide conditions not directly exposed to climate/terrain extremes (e.g. containerized overseas shipments, security assistance) \u2014 e.g. domestic wood crates, weather-resistant fiberboard containers." },
+    { id: "MIL-STD-2073-1 \u00a73 (Item Categorization)", title: "Common, Selective, and Special Group Items", category: "DoD Standard", keywords: ["common group items", "selective group items", "special group items", "item categorization"], summary: "Items are categorized by how much custom packaging engineering they need. Common group items (fragility \u2265 85 G's, \u2264 24in any dimension, \u2264 10 lb) use predetermined packaging with no custom work; hazardous materials, ESDS items, shelf-life items, sets/outfits/kits are excluded regardless of size/weight. Selective group items can't use predetermined common-group packaging but don't need drawings/sketches/special instructions either. Special group items (peculiar weight, configuration, complexity, or fragility) require a Special Packaging Instruction (SPI) with drawings or specialized containers." },
+    { id: "MIL-STD-129", title: "Military Marking for Shipment and Storage", category: "DoD Standard", keywords: ["military marking", "shipment marking", "storage marking"], summary: "Referenced by MIL-STD-2073-1E as the governing standard for marking military packages/containers for shipment and storage." },
+    { id: "MIL-STD-3010", title: "Test Procedures for Packaging Materials", category: "DoD Standard", keywords: ["packaging material test", "test method 3005"], summary: "Referenced by MIL-STD-2073-1E as the source of test methods for packaging materials \u2014 e.g. Test Method 3005 for noncorrosive wrapping/cushioning/dunnage materials used in contact with metal surfaces." },
+    { id: "MIL-DTL-117", title: "Bag, Sleeve, and Tubing \u2014 Interior Packaging", category: "DoD Specification", keywords: ["interior packaging bag", "heat-sealable bag", "waterproof bag"], summary: "Referenced extensively by MIL-STD-2073-1E as the specification governing construction of the bags used in Methods 30/31/40/50 preservation (e.g. 'heat sealed bag conforming to MIL-DTL-117, Type III, Class B, Style 2'); bags exceeding its construction limits must instead comply with MIL-DTL-6060." },
+    { id: "DOD-STD-2101", title: "Classification of Characteristics", category: "DoD Standard", keywords: ["classification of characteristics", "c of c", "critical characteristics", "major characteristics", "minor characteristics", "clifs", "quality assurance"], summary: "DOD-STD-2101(OS) establishes requirements and procedures for classifying the essential design characteristics of an item \u2014 appearing in its drawings and specifications \u2014 as Critical, Major, or Minor, based on the CLIFS criteria (Coordination, Life, Interchangeability, Function, Safety). Classification is performed by the design activity prior to release of the associated drawings/specifications, informing government inspection sampling, waiver/deviation approval authority, and inspection effort allocation." },
+    { id: "DOD-STD-2101 \u00a73.1.6", title: "CLIFS Classification Criteria", category: "DoD Standard", keywords: ["clifs", "coordination", "interchangeability", "function", "safety criterion"], summary: "The five criteria (Coordination, Life, Interchangeability, Function, Safety \u2014 acronym CLIFS) used to determine a characteristic's classification: Coordination (features affected by mating/assembly/integration with adjoining items), Life (service/storage/fatigue life, durability, reliability, environmental resistance), Interchangeability (form/fit/function enabling common use or replacement), Function (ability to perform intended purpose), and Safety (risk to personnel from the item's integrity or proper functioning)." },
+    { id: "DOD-STD-2101 \u00a75.5", title: "Classification Codes \u2014 Critical, Major, Minor", category: "DoD Standard", keywords: ["classification code", "critical characteristic code", "major characteristic code", "minor characteristic"], summary: "Characteristics are annotated on drawings/specifications with a category code letter: Critical = 'C' (likely, if defective, to create/increase a safety hazard or cause failure of a weapon system/major system to perform its mission), Major = 'M' (likely, if defective, to result in failure of an end item to perform a required mission, but not critical), Minor = no letter (significant to product quality but not likely to impair mission performance)." },
+    { id: "DoD Manual 4100.39-M", title: "Federal Logistics Information System (FLIS) Procedures", category: "DoD Manual", keywords: ["flis", "federal logistics information system", "logistics"], summary: "Referenced by MIL-STD-31000B for Federal Logistics Information System procedures relevant to item identification and TDP logistics support data." },
+    { id: "DoD Manual 5220.22-M", title: "DoD Industrial Security Manual for Safeguarding Classified Information", category: "DoD Manual", keywords: ["industrial security", "classified information", "safeguarding"], summary: "Referenced by MIL-STD-31000B for requirements on safeguarding classified information that may appear within a Technical Data Package." },
+    { id: "DoD Instruction 5230.24", title: "Distribution Statements on Technical Documents", category: "DoD Instruction", keywords: ["distribution statement", "technical documents", "export control marking"], summary: "Referenced by MIL-STD-31000B for the distribution statement markings required on technical documents, including TDP elements." },
+    { id: "DoD Directive 5230.25", title: "Withholding of Unclassified Technical Data From Public Disclosure", category: "DoD Directive", keywords: ["withholding technical data", "public disclosure", "unclassified technical data"], summary: "Referenced by MIL-STD-31000B for the criteria and procedures governing withholding of unclassified technical data from public disclosure." },
+    { id: "Federal Standardization Manual", title: "Federal Standardization Manual", category: "Federal Publication", keywords: ["federal standardization", "standardization manual"], summary: "Referenced by MIL-STD-31000B as the governing manual for federal standardization program policies and procedures." },
+    { id: "ASME Y14.1", title: "Decimal Inch Drawing Sheet Size and Format", category: "ASME Standard", keywords: ["drawing sheet size", "decimal inch", "drawing format"], summary: "Referenced by MIL-STD-31000B for decimal-inch engineering drawing sheet size and format requirements." },
+    { id: "ASME Y14.1M", title: "Metric Drawing Sheet Size and Format", category: "ASME Standard", keywords: ["drawing sheet size", "metric", "drawing format"], summary: "Referenced by MIL-STD-31000B for metric engineering drawing sheet size and format requirements." },
+    { id: "ASME Y14.24", title: "Types and Applications of Engineering Drawings", category: "ASME Standard", keywords: ["engineering drawing types", "drawing applications"], summary: "Referenced by MIL-STD-31000B for the types and appropriate applications of engineering drawings used as TDP engineering design data." },
+    { id: "ASME Y14.34", title: "Associated Lists", category: "ASME Standard", keywords: ["associated lists", "parts list", "engineering drawing"], summary: "Referenced by MIL-STD-31000B for the format of associated lists (e.g. parts lists) accompanying engineering design data." },
+    { id: "ASME Y14.35", title: "Revision of Engineering Drawings and Associated Documents", category: "ASME Standard", keywords: ["drawing revision", "engineering change", "revision control"], summary: "Referenced by MIL-STD-31000B for the practices governing revision of engineering drawings and associated documents." },
+    { id: "ASME Y14.41", title: "Digital Product Definition Data Practices", category: "ASME Standard", keywords: ["model based definition", "mbd", "digital product definition", "3d annotation"], summary: "Referenced by MIL-STD-31000B for digital product definition (Model Based Definition) data practices used in 3D Technical Data Packages." },
+    { id: "ASME Y14.5", title: "Dimensioning and Tolerancing", category: "ASME Standard", keywords: ["gd&t", "dimensioning", "tolerancing"], summary: "Referenced by MIL-STD-31000B for geometric dimensioning and tolerancing (GD&T) practices used in engineering design data." },
+    { id: "ASME Y14.100", title: "Engineering Drawing Practices", category: "ASME Standard", keywords: ["engineering drawing practices", "2d tdp", "drawing standards"], summary: "Referenced by MIL-STD-31000B as the general engineering drawing practices standard underlying Type 2D Technical Data Packages." },
+    { id: "ISO/IEC 12207", title: "System and Software Engineering \u2014 Software Lifecycle Processes", category: "ISO/IEC Standard", keywords: ["software lifecycle", "software engineering", "software life cycle data"], summary: "Referenced by MIL-STD-31000B for software lifecycle process terminology (e.g. \"software life cycle data\"), relevant to computer software documentation TDP elements." },
+    { id: "ISO 32000-1", title: "Document Management \u2014 Portable Document Format", category: "ISO Standard", keywords: ["pdf", "portable document format", "3di viewable"], summary: "Referenced by MIL-STD-31000B as the PDF standard underlying 3Di (3-Dimensional Intelligent) viewable technical data." },
+    { id: "ISO 10303", title: "Standard for the Exchange of Product Model Data (STEP)", category: "ISO Standard", keywords: ["step", "product model data", "neutral cad format"], summary: "Referenced by MIL-STD-31000B as the standard (STEP) for neutral CAD data formats derived from 3D native models." },
+    { id: "NAS 3500", title: "Technical Data Package: Composition, Communication, and Application", category: "NAS Standard", keywords: ["technical data package", "national aerospace standard"], summary: "Referenced by MIL-STD-31000B as the National Aerospace Standard counterpart addressing Technical Data Package composition, communication, and application." },
+    { id: "DOD-D-1000", title: "Drawings, Engineering and Associated Lists", category: "DoD Specification", keywords: ["engineering drawings", "associated lists", "drawing specification"], summary: "Referenced by DOD-STD-2101(OS) as the specification governing engineering drawings and associated lists, relevant to where characteristic classification codes are annotated on drawings." },
+    { id: "MIL-S-83490", title: "Specifications, Types and Forms", category: "DoD Specification", keywords: ["specification types", "specification forms", "form 1 specification"], summary: "Referenced by DOD-STD-2101(OS) as the specification defining specification types and forms (e.g. Form 1 specifications), relevant to where classification codes and inspection requirements are annotated in specifications." },
+    { id: "MIL-STD-100", title: "Engineering Drawing Practices", category: "DoD Standard", keywords: ["engineering drawing practices", "drawing annotation"], summary: "Referenced by DOD-STD-2101(OS) as the standard for engineering drawing practices \u2014 classification codes for items described by drawings are annotated directly on MIL-STD-100 format drawings, immediately beside the characteristic call-out." },
+    { id: "MIL-STD-105", title: "Sampling Procedures and Tables for Inspection by Attributes", category: "DoD Standard", keywords: ["sampling plan", "inspection by attributes", "aql"], summary: "Referenced by DOD-STD-2101(OS) as a standard sampling plan source (attributes sampling, e.g. AQL-based) usable for inspecting classified characteristics." },
+    { id: "MIL-STD-109", title: "Quality Assurance Terms and Definitions", category: "DoD Standard", keywords: ["quality assurance terminology", "quality definitions"], summary: "Referenced by DOD-STD-2101(OS) as the source for general quality assurance terminology not separately defined within that standard." },
+    { id: "MIL-STD-414", title: "Sampling Procedures and Tables for Inspection by Variables for Percent Defective", category: "DoD Standard", keywords: ["sampling plan", "inspection by variables", "percent defective"], summary: "Referenced by DOD-STD-2101(OS) as a standard sampling plan source (variables sampling for percent defective) usable for inspecting classified characteristics." },
+    { id: "MIL-STD-1235", title: "Single and Multi-Level Continuous Sampling Procedures and Tables for Inspection by Attributes", category: "DoD Standard", keywords: ["continuous sampling", "inspection by attributes"], summary: "Referenced by DOD-STD-2101(OS) as a standard sampling plan source (continuous sampling procedures) usable for inspecting classified characteristics." },
+    { id: "MIL-HDBK-53", title: "Guide for Sampling Inspection", category: "DoD Handbook", keywords: ["sampling inspection guide"], summary: "Referenced by DOD-STD-2101(OS) as a guidance handbook for sampling inspection, supporting selection of inspection sampling plans for classified characteristics." },
+    { id: "MIL-HDBK-106", title: "Multi-Level Continuous Sampling Procedures and Tables for Inspection by Attributes", category: "DoD Handbook", keywords: ["continuous sampling", "inspection by attributes", "handbook"], summary: "Referenced by DOD-STD-2101(OS) as a handbook of multi-level continuous sampling procedures and tables for inspection by attributes." },
+    { id: "MIL-HDBK-107", title: "Single-Level Continuous Sampling Procedures and Tables for Inspection by Attributes", category: "DoD Handbook", keywords: ["continuous sampling", "inspection by attributes", "handbook"], summary: "Referenced by DOD-STD-2101(OS) as a handbook of single-level continuous sampling procedures and tables for inspection by attributes." },
+    { id: "ASME Y14.38", title: "Abbreviations and Acronyms for Use on Drawings and Related Documents", category: "ASME Standard", keywords: ["abbreviations", "acronyms", "drawing notation"], summary: "Referenced by MIL-STD-963C as the governing standard for abbreviations used in Data Item Descriptions; abbreviations not covered by ASME Y14.38 default to the GPO Style Manual." },
+    { id: "IEEE 260.1", title: "Letter Symbols for Units of Measurement (SI Units, Customary Inch-Pound Units)", category: "IEEE Standard", keywords: ["letter symbols", "units of measurement", "si units"], summary: "Referenced by MIL-STD-963C as the governing standard for symbols used in Data Item Descriptions; symbols not covered by IEEE 260.1 default to the GPO Style Manual." },
+    { id: "DoDI 7750.07", title: "DoD Forms Management Program", category: "DoD Instruction", keywords: ["forms management", "dod forms"], summary: "Referenced by MIL-STD-963C for DoD forms management program requirements relevant to forms referenced within a DID." },
+    { id: "DoD 5200.1-R", title: "Information Security Program", category: "DoD Regulation", keywords: ["information security program", "classified material marking"], summary: "Referenced by MIL-STD-963C for marking and handling requirements when a DID must contain classified material; the DID title itself may never be classified, and any classified DID must be a one-time DID." },
+    { id: "SD-1", title: "Standardization Directory", category: "DoD Publication", keywords: ["standardization directory", "did approval authority", "preparing activity"], summary: "Referenced by MIL-STD-963C as the directory listing DID Approval Authorities and data standardization area designations for each Military Department/Defense Agency." },
+    { id: "GPO Style Manual", title: "United States Government Printing Office Style Manual", category: "Federal Publication", keywords: ["style manual", "grammar", "abbreviations"], summary: "Referenced by both MIL-STD-961 and MIL-STD-963C as the fallback style guide for grammar, abbreviations, and symbols not otherwise covered by ASME Y14.38 or IEEE 260.1." },
+    { id: "SD-10", title: "Guide for Identification and Development of Metric Standards", category: "DoD Publication", keywords: ["metric standards", "metric conversion guide"], summary: "Referenced by MIL-STD-961 as the Defense Standardization Program Office guide for identifying and developing metric standards, relevant to designating a specification as metric, inch-pound, or not measurement sensitive." },
+    { id: "SD-15", title: "Performance Specification Guide", category: "DoD Publication", keywords: ["performance specification guide"], summary: "Referenced by MIL-STD-961 as the Defense Standardization Program Office guide for developing performance specifications (MIL-PRF- identifiers), which state required results and verification criteria rather than design/manufacturing methods." },
+    { id: "DLIS H2", title: "Federal Supply Classification Groups and Classes", category: "DoD Publication", keywords: ["federal supply classification", "fsc"], summary: "Referenced by MIL-STD-961 as the Defense Logistics Information Service cataloging handbook defining Federal Supply Classification (FSC) groups and classes, used to designate the FSC on item and material program-unique specification cover pages." },
+    { id: "DLIS H6", title: "Federal Item Name Directory", category: "DoD Publication", keywords: ["federal item name directory", "item nomenclature"], summary: "Referenced by MIL-STD-961 as the Defense Logistics Information Service directory of approved item names, used for program-unique specification titles." },
+    { id: "IEEE/ASTM SI 10", title: "Use of the International System of Units (SI) \u2014 The Modern Metric System", category: "IEEE Standard", keywords: ["si units", "metric system", "international system of units"], summary: "Jointly published by IEEE and ASTM International; referenced by MIL-STD-961 as the definition of metric units (SI) used to distinguish metric, inch-pound, and dual-dimension specifications." },
+    { id: "DoD 4120.24-M", title: "Defense Standardization Program Policies and Procedures", category: "DoD Manual", keywords: ["defense standardization program", "dsp policy"], summary: "Referenced in MIL-STD-961's foreword as the manual governing the procedural matters of the Defense Standardization Program \u2014 document development authorization, coordination, comment resolution, indexing, distribution, application, and document maintenance." }
+  ];
+
+  const DEFAULT_BASELINE = [
+    "FAR 52.204-21","DFARS 252.204-7012","DFARS 252.204-7019","DFARS 252.204-7020","DFARS 252.204-7021",
+    "3.1.1","3.2.1","3.3.1","3.4.1","3.5.1","3.6.1","3.7.1","3.8.1","3.9.1","3.10.1","3.11.1","3.12.1","3.13.1","3.14.1"
+  ];
+
+  const POSTURE_CHECKLIST = [
+    { id: "LNX-001", question: "Is SSH root login disabled (PermitRootLogin no)?", remediation: "Set 'PermitRootLogin no' in /etc/ssh/sshd_config and restart sshd." },
+    { id: "LNX-002", question: "Is SSH password authentication disabled (key-based only)?", remediation: "Set 'PasswordAuthentication no' in /etc/ssh/sshd_config to require key-based authentication." },
+    { id: "LNX-003", question: "Is a host firewall (firewalld/ufw/nftables) enabled and running?", remediation: "Enable and start a host firewall service (firewalld, ufw, or nftables/iptables)." },
+    { id: "LNX-004", question: "Is the audit daemon (auditd) enabled and running?", remediation: "Install and enable auditd to satisfy NIST 800-171 3.3.1 audit logging requirements." },
+    { id: "LNX-005", question: "Are there no world-writable files under /etc?", remediation: "Remove world-writable permissions from files under /etc (find /etc -xdev -type f -perm -0002)." },
+    { id: "LNX-006", question: "Is a minimum password length of 14+ characters enforced?", remediation: "Set 'minlen = 14' or greater in /etc/security/pwquality.conf." },
+    { id: "LNX-007", question: "Are there no accounts with empty passwords?", remediation: "Lock or set a password on any account with an empty password field in /etc/shadow." },
+    { id: "LNX-008", question: "Is automatic/unattended security patching enabled?", remediation: "Install and enable an automatic patching mechanism to satisfy NIST 800-171 3.14.1 flaw remediation." }
+  ];
+
+  function switchPillar(pillarId, btnEl) {
+    document.querySelectorAll('.tab-pillar').forEach(e => e.classList.remove('active'));
+    document.querySelectorAll('.pillar-btn').forEach(e => e.classList.remove('active'));
+    document.getElementById('pillar-' + pillarId).classList.add('active');
+    btnEl.classList.add('active');
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    const btn = document.getElementById('theme-toggle');
+    if (btn) btn.textContent = theme === 'light' ? '☀️ Light' : '🌙 Dark';
+    try { localStorage.setItem('theme', theme); } catch(e) {}
+  }
+
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  }
+
+  applyTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
+
+  function normalizeId(id) { return id.toLowerCase().replace(/[^a-z0-9]/g, ''); }
+
+  function scoreItem(query, item) {
+    const q = query.toLowerCase();
+    let score = 0;
+    if (item.id.toLowerCase().includes(q)) score += 5;
+    if (item.title.toLowerCase().includes(q)) score += 3;
+    if ((item.keywords || []).some(k => k.toLowerCase().includes(q))) score += 2;
+    if (item.summary.toLowerCase().includes(q)) score += 1;
+    return score;
+  }
+
+  function runSearch() {
+    const query = document.getElementById('search-query').value.trim();
+    const container = document.getElementById('search-results');
+    if (!query) { container.innerHTML = ''; return; }
+
+    const results = [];
+    CLAUSES.forEach(c => { const s = scoreItem(query, c); if (s > 0) results.push({ source: 'clause', score: s, id: c.id, title: c.title, summary: c.summary }); });
+    CONTROLS.forEach(c => { const s = scoreItem(query, c); if (s > 0) results.push({ source: 'control', score: s, id: c.id, title: c.title + ' (' + c.family + ')', summary: c.summary }); });
+    STANDARDS.forEach(c => { const s = scoreItem(query, c); if (s > 0) results.push({ source: 'standard', score: s, id: c.id, title: c.title + ' (' + c.category + ')', summary: c.summary }); });
+    results.sort((a, b) => b.score - a.score);
+
+    if (!results.length) { container.innerHTML = '<div class="panel" style="color:var(--text-dim);">No matches.</div>'; return; }
+    container.innerHTML = results.map(r => `
+      <div class="result-card">
+        <span class="result-id">${r.id}</span>
+        <span class="result-source ${r.source}">${sourceLabel(r.source)}</span>
+        <div class="result-title">${r.title}</div>
+        <div class="result-summary">${r.summary}</div>
+      </div>`).join('');
+  }
+
+  function sourceLabel(source) {
+    if (source === 'clause') return 'FAR/DFARS';
+    if (source === 'control') return 'NIST 800-171';
+    return 'STANDARD';
+  }
+
+  function catalog() {
+    const map = {};
+    CLAUSES.forEach(c => map[c.id] = { ...c, source: 'clause' });
+    CONTROLS.forEach(c => map[c.id] = { ...c, source: 'control', title: c.title + ' (' + c.family + ')' });
+    return map;
+  }
+
+  function isReferenced(textLower, textNormalized, item) {
+    if (textNormalized.includes(normalizeId(item.id))) return true;
+    return (item.keywords || []).some(k => textLower.includes(k.toLowerCase()));
+  }
+
+  function checkDocument() {
+    const text = document.getElementById('doc-text').value;
+    const textLower = text.toLowerCase();
+    const textNormalized = textLower.replace(/[^a-z0-9]/g, '');
+    const cat = catalog();
+
+    const referenced = [], missing = [];
+    DEFAULT_BASELINE.forEach(id => {
+      const item = cat[id];
+      if (!item) return;
+      (isReferenced(textLower, textNormalized, item) ? referenced : missing).push(item);
+    });
+
+    document.getElementById('doc-board').style.display = 'grid';
+    document.getElementById('doc-results').style.display = 'block';
+    document.getElementById('doc-referenced').textContent = referenced.length;
+    document.getElementById('doc-missing').textContent = missing.length;
+    const total = referenced.length + missing.length;
+    const pct = total ? Math.round((referenced.length / total) * 100) : 100;
+    document.getElementById('doc-coverage').textContent = pct + '%';
+    document.getElementById('doc-coverage').style.color = pct === 100 ? 'var(--green)' : (pct >= 50 ? 'var(--amber)' : 'var(--red)');
+
+    const row = (item, ok) => `
+      <div class="result-card">
+        <span class="result-id">${ok ? '✔' : '✘'} ${item.id}</span>
+        <span class="result-source ${item.source}">${item.source === 'clause' ? 'FAR/DFARS' : 'NIST 800-171'}</span>
+        <div class="result-title">${item.title}</div>
+      </div>`;
+    document.getElementById('doc-results-list').innerHTML =
+      referenced.map(i => row(i, true)).join('') + missing.map(i => row(i, false)).join('');
+  }
+
+  function renderBaselineList() {
+    const cat = catalog();
+    document.getElementById('baseline-list').innerHTML = DEFAULT_BASELINE
+      .map(id => cat[id] ? `<span class="mono">${id}</span> — ${cat[id].title}` : id)
+      .join('<br>');
+  }
+
+  function renderChecklist() {
+    document.getElementById('posture-checklist').innerHTML = POSTURE_CHECKLIST.map(c => `
+      <div class="checklist-row">
+        <div class="q"><span class="id">${c.id}</span>${c.question}</div>
+        <select id="posture-${c.id}" onchange="scorePosture()">
+          <option value="0">No / Unknown</option>
+          <option value="1">Yes</option>
+        </select>
+      </div>`).join('');
+  }
+
+  function scorePosture() {
+    const gaps = POSTURE_CHECKLIST.filter(c => document.getElementById('posture-' + c.id).value === '0');
+    const passed = POSTURE_CHECKLIST.length - gaps.length;
+    document.getElementById('posture-pass').textContent = passed + ' / ' + POSTURE_CHECKLIST.length;
+    const status = document.getElementById('posture-status');
+    if (passed === POSTURE_CHECKLIST.length) { status.textContent = 'READY'; status.style.color = 'var(--green)'; }
+    else if (passed >= POSTURE_CHECKLIST.length / 2) { status.textContent = 'GAPS FOUND'; status.style.color = 'var(--amber)'; }
+    else { status.textContent = 'AT RISK'; status.style.color = 'var(--red)'; }
+
+    const gapsPanel = document.getElementById('posture-gaps');
+    if (!gaps.length) { gapsPanel.style.display = 'none'; return; }
+    gapsPanel.style.display = 'block';
+    document.getElementById('posture-gaps-list').innerHTML = gaps.map(g => `
+      <div class="readout">
+        <div class="rlabel">${g.id} — ${g.question}<div style="font-size:11px; color:var(--text-dim); margin-top:2px;">${g.remediation}</div></div>
+      </div>`).join('');
+  }
+
+  renderBaselineList();
+  renderChecklist();
+  scorePosture();
+</script>
+</body>
+</html>

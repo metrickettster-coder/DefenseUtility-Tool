@@ -1,0 +1,18 @@
+[project]
+name = "defenseutility"
+version = "0.1.0"
+description = "CLI for referencing DoD acquisition regulations/clauses, checking documents for compliance gaps, and scanning local system security posture."
+requires-python = ">=3.9"
+
+[project.scripts]
+defutil = "defenseutility.cli:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["defenseutility*"]
+
+[tool.setuptools.package-data]
+defenseutility = ["data/*.json"]

@@ -1,0 +1,77 @@
+[
+  {
+    "id": "LNX-001",
+    "title": "SSH root login disabled",
+    "platform": "linux",
+    "check_type": "file_grep",
+    "target": "/etc/ssh/sshd_config",
+    "pattern": "^\\s*PermitRootLogin\\s+no",
+    "expect_match": true,
+    "remediation": "Set 'PermitRootLogin no' in /etc/ssh/sshd_config and restart sshd."
+  },
+  {
+    "id": "LNX-002",
+    "title": "SSH password authentication disabled",
+    "platform": "linux",
+    "check_type": "file_grep",
+    "target": "/etc/ssh/sshd_config",
+    "pattern": "^\\s*PasswordAuthentication\\s+no",
+    "expect_match": true,
+    "remediation": "Set 'PasswordAuthentication no' in /etc/ssh/sshd_config to require key-based authentication."
+  },
+  {
+    "id": "LNX-003",
+    "title": "Firewall service active",
+    "platform": "linux",
+    "check_type": "service_active",
+    "target": "any:firewalld,ufw,iptables",
+    "expect_match": true,
+    "remediation": "Enable and start a host firewall service (firewalld, ufw, or nftables/iptables)."
+  },
+  {
+    "id": "LNX-004",
+    "title": "Audit daemon (auditd) active",
+    "platform": "linux",
+    "check_type": "service_active",
+    "target": "auditd",
+    "expect_match": true,
+    "remediation": "Install and enable auditd to satisfy NIST 800-171 3.3.1 audit logging requirements."
+  },
+  {
+    "id": "LNX-005",
+    "title": "World-writable files not present in /etc",
+    "platform": "linux",
+    "check_type": "no_world_writable",
+    "target": "/etc",
+    "expect_match": true,
+    "remediation": "Remove world-writable permissions from files under /etc (find /etc -xdev -type f -perm -0002)."
+  },
+  {
+    "id": "LNX-006",
+    "title": "Password minimum length policy configured",
+    "platform": "linux",
+    "check_type": "file_grep",
+    "target": "/etc/security/pwquality.conf",
+    "pattern": "^\\s*minlen\\s*=\\s*(1[4-9]|[2-9][0-9])",
+    "expect_match": true,
+    "remediation": "Set 'minlen = 14' or greater in /etc/security/pwquality.conf."
+  },
+  {
+    "id": "LNX-007",
+    "title": "Automatic login disabled (no passwordless accounts)",
+    "platform": "linux",
+    "check_type": "no_empty_password_accounts",
+    "target": "/etc/shadow",
+    "expect_match": true,
+    "remediation": "Lock or set a password on any account with an empty password field in /etc/shadow."
+  },
+  {
+    "id": "LNX-008",
+    "title": "Unattended/automatic security updates enabled",
+    "platform": "linux",
+    "check_type": "package_installed",
+    "target": "any:unattended-upgrades,dnf-automatic,yum-cron",
+    "expect_match": true,
+    "remediation": "Install and enable an automatic patching mechanism to satisfy NIST 800-171 3.14.1 flaw remediation."
+  }
+]

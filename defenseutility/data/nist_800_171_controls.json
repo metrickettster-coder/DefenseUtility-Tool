@@ -1,0 +1,142 @@
+[
+  {
+    "id": "3.1.1",
+    "family": "Access Control",
+    "title": "Limit system access to authorized users",
+    "keywords": ["authorized users", "access control", "account management"],
+    "summary": "Limit information system access to authorized users, processes acting on behalf of authorized users, and devices."
+  },
+  {
+    "id": "3.1.2",
+    "family": "Access Control",
+    "title": "Limit system access to authorized functions",
+    "keywords": ["authorized transactions", "least functionality", "authorized functions"],
+    "summary": "Limit system access to the types of transactions and functions that authorized users are permitted to execute."
+  },
+  {
+    "id": "3.1.5",
+    "family": "Access Control",
+    "title": "Employ least privilege",
+    "keywords": ["least privilege", "privileged accounts"],
+    "summary": "Employ the principle of least privilege, including for specific security functions and privileged accounts."
+  },
+  {
+    "id": "3.1.12",
+    "family": "Access Control",
+    "title": "Monitor and control remote access sessions",
+    "keywords": ["remote access", "vpn", "remote session"],
+    "summary": "Monitor and control remote access sessions."
+  },
+  {
+    "id": "3.2.1",
+    "family": "Awareness and Training",
+    "title": "Security awareness training",
+    "keywords": ["security awareness", "training", "insider threat awareness"],
+    "summary": "Ensure managers, systems administrators, and users are made aware of security risks and applicable policies."
+  },
+  {
+    "id": "3.3.1",
+    "family": "Audit and Accountability",
+    "title": "Create and retain system audit logs",
+    "keywords": ["audit logs", "logging", "audit records"],
+    "summary": "Create and retain system audit logs and records to enable monitoring, analysis, investigation, and reporting of unlawful or unauthorized activity."
+  },
+  {
+    "id": "3.4.1",
+    "family": "Configuration Management",
+    "title": "Establish baseline configurations",
+    "keywords": ["baseline configuration", "configuration management", "inventory"],
+    "summary": "Establish and maintain baseline configurations and inventories of organizational systems throughout the lifecycle."
+  },
+  {
+    "id": "3.5.1",
+    "family": "Identification and Authentication",
+    "title": "Identify users and processes",
+    "keywords": ["identification", "authentication", "user identification"],
+    "summary": "Identify system users, processes acting on behalf of users, and devices."
+  },
+  {
+    "id": "3.5.3",
+    "family": "Identification and Authentication",
+    "title": "Multifactor authentication",
+    "keywords": ["multifactor authentication", "mfa", "two-factor"],
+    "summary": "Use multifactor authentication for local and network access to privileged accounts and for network access to non-privileged accounts."
+  },
+  {
+    "id": "3.6.1",
+    "family": "Incident Response",
+    "title": "Establish incident-handling capability",
+    "keywords": ["incident response", "incident handling", "detection", "reporting"],
+    "summary": "Establish an operational incident-handling capability including preparation, detection, analysis, containment, recovery, and user response activities."
+  },
+  {
+    "id": "3.7.1",
+    "family": "Maintenance",
+    "title": "Perform system maintenance",
+    "keywords": ["maintenance", "system maintenance"],
+    "summary": "Perform maintenance on organizational systems."
+  },
+  {
+    "id": "3.8.1",
+    "family": "Media Protection",
+    "title": "Protect system media",
+    "keywords": ["media protection", "removable media", "sanitize"],
+    "summary": "Protect (i.e., physically control and securely store) system media containing CUI, both paper and digital."
+  },
+  {
+    "id": "3.9.1",
+    "family": "Personnel Security",
+    "title": "Screen individuals",
+    "keywords": ["personnel screening", "background check"],
+    "summary": "Screen individuals prior to authorizing access to organizational systems containing CUI."
+  },
+  {
+    "id": "3.10.1",
+    "family": "Physical Protection",
+    "title": "Limit physical access",
+    "keywords": ["physical access", "physical protection", "facility access"],
+    "summary": "Limit physical access to organizational systems, equipment, and the respective operating environments to authorized individuals."
+  },
+  {
+    "id": "3.11.1",
+    "family": "Risk Assessment",
+    "title": "Assess risk periodically",
+    "keywords": ["risk assessment", "risk management"],
+    "summary": "Periodically assess the risk to organizational operations, assets, and individuals resulting from operation of organizational systems and processing of CUI."
+  },
+  {
+    "id": "3.12.1",
+    "family": "Security Assessment",
+    "title": "Periodically assess security controls",
+    "keywords": ["security assessment", "control assessment", "poam", "plan of action"],
+    "summary": "Periodically assess the security controls in organizational systems to determine if the controls are effective."
+  },
+  {
+    "id": "3.13.1",
+    "family": "System and Communications Protection",
+    "title": "Monitor and control communications",
+    "keywords": ["boundary protection", "network segmentation", "firewall"],
+    "summary": "Monitor, control, and protect communications at the external boundaries and key internal boundaries of organizational systems."
+  },
+  {
+    "id": "3.13.11",
+    "family": "System and Communications Protection",
+    "title": "Employ FIPS-validated cryptography",
+    "keywords": ["fips", "cryptography", "encryption"],
+    "summary": "Employ FIPS-validated cryptography when used to protect the confidentiality of CUI."
+  },
+  {
+    "id": "3.14.1",
+    "family": "System and Information Integrity",
+    "title": "Identify and correct flaws",
+    "keywords": ["flaw remediation", "patching", "vulnerability management"],
+    "summary": "Identify, report, and correct system flaws in a timely manner."
+  },
+  {
+    "id": "3.14.2",
+    "family": "System and Information Integrity",
+    "title": "Provide malicious code protection",
+    "keywords": ["malware protection", "antivirus", "malicious code"],
+    "summary": "Provide protection from malicious code at designated locations within organizational systems."
+  }
+]

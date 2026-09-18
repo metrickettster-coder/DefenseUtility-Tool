@@ -1,0 +1,472 @@
+[
+  {
+    "id": "MIL-STD-31000B",
+    "title": "Technical Data Packages",
+    "category": "DoD Standard",
+    "keywords": ["technical data package", "tdp", "engineering drawings", "3di", "model based definition"],
+    "summary": "Defines DoD requirements for the content, format, and structure of a Technical Data Package (TDP) — the authoritative technical description of an item, used to support acquisition, production, inspection, engineering, and logistics support."
+  },
+  {
+    "id": "MIL-STD-31000B §4.2/5.2",
+    "title": "TDP Levels — Conceptual, Developmental, Product",
+    "category": "DoD Standard",
+    "keywords": ["tdp level", "conceptual level", "developmental level", "product level"],
+    "summary": "TDPs progress through three levels: Conceptual (design concepts, sketches/renderings for analysis), Developmental (sufficient data for prototype fabrication or limited production), and Product (full design/manufacturing/inspection/QA data needed for a competent manufacturer to duplicate the item without further design engineering)."
+  },
+  {
+    "id": "MIL-STD-31000B §4.3/5.3",
+    "title": "TDP Types — 2D and 3D",
+    "category": "DoD Standard",
+    "keywords": ["2d tdp", "3d tdp", "native cad", "neutral cad", "3di viewable"],
+    "summary": "TDP type describes the form/format of the technical data: Type 2D is based on 2-dimensional engineering drawings (ASME Y14.100 series); Type 3D is based on product model data and may include 3D native models, 2D drawings derived from them, 3Di PDF viewables, and neutral files."
+  },
+  {
+    "id": "MIL-STD-31000B §4.4",
+    "title": "TDP Elements",
+    "category": "DoD Standard",
+    "keywords": ["engineering design data", "special inspection equipment", "special tooling", "special packaging instruction", "quality assurance provisions", "sie", "spi", "qap"],
+    "summary": "TDP elements are the components that make up a Technical Data Package: engineering design data, Special Inspection Equipment (SIE) data, specifications, software documentation, Special Packaging Instruction (SPI) data, quality assurance provisions (QAP), and special tooling data."
+  },
+  {
+    "id": "MIL-STD-31000B §4.5",
+    "title": "TDP Data Management Products",
+    "category": "DoD Standard",
+    "keywords": ["technical data package list", "tdpl", "document number assignment report", "critical manufacturing process", "source control approval request", "engineering drawing tree"],
+    "summary": "Data management products used by the procuring activity to control and manage TDP development: the Technical Data Package List (TDPL), document number assignment report, critical manufacturing process description, source control approval request, and engineering drawing tree."
+  },
+  {
+    "id": "MIL-STD-961",
+    "title": "Defense and Program-Unique Specifications Format and Content",
+    "category": "DoD Standard",
+    "keywords": ["specifications format", "program-unique specification", "defense specification", "mil-prf", "mil-dtl", "amsc"],
+    "summary": "MIL-STD-961E (w/Change 4) establishes format and content requirements for defense specifications (used across multiple programs, coordinated and indexed in the ASSIST database) and program-unique specifications (developed for a single program/system), plus specification sheets, supplements, revisions, amendments, and notices. Every specification follows the same six-section format: Scope, Applicable Documents, Requirements, Verification, Packaging, and Notes. This standard integrated program-unique specification requirements previously covered by MIL-STD-490, Specification Practices, which it canceled."
+  },
+  {
+    "id": "MIL-STD-961 §5",
+    "title": "Six-Section Specification Format",
+    "category": "DoD Standard",
+    "keywords": ["section 1 scope", "section 2 applicable documents", "section 3 requirements", "section 4 verification", "section 5 packaging", "section 6 notes"],
+    "summary": "The standard specification structure used throughout DoD acquisition documents: Section 1 Scope (brief abstract, no requirements), Section 2 Applicable Documents, Section 3 Requirements (what the entity must meet), Section 4 Verification (how compliance is confirmed), Section 5 Packaging, and Section 6 Notes (not contractually binding — general/explanatory information only, e.g. intended use, tailoring guidance)."
+  },
+  {
+    "id": "MIL-STD-961 §3",
+    "title": "Specification Types",
+    "category": "DoD Standard",
+    "keywords": ["performance specification", "detail specification", "general specification", "specification sheet", "item specification", "material specification", "process specification", "software specification", "system specification"],
+    "summary": "Defense specifications are either performance specifications (states required results and verification criteria, not the method) or detail specifications (specifies design requirements — materials, how to build it); a general specification covers requirements common to a group of parts and is paired with specification sheets for style/type/class/grade variants. Program-unique specifications further divide into item, material, process, software, and system specifications, based on what they describe (parts/components, raw/processed materials, fabrication procedures, software requirements, or a whole system)."
+  },
+  {
+    "id": "MIL-STD-961 §5.4",
+    "title": "Specification Identifiers — MIL-PRF / MIL-DTL",
+    "category": "DoD Standard",
+    "keywords": ["mil-prf", "mil-dtl", "specification identifier", "limited-coordination specification", "interim specification"],
+    "summary": "A coordinated defense specification identifier is 'MIL-' plus 'PRF' (performance) or 'DTL' (detail) plus an Arabic numeral, e.g. MIL-PRF-123 or MIL-DTL-123. A limited-coordination specification (covering items needed by only one activity/Department/Agency) adds a parenthetical SD-1 symbol suffix, e.g. MIL-PRF-12345(CR). An interim (not-yet-fully-coordinated) specification is prefixed with '00', e.g. MIL-PRF-00915(SH), with the '00' and suffix removed once fully approved. A 'SUPERSEDING' block on the first page names the document(s) it replaces."
+  },
+  {
+    "id": "MIL-STD-490",
+    "title": "Specification Practices",
+    "category": "DoD Standard",
+    "keywords": ["specification practices", "specification sections", "canceled", "superseded"],
+    "summary": "Canceled. MIL-STD-490's specification practices were integrated into and replaced by MIL-STD-961 (Defense and Program-Unique Specifications Format and Content); do not use MIL-STD-490 for new specifications. Referenced only historically by DOD-STD-2101(OS) — for items described by specifications prepared under the (now-canceled) MIL-STD-490, classification codes were annotated in Section 3 (Requirements) and Section 5 (Packaging/Preparation for Delivery).",
+    "cited_in": "DOD-STD-2101(OS) §2.1 / §5.2; canceled and absorbed by MIL-STD-961"
+  },
+  {
+    "id": "MIL-STD-963",
+    "title": "Data Item Descriptions (DIDs)",
+    "category": "DoD Standard",
+    "keywords": ["data item description", "did", "cdrl", "dd form 1423", "self-contained", "abstract-reference"],
+    "summary": "MIL-STD-963C establishes format and content requirements for Data Item Descriptions (DIDs) — the standardization documents that define the data content, format, and intended use required of a contractor, paired with the Contract Data Requirements List (CDRL, DD Form 1423) that identifies which DIDs apply to a contract. A DID may be self-contained (a complete description with no external references) or abstract-reference (describing data by pointing to other documents). DIDs must not direct work tasks (e.g. inspection, testing, 'the contractor shall...') — those belong in the contract statement of work; a DID only specifies the data product's content and format."
+  },
+  {
+    "id": "MIL-STD-963 §4.2",
+    "title": "DID Structure — Self-Contained vs. Abstract-Reference",
+    "category": "DoD Standard",
+    "keywords": ["did structure", "self-contained did", "abstract-reference did"],
+    "summary": "Two authorized DID structures: a self-contained DID is a complete description of data content, format, and intended use with no reference to other documents (preferred, since it minimizes referenced documents); an abstract-reference DID instead points to other documents for additional content/format/intended-use information, used when that information is too voluminous to include directly."
+  },
+  {
+    "id": "MIL-STD-2073-1",
+    "title": "Standard Practice for Military Packaging",
+    "category": "DoD Standard",
+    "keywords": ["military packaging", "special packaging instruction", "spi", "methods of preservation", "military preservation", "military packing"],
+    "summary": "MIL-STD-2073-1E establishes standard processes for developing and documenting military packaging (distinct from commercial packaging): methods of preservation protecting materiel against corrosion, deterioration, and physical/mechanical damage during storage, handling, and shipment in the defense transportation system. Applies to items that can't be cost-effectively protected with commercial packaging, wartime-deployed items, depot-level repairables, items needing reusable containers, and Foreign Military Sales items, among others. Packaging of classified items must additionally meet DoD 5220.22-M (NISPOM)."
+  },
+  {
+    "id": "MIL-STD-2073-1 §5.2.3",
+    "title": "Methods of Preservation (MOP 10/20/30/40/50)",
+    "category": "DoD Standard",
+    "keywords": ["method of preservation", "mop", "waterproof protection", "watervaporproof protection", "desiccant"],
+    "summary": "Five basic methods of preservation: Method 10 (physical protection only, no preservative), Method 20 (physical protection with contact preservative coating), Method 30 (waterproof or waterproof-greaseproof protection with preservative, e.g. a heat-sealed bag), Method 40 (watervaporproof protection with preservative), and Method 50 (watervaporproof protection with desiccant, for maximum moisture control). Each has numbered sub-methods (e.g. Method 31 = waterproof bag, heat sealed) specifying exact materials and construction."
+  },
+  {
+    "id": "MIL-STD-2073-1 §3 (Level A/B)",
+    "title": "Military Packing Levels A and B",
+    "category": "DoD Standard",
+    "keywords": ["level a packing", "level b packing", "worldwide shipment", "foreign military sales"],
+    "summary": "Level A packing provides protection for the most severe worldwide shipment, handling, and storage conditions (War Reserve Material, mobilization, deployment, open storage, deck loading) — e.g. overseas-type wood boxes, reusable plastic/metal containers. Level B packing meets moderate worldwide conditions not directly exposed to climate/terrain extremes (e.g. containerized overseas shipments, security assistance) — e.g. domestic wood crates, weather-resistant fiberboard containers."
+  },
+  {
+    "id": "MIL-STD-2073-1 §3 (Item Categorization)",
+    "title": "Common, Selective, and Special Group Items",
+    "category": "DoD Standard",
+    "keywords": ["common group items", "selective group items", "special group items", "item categorization"],
+    "summary": "Items are categorized by how much custom packaging engineering they need. Common group items (fragility ≥ 85 G's, ≤ 24in any dimension, ≤ 10 lb) use predetermined packaging with no custom work; hazardous materials, ESDS items, shelf-life items, sets/outfits/kits are excluded regardless of size/weight. Selective group items can't use predetermined common-group packaging but don't need drawings/sketches/special instructions either. Special group items (peculiar weight, configuration, complexity, or fragility) require a Special Packaging Instruction (SPI) with drawings or specialized containers."
+  },
+  {
+    "id": "MIL-STD-129",
+    "title": "Military Marking for Shipment and Storage",
+    "category": "DoD Standard",
+    "keywords": ["military marking", "shipment marking", "storage marking"],
+    "summary": "Referenced by MIL-STD-2073-1E as the governing standard for marking military packages/containers for shipment and storage.",
+    "cited_in": "MIL-STD-2073-1E §2.2.1"
+  },
+  {
+    "id": "MIL-STD-3010",
+    "title": "Test Procedures for Packaging Materials",
+    "category": "DoD Standard",
+    "keywords": ["packaging material test", "test method 3005"],
+    "summary": "Referenced by MIL-STD-2073-1E as the source of test methods for packaging materials — e.g. Test Method 3005 for noncorrosive wrapping/cushioning/dunnage materials used in contact with metal surfaces.",
+    "cited_in": "MIL-STD-2073-1E §2.2.1 / §5.2.3.5.2"
+  },
+  {
+    "id": "MIL-DTL-117",
+    "title": "Bag, Sleeve, and Tubing — Interior Packaging",
+    "category": "DoD Specification",
+    "keywords": ["interior packaging bag", "heat-sealable bag", "waterproof bag"],
+    "summary": "Referenced extensively by MIL-STD-2073-1E as the specification governing construction of the bags used in Methods 30/31/40/50 preservation (e.g. 'heat sealed bag conforming to MIL-DTL-117, Type III, Class B, Style 2'); bags exceeding its construction limits must instead comply with MIL-DTL-6060.",
+    "cited_in": "MIL-STD-2073-1E §5.2.3 (throughout)"
+  },
+  {
+    "id": "DOD-STD-2101",
+    "title": "Classification of Characteristics",
+    "category": "DoD Standard",
+    "keywords": ["classification of characteristics", "c of c", "critical characteristics", "major characteristics", "minor characteristics", "clifs", "quality assurance"],
+    "summary": "DOD-STD-2101(OS) establishes requirements and procedures for classifying the essential design characteristics of an item — appearing in its drawings and specifications — as Critical, Major, or Minor, based on the CLIFS criteria (Coordination, Life, Interchangeability, Function, Safety). Classification is performed by the design activity prior to release of the associated drawings/specifications, informing government inspection sampling, waiver/deviation approval authority, and inspection effort allocation."
+  },
+  {
+    "id": "DOD-STD-2101 §3.1.6",
+    "title": "CLIFS Classification Criteria",
+    "category": "DoD Standard",
+    "keywords": ["clifs", "coordination", "interchangeability", "function", "safety criterion"],
+    "summary": "The five criteria (Coordination, Life, Interchangeability, Function, Safety — acronym CLIFS) used to determine a characteristic's classification: Coordination (features affected by mating/assembly/integration with adjoining items), Life (service/storage/fatigue life, durability, reliability, environmental resistance), Interchangeability (form/fit/function enabling common use or replacement), Function (ability to perform intended purpose), and Safety (risk to personnel from the item's integrity or proper functioning)."
+  },
+  {
+    "id": "DOD-STD-2101 §5.5",
+    "title": "Classification Codes — Critical, Major, Minor",
+    "category": "DoD Standard",
+    "keywords": ["classification code", "critical characteristic code", "major characteristic code", "minor characteristic"],
+    "summary": "Characteristics are annotated on drawings/specifications with a category code letter: Critical = 'C' (likely, if defective, to create/increase a safety hazard or cause failure of a weapon system/major system to perform its mission), Major = 'M' (likely, if defective, to result in failure of an end item to perform a required mission, but not critical), Minor = no letter (significant to product quality but not likely to impair mission performance)."
+  },
+  {
+    "id": "DoD Manual 4100.39-M",
+    "title": "Federal Logistics Information System (FLIS) Procedures",
+    "category": "DoD Manual",
+    "keywords": ["flis", "federal logistics information system", "logistics"],
+    "summary": "Referenced by MIL-STD-31000B for Federal Logistics Information System procedures relevant to item identification and TDP logistics support data.",
+    "cited_in": "MIL-STD-31000B §2"
+  },
+  {
+    "id": "DoD Manual 5220.22-M",
+    "title": "DoD Industrial Security Manual for Safeguarding Classified Information",
+    "category": "DoD Manual",
+    "keywords": ["industrial security", "classified information", "safeguarding"],
+    "summary": "Referenced by MIL-STD-31000B for requirements on safeguarding classified information that may appear within a Technical Data Package.",
+    "cited_in": "MIL-STD-31000B §2"
+  },
+  {
+    "id": "DoD Instruction 5230.24",
+    "title": "Distribution Statements on Technical Documents",
+    "category": "DoD Instruction",
+    "keywords": ["distribution statement", "technical documents", "export control marking"],
+    "summary": "Referenced by MIL-STD-31000B for the distribution statement markings required on technical documents, including TDP elements.",
+    "cited_in": "MIL-STD-31000B §2"
+  },
+  {
+    "id": "DoD Directive 5230.25",
+    "title": "Withholding of Unclassified Technical Data From Public Disclosure",
+    "category": "DoD Directive",
+    "keywords": ["withholding technical data", "public disclosure", "unclassified technical data"],
+    "summary": "Referenced by MIL-STD-31000B for the criteria and procedures governing withholding of unclassified technical data from public disclosure.",
+    "cited_in": "MIL-STD-31000B §2"
+  },
+  {
+    "id": "Federal Standardization Manual",
+    "title": "Federal Standardization Manual",
+    "category": "Federal Publication",
+    "keywords": ["federal standardization", "standardization manual"],
+    "summary": "Referenced by MIL-STD-31000B as the governing manual for federal standardization program policies and procedures.",
+    "cited_in": "MIL-STD-31000B §2"
+  },
+  {
+    "id": "ASME Y14.1",
+    "title": "Decimal Inch Drawing Sheet Size and Format",
+    "category": "ASME Standard",
+    "keywords": ["drawing sheet size", "decimal inch", "drawing format"],
+    "summary": "Referenced by MIL-STD-31000B for decimal-inch engineering drawing sheet size and format requirements.",
+    "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "ASME Y14.1M",
+    "title": "Metric Drawing Sheet Size and Format",
+    "category": "ASME Standard",
+    "keywords": ["drawing sheet size", "metric", "drawing format"],
+    "summary": "Referenced by MIL-STD-31000B for metric engineering drawing sheet size and format requirements.",
+    "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "ASME Y14.24",
+    "title": "Types and Applications of Engineering Drawings",
+    "category": "ASME Standard",
+    "keywords": ["engineering drawing types", "drawing applications"],
+    "summary": "Referenced by MIL-STD-31000B for the types and appropriate applications of engineering drawings used as TDP engineering design data.",
+    "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "ASME Y14.34",
+    "title": "Associated Lists",
+    "category": "ASME Standard",
+    "keywords": ["associated lists", "parts list", "engineering drawing"],
+    "summary": "Referenced by MIL-STD-31000B for the format of associated lists (e.g. parts lists) accompanying engineering design data.",
+    "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "ASME Y14.35",
+    "title": "Revision of Engineering Drawings and Associated Documents",
+    "category": "ASME Standard",
+    "keywords": ["drawing revision", "engineering change", "revision control"],
+    "summary": "Referenced by MIL-STD-31000B for the practices governing revision of engineering drawings and associated documents.",
+    "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "ASME Y14.41",
+    "title": "Digital Product Definition Data Practices",
+    "category": "ASME Standard",
+    "keywords": ["model based definition", "mbd", "digital product definition", "3d annotation"],
+    "summary": "Referenced by MIL-STD-31000B for digital product definition (Model Based Definition) data practices used in 3D Technical Data Packages.",
+    "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "ASME Y14.5",
+    "title": "Dimensioning and Tolerancing",
+    "category": "ASME Standard",
+    "keywords": ["gd&t", "dimensioning", "tolerancing"],
+    "summary": "Referenced by MIL-STD-31000B for geometric dimensioning and tolerancing (GD&T) practices used in engineering design data.",
+    "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "ASME Y14.100",
+    "title": "Engineering Drawing Practices",
+    "category": "ASME Standard",
+    "keywords": ["engineering drawing practices", "2d tdp", "drawing standards"],
+    "summary": "Referenced by MIL-STD-31000B as the general engineering drawing practices standard underlying Type 2D Technical Data Packages.",
+    "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "ISO/IEC 12207",
+    "title": "System and Software Engineering — Software Lifecycle Processes",
+    "category": "ISO/IEC Standard",
+    "keywords": ["software lifecycle", "software engineering", "software life cycle data"],
+    "summary": "Referenced by MIL-STD-31000B for software lifecycle process terminology (e.g. \"software life cycle data\"), relevant to computer software documentation TDP elements.",
+    "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "ISO 32000-1",
+    "title": "Document Management — Portable Document Format",
+    "category": "ISO Standard",
+    "keywords": ["pdf", "portable document format", "3di viewable"],
+    "summary": "Referenced by MIL-STD-31000B as the PDF standard underlying 3Di (3-Dimensional Intelligent) viewable technical data.",
+    "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "ISO 10303",
+    "title": "Standard for the Exchange of Product Model Data (STEP)",
+    "category": "ISO Standard",
+    "keywords": ["step", "product model data", "neutral cad format"],
+    "summary": "Referenced by MIL-STD-31000B as the standard (STEP) for neutral CAD data formats derived from 3D native models.",
+    "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "NAS 3500",
+    "title": "Technical Data Package: Composition, Communication, and Application",
+    "category": "NAS Standard",
+    "keywords": ["technical data package", "national aerospace standard"],
+    "summary": "Referenced by MIL-STD-31000B as the National Aerospace Standard counterpart addressing Technical Data Package composition, communication, and application.",
+    "cited_in": "MIL-STD-31000B §2.3"
+  },
+  {
+    "id": "DOD-D-1000",
+    "title": "Drawings, Engineering and Associated Lists",
+    "category": "DoD Specification",
+    "keywords": ["engineering drawings", "associated lists", "drawing specification"],
+    "summary": "Referenced by DOD-STD-2101(OS) as the specification governing engineering drawings and associated lists, relevant to where characteristic classification codes are annotated on drawings.",
+    "cited_in": "DOD-STD-2101(OS) §2.1"
+  },
+  {
+    "id": "MIL-S-83490",
+    "title": "Specifications, Types and Forms",
+    "category": "DoD Specification",
+    "keywords": ["specification types", "specification forms", "form 1 specification"],
+    "summary": "Referenced by DOD-STD-2101(OS) as the specification defining specification types and forms (e.g. Form 1 specifications), relevant to where classification codes and inspection requirements are annotated in specifications.",
+    "cited_in": "DOD-STD-2101(OS) §2.1 / §5.9"
+  },
+  {
+    "id": "MIL-STD-100",
+    "title": "Engineering Drawing Practices",
+    "category": "DoD Standard",
+    "keywords": ["engineering drawing practices", "drawing annotation"],
+    "summary": "Referenced by DOD-STD-2101(OS) as the standard for engineering drawing practices — classification codes for items described by drawings are annotated directly on MIL-STD-100 format drawings, immediately beside the characteristic call-out.",
+    "cited_in": "DOD-STD-2101(OS) §2.1 / §5.3"
+  },
+  {
+    "id": "MIL-STD-105",
+    "title": "Sampling Procedures and Tables for Inspection by Attributes",
+    "category": "DoD Standard",
+    "keywords": ["sampling plan", "inspection by attributes", "aql"],
+    "summary": "Referenced by DOD-STD-2101(OS) as a standard sampling plan source (attributes sampling, e.g. AQL-based) usable for inspecting classified characteristics.",
+    "cited_in": "DOD-STD-2101(OS) §2.1 / §3.1.19"
+  },
+  {
+    "id": "MIL-STD-109",
+    "title": "Quality Assurance Terms and Definitions",
+    "category": "DoD Standard",
+    "keywords": ["quality assurance terminology", "quality definitions"],
+    "summary": "Referenced by DOD-STD-2101(OS) as the source for general quality assurance terminology not separately defined within that standard.",
+    "cited_in": "DOD-STD-2101(OS) §2.1 / §3.1"
+  },
+  {
+    "id": "MIL-STD-414",
+    "title": "Sampling Procedures and Tables for Inspection by Variables for Percent Defective",
+    "category": "DoD Standard",
+    "keywords": ["sampling plan", "inspection by variables", "percent defective"],
+    "summary": "Referenced by DOD-STD-2101(OS) as a standard sampling plan source (variables sampling for percent defective) usable for inspecting classified characteristics.",
+    "cited_in": "DOD-STD-2101(OS) §2.1 / §3.1.19"
+  },
+  {
+    "id": "MIL-STD-1235",
+    "title": "Single and Multi-Level Continuous Sampling Procedures and Tables for Inspection by Attributes",
+    "category": "DoD Standard",
+    "keywords": ["continuous sampling", "inspection by attributes"],
+    "summary": "Referenced by DOD-STD-2101(OS) as a standard sampling plan source (continuous sampling procedures) usable for inspecting classified characteristics.",
+    "cited_in": "DOD-STD-2101(OS) §2.1 / §3.1.19"
+  },
+  {
+    "id": "MIL-HDBK-53",
+    "title": "Guide for Sampling Inspection",
+    "category": "DoD Handbook",
+    "keywords": ["sampling inspection guide"],
+    "summary": "Referenced by DOD-STD-2101(OS) as a guidance handbook for sampling inspection, supporting selection of inspection sampling plans for classified characteristics.",
+    "cited_in": "DOD-STD-2101(OS) §2.1"
+  },
+  {
+    "id": "MIL-HDBK-106",
+    "title": "Multi-Level Continuous Sampling Procedures and Tables for Inspection by Attributes",
+    "category": "DoD Handbook",
+    "keywords": ["continuous sampling", "inspection by attributes", "handbook"],
+    "summary": "Referenced by DOD-STD-2101(OS) as a handbook of multi-level continuous sampling procedures and tables for inspection by attributes.",
+    "cited_in": "DOD-STD-2101(OS) §2.1"
+  },
+  {
+    "id": "MIL-HDBK-107",
+    "title": "Single-Level Continuous Sampling Procedures and Tables for Inspection by Attributes",
+    "category": "DoD Handbook",
+    "keywords": ["continuous sampling", "inspection by attributes", "handbook"],
+    "summary": "Referenced by DOD-STD-2101(OS) as a handbook of single-level continuous sampling procedures and tables for inspection by attributes.",
+    "cited_in": "DOD-STD-2101(OS) §2.1"
+  },
+  {
+    "id": "ASME Y14.38",
+    "title": "Abbreviations and Acronyms for Use on Drawings and Related Documents",
+    "category": "ASME Standard",
+    "keywords": ["abbreviations", "acronyms", "drawing notation"],
+    "summary": "Referenced by MIL-STD-963C as the governing standard for abbreviations used in Data Item Descriptions; abbreviations not covered by ASME Y14.38 default to the GPO Style Manual.",
+    "cited_in": "MIL-STD-963C §2.3 / §4.4.1"
+  },
+  {
+    "id": "IEEE 260.1",
+    "title": "Letter Symbols for Units of Measurement (SI Units, Customary Inch-Pound Units)",
+    "category": "IEEE Standard",
+    "keywords": ["letter symbols", "units of measurement", "si units"],
+    "summary": "Referenced by MIL-STD-963C as the governing standard for symbols used in Data Item Descriptions; symbols not covered by IEEE 260.1 default to the GPO Style Manual.",
+    "cited_in": "MIL-STD-963C §2.3 / §4.4.3"
+  },
+  {
+    "id": "DoDI 7750.07",
+    "title": "DoD Forms Management Program",
+    "category": "DoD Instruction",
+    "keywords": ["forms management", "dod forms"],
+    "summary": "Referenced by MIL-STD-963C for DoD forms management program requirements relevant to forms referenced within a DID.",
+    "cited_in": "MIL-STD-963C §2.2.1"
+  },
+  {
+    "id": "DoD 5200.1-R",
+    "title": "Information Security Program",
+    "category": "DoD Regulation",
+    "keywords": ["information security program", "classified material marking"],
+    "summary": "Referenced by MIL-STD-963C for marking and handling requirements when a DID must contain classified material; the DID title itself may never be classified, and any classified DID must be a one-time DID.",
+    "cited_in": "MIL-STD-963C §2.2.1 / §4.3.2"
+  },
+  {
+    "id": "SD-1",
+    "title": "Standardization Directory",
+    "category": "DoD Publication",
+    "keywords": ["standardization directory", "did approval authority", "preparing activity"],
+    "summary": "Referenced by MIL-STD-963C as the directory listing DID Approval Authorities and data standardization area designations for each Military Department/Defense Agency.",
+    "cited_in": "MIL-STD-963C §2.2.1"
+  },
+  {
+    "id": "GPO Style Manual",
+    "title": "United States Government Printing Office Style Manual",
+    "category": "Federal Publication",
+    "keywords": ["style manual", "grammar", "abbreviations"],
+    "summary": "Referenced by both MIL-STD-961 and MIL-STD-963C as the fallback style guide for grammar, abbreviations, and symbols not otherwise covered by ASME Y14.38 or IEEE 260.1.",
+    "cited_in": "MIL-STD-961 §2.2.1 / MIL-STD-963C §2.2.1"
+  },
+  {
+    "id": "SD-10",
+    "title": "Guide for Identification and Development of Metric Standards",
+    "category": "DoD Publication",
+    "keywords": ["metric standards", "metric conversion guide"],
+    "summary": "Referenced by MIL-STD-961 as the Defense Standardization Program Office guide for identifying and developing metric standards, relevant to designating a specification as metric, inch-pound, or not measurement sensitive.",
+    "cited_in": "MIL-STD-961 §2.2.1"
+  },
+  {
+    "id": "SD-15",
+    "title": "Performance Specification Guide",
+    "category": "DoD Publication",
+    "keywords": ["performance specification guide"],
+    "summary": "Referenced by MIL-STD-961 as the Defense Standardization Program Office guide for developing performance specifications (MIL-PRF- identifiers), which state required results and verification criteria rather than design/manufacturing methods.",
+    "cited_in": "MIL-STD-961 §2.2.1"
+  },
+  {
+    "id": "DLIS H2",
+    "title": "Federal Supply Classification Groups and Classes",
+    "category": "DoD Publication",
+    "keywords": ["federal supply classification", "fsc"],
+    "summary": "Referenced by MIL-STD-961 as the Defense Logistics Information Service cataloging handbook defining Federal Supply Classification (FSC) groups and classes, used to designate the FSC on item and material program-unique specification cover pages.",
+    "cited_in": "MIL-STD-961 §2.2.1 / §5.4"
+  },
+  {
+    "id": "DLIS H6",
+    "title": "Federal Item Name Directory",
+    "category": "DoD Publication",
+    "keywords": ["federal item name directory", "item nomenclature"],
+    "summary": "Referenced by MIL-STD-961 as the Defense Logistics Information Service directory of approved item names, used for program-unique specification titles.",
+    "cited_in": "MIL-STD-961 §2.2.1"
+  },
+  {
+    "id": "IEEE/ASTM SI 10",
+    "title": "Use of the International System of Units (SI) — The Modern Metric System",
+    "category": "IEEE Standard",
+    "keywords": ["si units", "metric system", "international system of units"],
+    "summary": "Jointly published by IEEE and ASTM International; referenced by MIL-STD-961 as the definition of metric units (SI) used to distinguish metric, inch-pound, and dual-dimension specifications.",
+    "cited_in": "MIL-STD-961 §2.3 / §3.28"
+  },
+  {
+    "id": "DoD 4120.24-M",
+    "title": "Defense Standardization Program Policies and Procedures",
+    "category": "DoD Manual",
+    "keywords": ["defense standardization program", "dsp policy"],
+    "summary": "Referenced in MIL-STD-961's foreword as the manual governing the procedural matters of the Defense Standardization Program — document development authorization, coordination, comment resolution, indexing, distribution, application, and document maintenance.",
+    "cited_in": "MIL-STD-961 (Foreword)"
+  }
+]
