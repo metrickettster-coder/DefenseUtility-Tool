@@ -88,9 +88,53 @@
     "id": "MIL-STD-2073-1",
     "title": "Standard Practice for Military Packaging",
     "category": "DoD Standard",
-    "keywords": ["military packaging", "special packaging instruction", "spi"],
-    "summary": "Referenced by MIL-STD-31000B as the standard practice governing military packaging requirements, relevant to Special Packaging Instruction (SPI) TDP elements.",
-    "cited_in": "MIL-STD-31000B §2"
+    "keywords": ["military packaging", "special packaging instruction", "spi", "methods of preservation", "military preservation", "military packing"],
+    "summary": "MIL-STD-2073-1E establishes standard processes for developing and documenting military packaging (distinct from commercial packaging): methods of preservation protecting materiel against corrosion, deterioration, and physical/mechanical damage during storage, handling, and shipment in the defense transportation system. Applies to items that can't be cost-effectively protected with commercial packaging, wartime-deployed items, depot-level repairables, items needing reusable containers, and Foreign Military Sales items, among others. Packaging of classified items must additionally meet DoD 5220.22-M (NISPOM)."
+  },
+  {
+    "id": "MIL-STD-2073-1 §5.2.3",
+    "title": "Methods of Preservation (MOP 10/20/30/40/50)",
+    "category": "DoD Standard",
+    "keywords": ["method of preservation", "mop", "waterproof protection", "watervaporproof protection", "desiccant"],
+    "summary": "Five basic methods of preservation: Method 10 (physical protection only, no preservative), Method 20 (physical protection with contact preservative coating), Method 30 (waterproof or waterproof-greaseproof protection with preservative, e.g. a heat-sealed bag), Method 40 (watervaporproof protection with preservative), and Method 50 (watervaporproof protection with desiccant, for maximum moisture control). Each has numbered sub-methods (e.g. Method 31 = waterproof bag, heat sealed) specifying exact materials and construction."
+  },
+  {
+    "id": "MIL-STD-2073-1 §3 (Level A/B)",
+    "title": "Military Packing Levels A and B",
+    "category": "DoD Standard",
+    "keywords": ["level a packing", "level b packing", "worldwide shipment", "foreign military sales"],
+    "summary": "Level A packing provides protection for the most severe worldwide shipment, handling, and storage conditions (War Reserve Material, mobilization, deployment, open storage, deck loading) — e.g. overseas-type wood boxes, reusable plastic/metal containers. Level B packing meets moderate worldwide conditions not directly exposed to climate/terrain extremes (e.g. containerized overseas shipments, security assistance) — e.g. domestic wood crates, weather-resistant fiberboard containers."
+  },
+  {
+    "id": "MIL-STD-2073-1 §3 (Item Categorization)",
+    "title": "Common, Selective, and Special Group Items",
+    "category": "DoD Standard",
+    "keywords": ["common group items", "selective group items", "special group items", "item categorization"],
+    "summary": "Items are categorized by how much custom packaging engineering they need. Common group items (fragility ≥ 85 G's, ≤ 24in any dimension, ≤ 10 lb) use predetermined packaging with no custom work; hazardous materials, ESDS items, shelf-life items, sets/outfits/kits are excluded regardless of size/weight. Selective group items can't use predetermined common-group packaging but don't need drawings/sketches/special instructions either. Special group items (peculiar weight, configuration, complexity, or fragility) require a Special Packaging Instruction (SPI) with drawings or specialized containers."
+  },
+  {
+    "id": "MIL-STD-129",
+    "title": "Military Marking for Shipment and Storage",
+    "category": "DoD Standard",
+    "keywords": ["military marking", "shipment marking", "storage marking"],
+    "summary": "Referenced by MIL-STD-2073-1E as the governing standard for marking military packages/containers for shipment and storage.",
+    "cited_in": "MIL-STD-2073-1E §2.2.1"
+  },
+  {
+    "id": "MIL-STD-3010",
+    "title": "Test Procedures for Packaging Materials",
+    "category": "DoD Standard",
+    "keywords": ["packaging material test", "test method 3005"],
+    "summary": "Referenced by MIL-STD-2073-1E as the source of test methods for packaging materials — e.g. Test Method 3005 for noncorrosive wrapping/cushioning/dunnage materials used in contact with metal surfaces.",
+    "cited_in": "MIL-STD-2073-1E §2.2.1 / §5.2.3.5.2"
+  },
+  {
+    "id": "MIL-DTL-117",
+    "title": "Bag, Sleeve, and Tubing — Interior Packaging",
+    "category": "DoD Specification",
+    "keywords": ["interior packaging bag", "heat-sealable bag", "waterproof bag"],
+    "summary": "Referenced extensively by MIL-STD-2073-1E as the specification governing construction of the bags used in Methods 30/31/40/50 preservation (e.g. 'heat sealed bag conforming to MIL-DTL-117, Type III, Class B, Style 2'); bags exceeding its construction limits must instead comply with MIL-DTL-6060.",
+    "cited_in": "MIL-STD-2073-1E §5.2.3 (throughout)"
   },
   {
     "id": "DOD-STD-2101",

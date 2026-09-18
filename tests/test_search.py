@@ -83,3 +83,18 @@ def test_search_mil_std_490_flags_cancellation():
 def test_search_six_section_format():
     results = search("section 6 notes")
     assert any(r.id == "MIL-STD-961 §5" for r in results)
+
+
+def test_search_methods_of_preservation():
+    results = search("watervaporproof")
+    assert any(r.id == "MIL-STD-2073-1 §5.2.3" for r in results)
+
+
+def test_search_packing_levels():
+    results = search("Level A packing")
+    assert any(r.id == "MIL-STD-2073-1 §3 (Level A/B)" for r in results)
+
+
+def test_search_mil_dtl_117():
+    results = search("interior packaging bag")
+    assert any(r.id == "MIL-DTL-117" for r in results)
